@@ -77,8 +77,6 @@ Base URL: `/api/<name>`. These endpoints run as deployed serverless functions on
 
 ## Credits
 
-Snapshot of the Roblox Tools site at https://roblox.xsrazy.web.id (Vercel project `roblox-tools`).
+Snapshot of the Roblox Tools site deployed at https://roblox.xsrazy.web.id (Vercel project `roblox-tools`). This is a separate site from xsrazy's own Roblox Tools at https://rblx.xsrazy.web.id (repo `rblx`): different design, different language, different backend. The code in this repo is preserved as served by the live deployment; it is not xsrazy's original work.
 
-## License
-
-MIT. See [LICENSE](LICENSE).
+The site's own footer reads "Copyright © 2026 Roblox Tools. Not affiliated with Roblox Corporation." No separate license is included with this snapshot.
