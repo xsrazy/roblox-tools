@@ -135,7 +135,7 @@ Next to the tools, the site ships a full set of info pages:
 ## Architecture
 
 - **Frontend:** static HTML, CSS and JavaScript under `src/`, no framework. Shared code lives in `src/assets/tools.css` and `src/assets/tools.js`. Vendor libraries: three.js r128 (3D rendering) and html-to-image (PNG export of the result card).
-- **Typography:** one self-hosted font family, Inter (`src/fonts/`), used on every page including the exported result card.
+- **Typography:** one self-hosted font family, Inter (`src/fonts/Inter.woff2`), loaded on every page including the exported result card. The fonts folder still carries two legacy files (Sora and JetBrains Mono) that no page loads anymore; they remain only because the snapshot mirrors the deployment file for file.
 - **Design:** light blue glass theme. Primary blue `#2563EB`, glass cards `rgba(255,255,255,.72)` with a `#D9E6F5` border and 16px radius, page background built from soft blue radial glows over `#F8FBFF` to `#E9F1FD`. The OG image (`src/og.png`) uses the same values, the same logo file and the same tool names and descriptions as the homepage.
 - **Backend (not in this repo):** 24 serverless API handlers that proxy Roblox public APIs and power every tool. See the [API](#api) table.
 - **Lookup history:** a Cloudflare D1 database behind `/api/history`. New lookups are validated and deduplicated, and the endpoint returns the latest 12.
