@@ -10,7 +10,7 @@ Free tools to look up Roblox accounts, avatars, games, groups and more. Live dat
 
 Roblox Tools is a free lookup toolbox for Roblox at [roblox.xsrazy.web.id](https://roblox.xsrazy.web.id). It packs 49 tools into one site: account and avatar checks, friend and follower lists, inventory and limited item values, game and group info, avatar renders and 3D models, Robux calculators, and a local account tracker. Every result comes from live Roblox data, and everything runs in the browser without an account.
 
-This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`). It contains the complete frontend as served by the live deployment: 122 files, 108 of them HTML pages. The 24 server-side API handlers are not included, because their source is not served publicly; on the live site they run as deployed serverless functions. See [Notes](#notes).
+This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`). It contains the complete frontend as served by the live deployment: 120 files, 108 of them HTML pages. The 24 server-side API handlers are not included, because their source is not served publicly; on the live site they run as deployed serverless functions. See [Notes](#notes).
 
 Site version: **v1.6.21** (6 November 2026). Full version history: [Changelog](https://roblox.xsrazy.web.id/changelog.html).
 
@@ -202,7 +202,7 @@ Favorite Games and Last Online are also not offered: the endpoints behind them n
 
 ## Notes
 
-- **Snapshot scope.** This repo holds the 122 frontend files of the production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`. The 24 server-side API handlers and their compiled bundles are not included because their source is not served publicly. The `/api/*` endpoints on the live site run as deployed serverless functions, so the tools that call them need the live backend (or an equivalent one) to work from this repo alone.
+- **Snapshot scope.** This repo holds the 120 frontend files of the production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`. The 24 server-side API handlers and their compiled bundles are not included because their source is not served publicly. The `/api/*` endpoints on the live site run as deployed serverless functions, so the tools that call them need the live backend (or an equivalent one) to work from this repo alone.
 - **Deploys do not come from this repo.** The live site is deployed from a separate working copy with a deploy script that logs the changelog on every release. This repo mirrors the result after each meaningful update.
 - **Game servers and 3D models work on the live site.** The same Roblox endpoints reject requests from some datacenter IPs, which is why those tools depend on this backend.
 
