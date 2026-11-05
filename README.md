@@ -10,7 +10,7 @@ Free tools to look up Roblox accounts, avatars, games, groups and more. Live dat
 
 Roblox Tools is a free lookup toolbox for Roblox at [roblox.xsrazy.web.id](https://roblox.xsrazy.web.id). It packs 49 tools into one site: account and avatar checks, friend and follower lists, inventory and limited item values, game and group info, avatar renders and 3D models, Robux calculators, and a local account tracker. Every result comes from live Roblox data, and everything runs in the browser without an account.
 
-This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`). It contains the complete frontend as served by the live deployment: 120 files, 108 of them HTML pages. The 24 server-side API handlers are not included, because their source is not served publicly; on the live site they run as deployed serverless functions. See [Notes](#notes).
+This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`). It contains the complete frontend as served by the live deployment (120 files, 108 of them HTML pages) plus all 24 server-side API handlers under `src/api/` (144 files in total). Private values in the backend copies are redacted as `*****`; the actual credentials are read from environment variables and were never written in the code. See [Notes](#notes).
 
 Site version: **v1.6.21** (6 November 2026). Full version history: [Changelog](https://roblox.xsrazy.web.id/changelog.html).
 
@@ -137,7 +137,7 @@ Next to the tools, the site ships a full set of info pages:
 - **Frontend:** static HTML, CSS and JavaScript under `src/`, no framework. Shared code lives in `src/assets/tools.css` and `src/assets/tools.js`. Vendor libraries: three.js r128 (3D rendering) and html-to-image (PNG export of the result card).
 - **Typography:** one self-hosted font family, Inter (`src/fonts/Inter.woff2`), loaded on every page including the exported result card.
 - **Design:** light blue glass theme. Primary blue `#2563EB`, glass cards `rgba(255,255,255,.72)` with a `#D9E6F5` border and 16px radius, page background built from soft blue radial glows over `#F8FBFF` to `#E9F1FD`. The OG image (`src/og.png`) uses the same values, the same logo file and the same tool names and descriptions as the homepage.
-- **Backend (not in this repo):** 24 serverless API handlers that proxy Roblox public APIs and power every tool. See the [API](#api) table.
+- **Backend:** 24 serverless API handlers under `src/api/` that proxy Roblox public APIs and power every tool. See the [API](#api) table.
 - **Lookup history:** a Cloudflare D1 database behind `/api/history`. New lookups are validated and deduplicated, and the endpoint returns the latest 12.
 - **Session tools:** six tools (Friends List, Mutual Friends, Followers List, Following List, User Badges, Avatar 3D Model) need data that Roblox only serves to signed-in accounts. On the live site they run through a session stored as a server-side environment variable, never in code. If that session is unavailable, those six tools say so and the other 43 keep working.
 - **Hosting:** Vercel (project `roblox-tools`). The domain `roblox.xsrazy.web.id` points to Vercel through a Cloudflare DNS CNAME.
@@ -145,7 +145,7 @@ Next to the tools, the site ships a full set of info pages:
 
 ## API
 
-Base URL: `/api/<name>`. These endpoints run as deployed serverless functions on the live site; they are documented here from the deployment's handler list and the tool pages that call them. They are not part of this repo.
+Base URL: `/api/<name>`. These endpoints run as serverless functions on the live site, and their source is included in this repo under `src/api/`, with private values redacted as `*****`.
 
 | Endpoint | Purpose |
 | --- | --- |
@@ -202,7 +202,7 @@ Favorite Games and Last Online are also not offered: the endpoints behind them n
 
 ## Notes
 
-- **Snapshot scope.** This repo holds the 120 frontend files of the production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`. The 24 server-side API handlers and their compiled bundles are not included because their source is not served publicly. The `/api/*` endpoints on the live site run as deployed serverless functions, so the tools that call them need the live backend (or an equivalent one) to work from this repo alone.
+- **Snapshot scope.** This repo holds the production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo` as source: 120 frontend files plus the 24 API handlers under `src/api/` (the compiled function bundles are not included). In the backend copies, the maintainer's own Roblox username and user ID (used as the test target in the probe endpoint and in two code comments) are replaced with `*****`. Real secrets never appear in the code at all: the signed-in session cookie and the Cloudflare credentials are read from environment variables (`ROBLOSECURITY`, `CF_ACCOUNT_ID`, `CF_D1_ID`, `CF_API_TOKEN`) on the server only.
 - **Deploys do not come from this repo.** The live site is deployed from a separate working copy with a deploy script that logs the changelog on every release. This repo mirrors the result after each meaningful update.
 - **Game servers and 3D models work on the live site.** The same Roblox endpoints reject requests from some datacenter IPs, which is why those tools depend on this backend.
 
