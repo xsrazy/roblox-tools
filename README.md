@@ -75,10 +75,6 @@ Base URL: `/api/<name>`. These endpoints run as deployed serverless functions on
 - **Game servers and 3D models work here.** The live backend returns game servers and 3D avatar/outfit models. The same endpoints reject requests from some datacenter IPs (verified against a separate Vercel backend), so those tools depend on this backend.
 - **Design.** The live site uses a light blue/white theme. The OG image (`src/og.png`) uses an older dark-purple design with 8 tool cards.
 
-## Credits
-
-Built by Rahmatul Usra ([xsrazy](https://github.com/xsrazy)).
-
 ## License
 
 MIT. See [LICENSE](LICENSE).
