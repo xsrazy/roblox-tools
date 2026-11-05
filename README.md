@@ -24,10 +24,6 @@ The toolbox section, with category filters and tool search:
 
 ![Tools section](docs/screenshots/tools.png)
 
-Game Servers tool:
-
-![Game Servers tool](docs/screenshots/tool-servers.png)
-
 ## Features
 
 - **49 free tools in 8 categories**, listed in full in the [tool catalog](#tool-catalog) below.
