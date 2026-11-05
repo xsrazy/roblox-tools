@@ -10,7 +10,7 @@ Free tools to look up Roblox accounts, avatars, games, groups and more. Live dat
 
 Roblox Tools is a free lookup toolbox for Roblox at [roblox.xsrazy.web.id](https://roblox.xsrazy.web.id). It packs 49 tools into one site: account and avatar checks, friend and follower lists, inventory and limited item values, game and group info, avatar renders and 3D models, Robux calculators, and a local account tracker. Every result comes from live Roblox data, and everything runs in the browser without an account.
 
-This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`). It contains the complete frontend exactly as served by the live deployment: 124 files, 108 of them HTML pages. The 24 server-side API handlers are not included, because their source is not served publicly; on the live site they run as deployed serverless functions. See [Notes](#notes).
+This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`). It contains the complete frontend as served by the live deployment: 122 files, 108 of them HTML pages. The 24 server-side API handlers are not included, because their source is not served publicly; on the live site they run as deployed serverless functions. See [Notes](#notes).
 
 Site version: **v1.6.21** (6 November 2026). Full version history: [Changelog](https://roblox.xsrazy.web.id/changelog.html).
 
@@ -135,7 +135,7 @@ Next to the tools, the site ships a full set of info pages:
 ## Architecture
 
 - **Frontend:** static HTML, CSS and JavaScript under `src/`, no framework. Shared code lives in `src/assets/tools.css` and `src/assets/tools.js`. Vendor libraries: three.js r128 (3D rendering) and html-to-image (PNG export of the result card).
-- **Typography:** one self-hosted font family, Inter (`src/fonts/Inter.woff2`), loaded on every page including the exported result card. The fonts folder still carries two legacy files (Sora and JetBrains Mono) that no page loads anymore; they remain only because the snapshot mirrors the deployment file for file.
+- **Typography:** one self-hosted font family, Inter (`src/fonts/Inter.woff2`), loaded on every page including the exported result card.
 - **Design:** light blue glass theme. Primary blue `#2563EB`, glass cards `rgba(255,255,255,.72)` with a `#D9E6F5` border and 16px radius, page background built from soft blue radial glows over `#F8FBFF` to `#E9F1FD`. The OG image (`src/og.png`) uses the same values, the same logo file and the same tool names and descriptions as the homepage.
 - **Backend (not in this repo):** 24 serverless API handlers that proxy Roblox public APIs and power every tool. See the [API](#api) table.
 - **Lookup history:** a Cloudflare D1 database behind `/api/history`. New lookups are validated and deduplicated, and the endpoint returns the latest 12.
@@ -202,7 +202,7 @@ Favorite Games and Last Online are also not offered: the endpoints behind them n
 
 ## Notes
 
-- **Snapshot scope.** This repo holds the 124 frontend files of the production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`. The 24 server-side API handlers and their compiled bundles are not included because their source is not served publicly. The `/api/*` endpoints on the live site run as deployed serverless functions, so the tools that call them need the live backend (or an equivalent one) to work from this repo alone.
+- **Snapshot scope.** This repo holds the 122 frontend files of the production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`. The 24 server-side API handlers and their compiled bundles are not included because their source is not served publicly. The `/api/*` endpoints on the live site run as deployed serverless functions, so the tools that call them need the live backend (or an equivalent one) to work from this repo alone.
 - **Deploys do not come from this repo.** The live site is deployed from a separate working copy with a deploy script that logs the changelog on every release. This repo mirrors the result after each meaningful update.
 - **Game servers and 3D models work on the live site.** The same Roblox endpoints reject requests from some datacenter IPs, which is why those tools depend on this backend.
 
