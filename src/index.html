@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox Tools - Free Roblox Lookup Tools</title>
+<meta name="description" content="Roblox Tools: free tools to look up Roblox accounts, avatars, games, groups and more. Live data from public Roblox APIs. No login, no install.">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Roblox Tools">
+<meta property="og:description" content="Free tools to look up Roblox accounts, avatars, games, groups and more. Live data from public Roblox APIs.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Roblox Tools">
+<meta name="twitter:description" content="Free tools to look up Roblox accounts, avatars, games, groups and more. Live data from public Roblox APIs.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<style>
+  :root{
+    --bg:#EFF6FF; --bg-deep:#E2EDFC; --panel:#EFF6FF; --panel-2:#FFFFFF;
+    --line:rgba(37,99,235,.22); --line-soft:rgba(37,99,235,.12);
+    --violet:#2563EB; --violet-deep:#1D4ED8; --lilac:#2563EB; --pale:#1E3A5F;
+    --text:#16283F; --muted:rgba(31,41,55,.62); --green:#059669; --amber:#D97706; --red:#DC2626;
+    /* Bloxiana redesign vars: page chrome only. The locked result card keeps
+       resolving the original vars above, unchanged. */
+    --bgx:#EFF6FF; --accent:#2563EB; --accent-ink:#FFFFFF;
+    --glass:rgba(255,255,255,.72); --stroke:#D9E6F5;
+    --mut:rgba(31,41,55,.64); --dim:rgba(31,41,55,.46);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  input,select,textarea,button{font-family:inherit}
+  html{scroll-behavior:smooth}
+  body{color:#1F2937;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased;background:radial-gradient(1000px 620px at 10% -6%,rgba(37,99,235,.10),transparent 60%),radial-gradient(1150px 720px at 90% 20%,rgba(59,130,246,.10),transparent 62%),radial-gradient(950px 620px at 50% 110%,rgba(37,99,235,.06),transparent 60%),linear-gradient(#F8FBFF,#E9F1FD);background-color:var(--bgx)}
+  ::selection{background:rgba(37,99,235,.25)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .result-wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Nav: floating glass pill (Bloxiana) ---------- */
+  .nav{position:sticky;top:14px;z-index:50}
+  .nav-in{display:flex;align-items:center;gap:28px;margin-top:20px;padding:10px 12px 10px 18px;border-radius:999px;background:rgba(255,255,255,.78);border:1px solid var(--stroke);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .brand-head{display:flex;align-items:center;gap:11px;font-weight:700;font-size:16px;letter-spacing:-.2px}
+  .brand-head img{width:34px;height:34px;border-radius:10px}
+  .brand-head span em{font-style:normal;color:var(--accent)}
+  .nav-links{display:flex;align-items:center;gap:24px;margin-left:8px}
+  .nav-links a{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:rgba(31,41,55,.72);transition:color .2s}
+  .nav-links a:hover{color:#16283F}
+  .nav-links svg{opacity:.75;flex:none}
+  .nav-cta{margin-left:auto;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;box-shadow:0 8px 20px -6px rgba(37,99,235,.40);transition:transform .2s,box-shadow .2s;white-space:nowrap}
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 12px 26px -6px rgba(37,99,235,.50)}
+
+  /* ---------- Hero (Bloxiana) ---------- */
+  .hero{position:relative;padding:86px 0 26px;text-align:center;min-height:100vh;min-height:100dvh}
+  .hero-in{position:relative;max-width:760px}
+  .hero-logo{width:104px;height:104px;filter:drop-shadow(0 14px 34px rgba(37,99,235,.22))}
+  .hero h1{font-size:clamp(40px,6vw,64px);font-weight:700;letter-spacing:-1.5px;line-height:1.05;margin-top:30px}
+  .hero h1 .grad{background:linear-gradient(180deg,#16283F 20%,var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .hero-sub{color:var(--mut);font-size:19px;line-height:1.6;margin:22px auto 0;max-width:620px}
+  .chev{display:flex;justify-content:center;margin-top:56px}
+  .chev a{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--stroke);background:var(--glass);color:var(--mut)}
+  html.gate-locked .chev{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);margin:0;z-index:80}
+  html.gate-locked .chev a{background:#fff;border-color:rgba(37,99,235,.25);color:#2563EB;box-shadow:0 12px 28px rgba(37,99,235,.28);animation:chevBob 1.8s ease-in-out infinite}
+  @keyframes chevBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+  .wave{display:block;width:100%;height:64px;margin-top:34px}
+
+  .lookup{margin:36px auto 0;max-width:620px;display:flex;align-items:center;gap:8px;padding:7px;border-radius:999px;background:rgba(255,255,255,.88);border:1px solid #D7E3F2;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:border-color .2s;text-align:left}
+  .lookup:focus-within{border-color:rgba(37,99,235,.50)}
+  .lookup input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#1F2937;font:inherit;font-size:15.5px;padding:0 18px}
+  .lookup input::placeholder{color:rgba(31,41,55,.40)}
+  .lookup button{background:var(--accent);color:var(--accent-ink);border:0;cursor:pointer;font:inherit;font-size:15px;font-weight:600;padding:13px 32px;border-radius:999px;box-shadow:0 10px 24px -6px rgba(37,99,235,.40);transition:transform .2s}
+  .lookup button:hover{transform:translateY(-1px)}
+  .lookup button:disabled{opacity:.6;cursor:wait}
+  .status{margin-top:16px;color:var(--mut);font-size:14.5px;min-height:20px}
+  .status.error{color:var(--red)}
+
+  .result-label{margin:38px 0 12px;color:var(--dim);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;text-align:left}
+
+  /* ---------- Result card (locked design, unchanged) ---------- */
+  .card{background:linear-gradient(150deg,var(--panel-2),var(--panel) 55%);border:1px solid var(--line);border-radius:22px;padding:30px 32px;box-shadow:0 24px 60px rgba(30,64,175,.16);text-align:left}
+  .card-brand{display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid rgba(37,99,235,.16)}
+  .card-brand img{height:30px;width:30px}
+  .card-brand .bname{font-weight:800;font-size:16px;letter-spacing:.2px}
+  .card-brand .bname em{font-style:normal;color:#2563EB}
+  .card-brand .burl{display:none;margin-left:auto;color:#2563EB;font-weight:600;letter-spacing:.2px;font-size:15px}
+  .card-top{display:flex;gap:26px;align-items:center}
+  .avatar-ring{flex:none;width:148px;height:148px;border-radius:50%;padding:4px;background:linear-gradient(140deg,#93C5FD,#2563EB)}
+  .avatar-ring img{width:100%;height:100%;border-radius:50%;display:block;background:#EAF2FE}
+  .id-block{min-width:0}
+  .name-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .name-row h2{font-size:31px;font-weight:800;letter-spacing:-.3px}
+  .handle{color:var(--muted);font-size:16px;margin-top:3px}
+  .handle .uid{color:rgba(31,41,55,.45)}
+  .badges{display:flex;gap:8px;flex-wrap:nowrap;flex:none}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:6px 13px;border-radius:999px;border:1px solid var(--line);white-space:nowrap;flex:none}
+  .badge .dot{width:8px;height:8px;border-radius:50%}
+  .badge.game{color:#047857;background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.35)}
+  .badge.game .dot{background:var(--green);box-shadow:0 0 8px var(--green)}
+  .badge.online{color:#1D4ED8;background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.35)}
+  .badge.online .dot{background:#60a5fa;box-shadow:0 0 8px #60a5fa}
+  .badge.studio{color:#2563EB;background:rgba(37,99,235,.12);border-color:rgba(37,99,235,.35)}
+  .badge.studio .dot{background:var(--lilac);box-shadow:0 0 8px var(--lilac)}
+  .badge.offline{color:#475569;background:rgba(148,163,184,.10);border-color:rgba(148,163,184,.3)}
+  .badge.offline .dot{background:#94a3b8}
+  .badge.priv{color:#B45309;background:rgba(251,191,36,.10);border-color:rgba(251,191,36,.32)}
+  .badge.pub{color:#047857;background:rgba(52,211,153,.10);border-color:rgba(52,211,153,.3)}
+  .badge.banned{color:#B91C1C;background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.4)}
+  .badge.banned .dot{background:var(--red);box-shadow:0 0 8px var(--red)}
+
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+  .stat{min-width:0;background:rgba(37,99,235,.05);border:1px solid var(--line-soft);border-radius:16px;padding:18px 20px;text-align:center}
+  .stat b{display:block;font-size:34px;font-weight:800;letter-spacing:-.5px;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;white-space:nowrap}
+  .stat small{color:var(--muted);font-size:12.5px;letter-spacing:.8px;text-transform:uppercase;font-weight:700}
+
+  .meta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+  .meta{flex:1;min-width:170px;background:rgba(37,99,235,.05);border:1px solid var(--line-soft);border-radius:16px;padding:14px 20px;display:flex;align-items:baseline;gap:10px}
+  .meta small{color:var(--muted);font-size:12.5px;letter-spacing:.8px;text-transform:uppercase;font-weight:700}
+  .meta b{font-size:16px;font-weight:800;margin-left:auto;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif}
+
+  .desc{margin-top:22px;border-top:1px solid var(--line-soft);padding-top:20px}
+  .desc small{display:block;color:var(--muted);font-size:12.5px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+  .desc p{font-size:16.5px;line-height:1.65;color:#24344E;font-style:italic;white-space:pre-wrap;word-break:break-word}
+
+  .actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:24px}
+  .actions a,.actions button{font-size:14px;font-weight:700;padding:10px 18px;border-radius:11px;border:1px solid var(--line);color:var(--pale);background:rgba(37,99,235,.07);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;text-align:center}
+  .actions a:hover,.actions button:hover{border-color:var(--lilac);color:#16283F}
+  .actions .primary{background:var(--violet);color:#fff;border-color:transparent}
+  .actions .primary:hover{background:var(--violet-deep)}
+
+  .dl-row{margin-top:16px;text-align:left}
+  .dl-row button{font-size:14px;font-weight:700;padding:10px 18px;border-radius:11px;border:1px solid var(--line);color:var(--pale);background:rgba(37,99,235,.07);cursor:pointer;font-family:inherit}
+  .dl-row button:hover{border-color:var(--lilac);color:#16283F}
+  .dl-row button:disabled{opacity:.6;cursor:wait}
+
+  .outfits{margin-top:26px;text-align:left}
+  .outfits h3{font-size:17px;font-weight:800;margin-bottom:14px}
+  .outfit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+  .outfit{background:rgba(37,99,235,.05);border:1px solid var(--line-soft);border-radius:14px;padding:12px;text-align:center}
+  .outfit>img{width:100%;aspect-ratio:1;border-radius:10px;background:#EAF2FE;display:block}
+  .outfit span{display:block;margin-top:10px;font-size:13px;font-weight:600;color:var(--text);word-break:break-word}
+  .outfit-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+  .outfit-items img{width:42px;height:42px;border-radius:9px;background:#EAF2FE;border:1px solid var(--line-soft);display:block}
+  .outfits .empty{color:var(--muted);font-size:14.5px}
+
+  /* Font full Bloxiana (5 Nov 2026): the result card uses the same Inter
+     stack as the rest of the site, numbers included. */
+  .card{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif}
+
+  /* ---------- Sections ---------- */
+  section.block{padding:78px 0 6px}
+  .eyebrow{text-align:center;font-size:12px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:rgba(31,41,55,.45)}
+  .sec-head{text-align:center}
+  .sec-head h2{font-size:clamp(34px,4.4vw,48px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-top:14px;background:linear-gradient(180deg,#16283F 25%,rgba(37,99,235,.95));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .sec-head p{text-align:center;color:var(--mut);font-size:17px;line-height:1.65;max-width:640px;margin:16px auto 0}
+
+  .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:16px;margin-top:42px}
+  .tool-card{position:relative;display:block;padding:20px;border-radius:16px;background:var(--glass);border:1px solid var(--stroke);transition:transform .22s,background .22s,border-color .22s,box-shadow .22s}
+  a.tool-card:hover{transform:translateY(-3px);background:#FFFFFF;border-color:rgba(37,99,235,.40);box-shadow:0 16px 34px -18px rgba(30,64,175,.28)}
+  .tool-card .icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(37,99,235,.09);border:1px solid rgba(37,99,235,.16);color:var(--accent)}
+  .tool-card h3{font-size:16px;font-weight:600;letter-spacing:-.2px;margin-top:14px;padding-right:44px}
+  .tool-card p{font-size:14px;line-height:1.55;color:rgba(31,41,55,.62);margin-top:6px}
+  .tool-card .tag-live{position:absolute;top:18px;right:18px;display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:rgba(37,99,235,.10);padding:4px 10px;border-radius:999px}
+  .tool-card .tag-live::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .tool-card .tag-soon{position:absolute;top:18px;right:18px;display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);background:rgba(31,41,55,.06);padding:4px 10px;border-radius:999px}
+  .tool-card.soon{opacity:.78}
+
+  .value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:44px}
+  .value-card{padding:26px;border-radius:16px;background:var(--glass);border:1px solid var(--stroke);text-align:left}
+  .value-card .icon{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;margin-bottom:16px;background:rgba(37,99,235,.09);border:1px solid rgba(37,99,235,.16);color:var(--accent)}
+  .value-card h3{font-size:17px;font-weight:600;letter-spacing:-.2px;margin-bottom:8px}
+  .value-card p{font-size:14.5px;line-height:1.6;color:rgba(31,41,55,.62)}
+
+
+  .cat-head{display:flex;align-items:center;gap:12px;font-size:21px;font-weight:700;letter-spacing:-.4px;margin:56px 0 18px;text-align:left}
+  .cat-head::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--accent);opacity:.85;flex:none}
+  .cat-head .cat-sub{font-size:13.5px;font-weight:500;color:var(--dim);letter-spacing:0}
+  .tool-grid.cat-grid{margin-top:0}
+  /* ---------- Steps / closing ---------- */
+  .steps{padding:84px 0 10px;text-align:center}
+  .steps h2{font-size:clamp(34px,4.4vw,48px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;background:linear-gradient(180deg,#16283F 25%,rgba(37,99,235,.95));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:44px;text-align:left}
+  .step{padding:26px;border-radius:16px;background:var(--glass);border:1px solid var(--stroke)}
+  .step .num{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;margin-bottom:16px;background:rgba(37,99,235,.09);border:1px solid rgba(37,99,235,.16);color:var(--accent)}
+  .step h3{font-size:17px;font-weight:600;letter-spacing:-.2px;margin-bottom:8px}
+  .step p{font-size:14.5px;line-height:1.6;color:rgba(31,41,55,.62)}
+  .cta-btn{display:inline-block;margin-top:42px;background:var(--accent);color:var(--accent-ink);font-size:15px;font-weight:600;padding:15px 32px;border-radius:12px;box-shadow:0 10px 15px -3px rgba(37,99,235,.28),0 4px 6px -4px rgba(37,99,235,.28);transition:transform .2s}
+  .cta-btn:hover{transform:translateY(-1px)}
+
+  /* ---------- Footer ---------- */
+  footer{margin-top:104px;background:rgba(255,255,255,.65);border-top:1px solid #D9E6F5;padding:54px 0 30px}
+  .foot-grid{display:flex;gap:48px;flex-wrap:wrap;padding:0 24px}
+.foot-main{flex:1 1 300px;max-width:430px}
+.foot-desc{margin:14px 0 18px;color:var(--muted);font-size:14.5px;line-height:1.6}
+.foot-cta{display:flex;gap:10px;flex-wrap:wrap}
+.fbtn{display:inline-block;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none}
+.fbtn-solid{background:var(--accent);color:#fff}
+.fbtn-solid:hover{background:#1D4ED8}
+.fbtn-ghost{border:1px solid #C7DBF7;color:var(--text);background:rgba(255,255,255,.6)}
+.fbtn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.foot-col{display:flex;flex-direction:column;gap:11px;min-width:160px}
+.foot-col h4{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text);margin:2px 0 5px}
+.foot-col a{color:var(--muted);font-size:14.5px;text-decoration:none}
+.foot-col a:hover{color:var(--accent)}
+.foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:42px;padding:22px 24px 0;border-top:1px solid #D9E6F5;color:var(--muted);font-size:13.5px}
+  .foot-brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:16px;letter-spacing:-.2px;color:#16283F}
+  .foot-brand img{width:34px;height:34px;border-radius:10px}
+  .foot-brand em{font-style:normal;color:var(--accent)}
+  .foot-url{color:var(--accent);font-weight:500;letter-spacing:0}
+  .foot-link:hover{color:var(--accent);text-decoration:underline}
+
+  @media (max-width:640px){
+    .wrap,.result-wrap{padding:0 16px}
+    .nav{top:10px}
+    .nav-in{gap:14px;padding:8px 10px 8px 14px;margin-top:12px}
+    .nav-links{display:none}
+    .brand-head{font-size:15px}
+    .brand-head img{width:30px;height:30px}
+    .nav-cta{padding:9px 16px}
+    .hero{padding:54px 0 16px}
+    .hero-logo{width:80px;height:80px}
+    .hero-sub{font-size:17px}
+    .lookup{flex-direction:column;align-items:stretch;border-radius:20px;padding:8px;gap:6px}
+    .lookup input{padding:10px 12px;text-align:center}
+    .lookup button{border-radius:14px;width:100%}
+    .card{padding:24px 20px}
+    .card-top{flex-direction:column;text-align:center}
+    .name-row{justify-content:center}
+    .badges{justify-content:center}
+    .stats{gap:8px}
+    .stat{padding:14px 3px}
+    .stat b{font-size:clamp(14px,4vw,17px);letter-spacing:-1px}
+    .stat small{font-size:10.5px;letter-spacing:.4px}
+    .card-brand .burl{font-size:12.5px}
+    .actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .foot-grid{flex-direction:row;gap:26px 30px}
+    .foot-bottom{justify-content:center;text-align:center;padding:22px 16px 0}
+    .foot-note{display:block}
+    section.block{padding:58px 0 4px}
+    .cat-head{font-size:19px;margin:44px 0 14px}
+    .steps{padding:60px 0 10px}
+    footer{margin-top:48px;padding:36px 0 28px}
+  }
+</style>
+<style>
+@font-face{font-family:'Inter';src:url('/fonts/Inter.woff2') format('woff2');font-weight:100 900;font-display:swap}
+</style>
+<script src="/vendor/html-to-image.min.js"></script>
+<script>
+// Paste-a-link support: a Roblox profile link pasted into the username
+// field is replaced by the numeric user ID it points to.
+function convertProfileLink(t) {
+  if (!t || t.tagName !== "INPUT" || t.type !== "text") return;
+  var v = String(t.value || "").trim();
+  if (!/roblox\.com/i.test(v)) return;
+  var m = v.match(/\/users\/(\d+)/i) || v.match(/[?&]userId=(\d+)/i);
+  if (m && v !== m[1]) t.value = m[1];
+}
+document.addEventListener("input", function (e) {
+  if (e.inputType === "insertFromPaste" || e.inputType === "insertFromDrop") convertProfileLink(e.target);
+}, true);
+document.addEventListener("change", function (e) { convertProfileLink(e.target); }, true);
+document.addEventListener("submit", function (e) {
+  var f = e.target;
+  if (!f || !f.querySelectorAll) return;
+  var inputs = f.querySelectorAll('input[type="text"]');
+  for (var i = 0; i < inputs.length; i++) convertProfileLink(inputs[i]);
+}, true);
+</script>
+
+<style>
+  /* ----- Category filter pills (added 5 Nov 2026) ----- */
+  .filter-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:36px auto 2px;max-width:920px}
+  .filter-pills{display:flex;flex-wrap:nowrap;gap:8px;justify-content:flex-start;width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:16px 16px 24px;margin:-14px -14px -16px}
+  .filter-pills::-webkit-scrollbar{display:none}
+  .fpill{flex:0 0 auto;white-space:nowrap;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.78);border:1px solid #D7E3F2;color:rgba(31,41,55,.78);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .fpill:hover{border-color:rgba(37,99,235,.45);color:#16283F;transform:translateY(-1px)}
+  .fpill .fp-n{font-size:11.5px;font-weight:700;background:rgba(37,99,235,.10);color:var(--accent);padding:1px 8px;border-radius:999px}
+  .fpill.active{background:var(--accent);border-color:transparent;color:var(--accent-ink);box-shadow:0 8px 20px -6px rgba(37,99,235,.45)}
+  .fpill.active .fp-n{background:rgba(255,255,255,.25);color:var(--accent-ink)}
+  .filter-search{display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.85);border:1px solid #D7E3F2;color:rgba(31,41,55,.5);flex:1 1 100%}
+  .filter-search:focus-within{border-color:rgba(37,99,235,.50);color:var(--accent)}
+  .filter-search input{background:transparent;border:0;outline:0;color:#1F2937;font:inherit;font-size:13.5px;flex:1;min-width:0;width:auto}
+  .filter-search input::placeholder{color:rgba(31,41,55,.40)}
+  @media (max-width:640px){.filter-bar{margin-top:26px}}
+  /* ----- Scroll gate: page locked until the hero chevron is pressed ----- */
+  html.gate-locked,html.gate-locked body{overflow:hidden}
+  #tools,#how{scroll-margin-top:104px}
+  .filter-pills{cursor:grab}
+  .filter-pills.dragging{cursor:grabbing;user-select:none}
+</style>
+<script>if(!window.location.hash){document.documentElement.classList.add('gate-locked')}</script>
+<style>
+/* ----- GLOW REDESIGN (5 Nov 2026): page chrome only. The locked result-card
+   block and every script block are untouched; the card glow comes from a
+   radial layer on its wrapper. ----- */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 45% at 85% 0%,rgba(59,130,246,.20),transparent 62%),radial-gradient(50% 40% at 8% 18%,rgba(37,99,235,.15),transparent 60%),radial-gradient(70% 55% at 50% 100%,rgba(37,99,235,.12),transparent 66%),radial-gradient(40% 30% at 62% 45%,rgba(96,165,250,.10),transparent 60%)}
+.nav-in{box-shadow:0 14px 34px -14px rgba(30,64,175,.28)}
+.hero::after{content:"";position:absolute;left:50%;top:110px;transform:translateX(-50%);width:720px;max-width:92vw;height:340px;background:radial-gradient(closest-side,rgba(37,99,235,.16),transparent);pointer-events:none}
+.result-wrap{position:relative}
+.result-wrap::before{content:"";position:absolute;left:50%;top:4%;transform:translateX(-50%);width:92%;height:74%;background:radial-gradient(closest-side,rgba(37,99,235,.22),transparent);z-index:-1;pointer-events:none}
+.lookup{box-shadow:0 18px 38px -16px rgba(30,64,175,.30)}
+.lookup:focus-within{box-shadow:0 20px 42px -14px rgba(37,99,235,.45)}
+.tool-card:hover{transform:translateY(-4px);box-shadow:0 22px 38px -16px rgba(37,99,235,.40);border-color:rgba(37,99,235,.42)}
+.tool-card:hover .icon{box-shadow:0 10px 22px -8px rgba(37,99,235,.55)}
+.value-card,.step{transition:transform .22s,box-shadow .22s,border-color .22s}
+.value-card:hover,.step:hover{transform:translateY(-3px);box-shadow:0 20px 36px -16px rgba(37,99,235,.35);border-color:rgba(37,99,235,.4)}
+.fpill.active{box-shadow:0 10px 24px -6px rgba(37,99,235,.55)}
+.cta-btn{box-shadow:0 16px 34px -10px rgba(37,99,235,.55)}
+.cta-btn:hover{box-shadow:0 20px 38px -10px rgba(37,99,235,.6)}
+.fbtn-solid{box-shadow:0 12px 28px -8px rgba(37,99,235,.55)}
+</style>
+<style>
+/* ----- FONT BLOXIANA (5 Nov 2026): Inter everywhere with tight heading
+   tracking, like bloxiana.lol. Page chrome only: the locked result-card
+   block, its font pin rule and every script block are untouched. ----- */
+h1{letter-spacing:-.03em}
+h2{letter-spacing:-.02em}
+h3{letter-spacing:-.01em}
+.hero h1{letter-spacing:-.03em}
+.sec-head h2,.steps h2{letter-spacing:-.02em}
+</style>
+</head>
+<body id="top">
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="#top">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-in">
+      <h1>Every Roblox lookup in <span class="grad">one toolbox</span></h1>
+      <p class="hero-sub">Free tools to look up Roblox accounts, avatars, games and groups, with live data straight from public Roblox APIs.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. CloudConcept" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="checkBtn">Check</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+    <div class="result-wrap">
+      <div id="resultArea" hidden>
+        <div class="result-label">Result</div>
+        <article class="card" id="resultCard"></article>
+        <section class="outfits" id="outfitsSection" hidden>
+          <h3>Outfits</h3>
+          <div id="outfitsBody"></div>
+        </section>
+      </div>
+    </div>
+    <div class="chev"><a href="#tools" aria-label="Scroll to tools"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a></div>
+    <svg class="wave" viewBox="0 0 1600 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0,34 C260,6 520,58 820,30 C1100,4 1360,52 1600,26" fill="none" stroke="rgba(37,99,235,.20)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.5 7"/><path d="M0,44 C280,18 560,64 860,40 C1140,16 1380,60 1600,38" fill="none" stroke="rgba(37,99,235,.12)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.5 7"/></svg>
+  </section>
+
+
+  <section class="block" id="tools">
+    <div class="wrap">
+      <p class="eyebrow">The Toolbox</p>
+      <div class="sec-head">
+        <h2>Tools</h2>
+        <p>49 free tools for player lookups, inventories, games, groups, renders and Robux math. Every result comes from live Roblox data.</p>
+      </div>
+
+      
+      <div class="filter-bar" id="filterBar">
+        <div class="filter-pills"><button type="button" class="fpill active" data-cat="all">Semua <span class="fp-n">49</span></button><button type="button" class="fpill" data-cat="0">Player <span class="fp-n">11</span></button><button type="button" class="fpill" data-cat="1">Social <span class="fp-n">6</span></button><button type="button" class="fpill" data-cat="2">Inventory &amp; Limiteds <span class="fp-n">8</span></button><button type="button" class="fpill" data-cat="3">Games &amp; Groups <span class="fp-n">3</span></button><button type="button" class="fpill" data-cat="4">Renders &amp; Templates <span class="fp-n">8</span></button><button type="button" class="fpill" data-cat="5">Calculators <span class="fp-n">3</span></button><button type="button" class="fpill" data-cat="6">History &amp; Compare <span class="fp-n">3</span></button><button type="button" class="fpill" data-cat="7">Tracking <span class="fp-n">7</span></button></div>
+        <label class="filter-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input type="text" id="filterSearch" placeholder="Search tools..." autocomplete="off"></label>
+      </div>
+
+      <h3 class="cat-head">Player</h3>
+      <div class="tool-grid cat-grid">
+        <a class="tool-card" href="#top" onclick="document.getElementById('usernameInput').focus();return false;">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11h5M11 8.5v5"/></svg></span>
+          <h3>Account Checker</h3>
+          <p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/previous-names.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 3"/></svg></span>
+          <h3>Previous Names</h3>
+          <p>Every username an account used before, newest first.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/username-checker.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2"/><circle cx="12" cy="10" r="3"/><path d="M6.5 20c.7-2.7 2.9-4 5.5-4s4.8 1.3 5.5 4"/></svg></span>
+          <h3>Username Checker</h3>
+          <p>See if a Roblox username is available, taken, or not allowed.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/avatar.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
+          <h3>Avatar Viewer</h3>
+          <p>Full-body, bust and headshot renders of any avatar, with body colors and scales.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/headshot.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3.2"/><path d="M5.5 19c1.2-2.6 3.7-4 6.5-4s5.3 1.4 6.5 4"/></svg></span>
+          <h3>Ava Downloader</h3>
+          <p>Download any avatar headshot as a clean circular PNG.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/currently-wearing.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 4.5L3 7l2 3.5L7 9v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9l2 1.5L21 7l-5.5-2.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1-3.5-2.5z"/></svg></span>
+          <h3>Currently Wearing</h3>
+          <p>Every item a user is wearing right now, with thumbnails.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/emotes.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8"/><path d="M9 9.5h.01M15 9.5h.01"/></svg></span>
+          <h3>Equipped Emotes</h3>
+          <p>The emotes a user has equipped in each emote slot.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/pose.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4.5" r="1.8"/><path d="M13 8l-2.5 5L7 15M13 8l3 3 3 1M10.5 13l1 4-2 3M11.5 17l3 2 1 3"/></svg></span>
+          <h3>Avatar Pose</h3>
+          <p>The animation assets that define an avatar's poses.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/avatar-history.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h13M4 12h13M4 18h9"/><circle cx="20" cy="18" r="1.6"/></svg></span>
+          <h3>Avatar History</h3>
+          <p>Past avatar setups a user saved as outfits, plus what they wear now.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/outfit-viewer.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg></span>
+          <h3>Outfit Viewer</h3>
+          <p>Browse the outfits any user has saved on their profile.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/outfit-value.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L11 3.83A2 2 0 0 0 9.59 3.24H4a1 1 0 0 0-1 1v5.35c0 .53.21 1.04.59 1.41l9.58 9.59a2 2 0 0 0 2.83 0l4.59-4.59a2 2 0 0 0 0-2.83z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg></span>
+          <h3>Outfit Value Estimator</h3>
+          <p>Estimate what a saved outfit is worth in Robux, item by item.</p>
+          <span class="tag-live">Live</span>
+        </a>
+      </div>
+
+      <h3 class="cat-head">Social <span class="cat-sub">via signed-in session</span></h3>
+      <div class="tool-grid cat-grid">
+        <a class="tool-card" href="/tools/friends.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.3 2.9-5.5 6.5-5.5s6.5 2.2 6.5 5.5"/><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M21.5 20c0-2.8-1.9-4.7-4.5-5.3"/></svg></span>
+          <h3>Friends List</h3>
+          <p>The full friends list of any user, read through a signed-in session.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/mutual-friends.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="3.2"/><circle cx="16" cy="9" r="3.2"/><path d="M3.5 20c.5-3 2.3-4.6 4.5-4.6 1 0 1.9.3 2.6.9M20.5 20c-.5-3-2.3-4.6-4.5-4.6-1 0-1.9.3-2.6.9"/></svg></span>
+          <h3>Mutual Friends</h3>
+          <p>Friends two users have in common.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/followers.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-9-9c-1.2-2.9.6-6 3.7-6C9 5 12 8 12 8s3-3 5.3-3c3.1 0 4.9 3.1 3.7 6-2 4.7-9 9-9 9z" transform="scale(0.92) translate(1 1)"/></svg></span>
+          <h3>Followers List</h3>
+          <p>Browse who follows a user, page by page.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/following.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c.8-3.4 3.6-5.2 7-5.2s6.2 1.8 7 5.2"/><path d="M18.5 2.5l2 2-2 2"/></svg></span>
+          <h3>Following List</h3>
+          <p>Browse who a user follows, page by page.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/badges.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="6"/><path d="M8.5 15L7 22l5-2.6L17 22l-1.5-7"/></svg></span>
+          <h3>User Badges</h3>
+          <p>Player badges a user has earned across experiences.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/avatar-3d.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 4.7v9.6l-8 4.7-8-4.7V7.2z"/><path d="M12 12l8-4.8M12 12v9.5M12 12L4 7.2"/></svg></span>
+          <h3>Avatar 3D Model</h3>
+          <p>View and download the 3D model files of any avatar.</p>
+          <span class="tag-live">Live</span>
+        </a>
+      </div>
+
+      <h3 class="cat-head">Inventory &amp; Limiteds</h3>
+      <div class="tool-grid cat-grid">
+        <a class="tool-card" href="/tools/rap-checker.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M9.5 19V5M15 19v-8M20 19V7"/><path d="M3 19h18"/></svg></span>
+          <h3>RAP Checker</h3>
+          <p>Total RAP, limited count and the most valuable limiteds of a public inventory.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/recent-items.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <h3>Recent Items</h3>
+          <p>The limited items a user acquired most recently.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/small-item.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.3 5.5.7-4 4 1 5.7L12 16l-5 2.7 1-5.7-4-4 5.5-.7z"/></svg></span>
+          <h3>Cheapest Limited</h3>
+          <p>The lowest-RAP limited items inside a user's inventory.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/item-checker.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11.5l2 2 3.5-4"/></svg></span>
+          <h3>Item Checker</h3>
+          <p>Check whether a user owns a specific item.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/uaid.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h7"/></svg></span>
+          <h3>UAID Lookup</h3>
+          <p>Find the UAID and serial of a user's own copy of a limited item.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/necklaces.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4c0 5 3 8.5 7 8.5S19 9 19 4"/><circle cx="12" cy="16.5" r="3"/></svg></span>
+          <h3>Initial Necklaces</h3>
+          <p>Check if a user owns any of the initial necklace items.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/pacifiers.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="4.5"/><path d="M8 6.5C9.5 4.8 14.5 4.8 16 6.5c-1 1.6-2.4 2.4-4 2.4s-3-.8-4-2.4z"/></svg></span>
+          <h3>Pacifiers</h3>
+          <p>Check if a user owns any of the pacifier items.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/group-scan.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20.5 20.5L15 15"/><path d="M7.5 10.5h6M10.5 7.5v6"/></svg></span>
+          <h3>Group Item Scan</h3>
+          <p>Scan a user's inventory for items created by a specific group.</p>
+          <span class="tag-live">Live</span>
+        </a>
+      </div>
+
+      <h3 class="cat-head">Games &amp; Groups</h3>
+      <div class="tool-grid cat-grid">
+        <a class="tool-card" href="/tools/game-info.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9h4M8 7v4"/><circle cx="15.5" cy="10" r=".5"/><circle cx="18" cy="12.5" r=".5"/><path d="M17.3 5H6.7a4.7 4.7 0 0 0-4.6 5.6l1 5A3 3 0 0 0 7.6 18L12 14.5 16.4 18a3 3 0 0 0 4.5-2.4l1-5A4.7 4.7 0 0 0 17.3 5z"/></svg></span>
+          <h3>Game Info</h3>
+          <p>Playing counts, visits, votes and details for any Roblox game.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/game-servers.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span>
+          <h3>Game Servers</h3>
+          <p>Live public servers of a game: players, ping and FPS.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/group-check.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.3 2.9-5.5 6.5-5.5s6.5 2.2 6.5 5.5"/><path d="M15.5 11.5l2 2 3.5-4"/></svg></span>
+          <h3>Group Check</h3>
+          <p>A user's groups, roles and ranks, plus group details.</p>
+          <span class="tag-live">Live</span>
+        </a>
+      </div>
+
+      <h3 class="cat-head">Renders &amp; Templates</h3>
+      <div class="tool-grid cat-grid">
+        <a class="tool-card" href="/tools/shirt-template.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 4.5L3 7l2 3.5L7 9v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9l2 1.5L21 7l-5.5-2.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1-3.5-2.5z"/></svg></span>
+          <h3>Shirt &amp; Pants Template</h3>
+          <p>Get the flat template texture of a classic shirt or pants asset.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/render-avatar.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M5.5 19c1.3-2.8 3.8-4.2 6.5-4.2s5.2 1.4 6.5 4.2"/></svg></span>
+          <h3>Avatar Render</h3>
+          <p>High-resolution 2D renders: full body, bust and headshot.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/render-outfit.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg></span>
+          <h3>Outfit Render</h3>
+          <p>Render a saved outfit as a downloadable item sheet.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/render-outfits.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></span>
+          <h3>Outfits Gallery</h3>
+          <p>All of a user's outfits as item sheets, each downloadable as PNG.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/render-asset.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 4.7v9.6l-8 4.7-8-4.7V7.2z"/><path d="M12 12l8-4.8M12 12v9.5M12 12L4 7.2"/></svg></span>
+          <h3>Asset Render</h3>
+          <p>The largest available render of any catalog asset.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/render-bundle.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/><path d="M7.5 5.5l9 5"/></svg></span>
+          <h3>Bundle Render</h3>
+          <p>Render and details for any avatar bundle.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/render-2d.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="3.2"/></svg></span>
+          <h3>2D Avatar Render</h3>
+          <p>Custom 2D avatar renders with size and framing options. Experimental.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/cac-avatar-render.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/><path d="M18.5 3.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></span>
+          <h3>CAC Avatar Render</h3>
+          <p>Render a CAC outfit by its outfit ID as an item sheet.</p>
+          <span class="tag-live">Live</span>
+        </a>
+      </div>
+
+      <h3 class="cat-head">Calculators</h3>
+      <div class="tool-grid cat-grid">
+        <a class="tool-card" href="/tools/robux-calculator.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/></svg></span>
+          <h3>Robux to USD</h3>
+          <p>Convert Robux to USD, IDR, EUR and 13 more currencies at the DevEx rate or your own rate.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/usd-calculator.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8"/><path d="M12 11v6M9.5 14h5"/></svg></span>
+          <h3>USD to Robux</h3>
+          <p>Convert USD, IDR, EUR and 13 more currencies back to Robux at a labeled rate.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/tax-calculator.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg></span>
+          <h3>Robux Tax Calculator</h3>
+          <p>What you keep after the 30% marketplace fee, and what to charge to net a target amount.</p>
+          <span class="tag-live">Live</span>
+        </a>
+      </div>
+
+      <h3 class="cat-head">History &amp; Compare</h3>
+      <div class="tool-grid cat-grid">
+        <a class="tool-card" href="/tools/user-history.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 3"/></svg></span>
+          <h3>User History</h3>
+          <p>Join date, account age, name changes and current counts in one report.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/compare-users.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span>
+          <h3>Compare Users</h3>
+          <p>Two accounts side by side: counts, RAP, join dates and more.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/stat-graph.html">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3"/></svg></span>
+          <h3>Stat Graph</h3>
+          <p>A bar chart of a user's public counts, with optional head-to-head.</p>
+          <span class="tag-live">Live</span>
+        </a>
+      </div>
+
+      <h3 class="cat-head">Tracking <span class="cat-sub">local, in your browser</span></h3>
+      <div class="tool-grid cat-grid">
+        <a class="tool-card" href="/tools/user-tracker.html#add">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.7-3.4 3.4-5.2 6.5-5.2 1.2 0 2.3.3 3.2.8"/><path d="M19 8v6M16 11h6"/></svg></span>
+          <h3>Track: Add User</h3>
+          <p>Add a user to your local track list with a count snapshot.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/user-tracker.html#list">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></span>
+          <h3>Track: Your List</h3>
+          <p>Everyone you track, with snapshots and changes since the last check.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/user-tracker.html#check">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 3v5h-5"/></svg></span>
+          <h3>Track: Check Now</h3>
+          <p>Refresh counts for tracked users and see the deltas.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/user-tracker.html#count">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20v-6M10 20V6M15 20v-9M20 20H4"/></svg></span>
+          <h3>Track: Count</h3>
+          <p>How many users you track and their combined followers.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/user-tracker.html#settings">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 0 0-2-1.2L14.2 3h-4l-.4 2.5a7 7 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 2 1.2l.4 2.7h4l.4-2.5a7 7 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z" transform="scale(0.94) translate(0.7 0.7)"/></svg></span>
+          <h3>Track: Settings</h3>
+          <p>Choose whether checks include RAP, stored in your browser.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/user-tracker.html#list">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.7-3.4 3.4-5.2 6.5-5.2 1.2 0 2.3.3 3.2.8"/><path d="M16 11h6"/></svg></span>
+          <h3>Track: Remove User</h3>
+          <p>Remove a user from your track list.</p>
+          <span class="tag-live">Live</span>
+        </a>
+        <a class="tool-card" href="/tools/user-tracker.html#removeall">
+          <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/></svg></span>
+          <h3>Track: Remove All</h3>
+          <p>Clear your whole local track list at once.</p>
+          <span class="tag-live">Live</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Simple, honest, free</h2>
+        <p>No accounts, no downloads, no catches. Just lookups that work right in your browser.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value-card">
+          <span class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.1 4.9L19.5 9l-4 3.7 1.2 5.3L12 15.4 7.3 18 8.5 12.7 4.5 9l5.4-1.1z"/></svg></span>
+          <h3>100% Free</h3>
+          <p>Every tool is free to use, with no paywalls and no premium tier hiding the good stuff.</p>
+        </div>
+        <div class="value-card">
+          <span class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg></span>
+          <h3>Live data</h3>
+          <p>Results come straight from public Roblox APIs, fetched the moment you search. Nothing is cached or made up.</p>
+        </div>
+        <div class="value-card">
+          <span class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><path d="M9.5 12l2 2 3.5-4"/></svg></span>
+          <h3>Private by design</h3>
+          <p>No login and no sign-up. Your searches are not stored, tracked, or sold. Ever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1600 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C260,58 520,6 820,34 C1100,60 1360,12 1600,38" fill="none" stroke="rgba(37,99,235,.16)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.5 7"/><path d="M0,40 C280,64 560,18 860,44 C1140,66 1380,22 1600,48" fill="none" stroke="rgba(37,99,235,.09)" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.5 7"/></svg>
+
+  <section class="steps" id="how">
+    <div class="wrap">
+      <h2>Ready to look someone up?</h2>
+      <div class="step-grid">
+        <div class="step">
+          <div class="num"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+          <h3>Type a username</h3>
+          <p>Enter the username of any public Roblox account in the search box above.</p>
+        </div>
+        <div class="step">
+          <div class="num"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Get the full picture</h3>
+          <p>Friends, followers, join date, status, description, and RAP for public inventories, all on one card.</p>
+        </div>
+        <div class="step">
+          <div class="num"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M6.5 9.5L12 15l5.5-5.5"/><path d="M3 19h18"/></svg></div>
+          <h3>Download the card</h3>
+          <p>Save the result card as a PNG image and share it anywhere you like.</p>
+        </div>
+      </div>
+      <a class="cta-btn" href="#top" onclick="document.getElementById('usernameInput').focus();return false;">Start a lookup</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('lookupForm');
+  var input = document.getElementById('usernameInput');
+  var btn = document.getElementById('checkBtn');
+  var status = document.getElementById('status');
+  var resultArea = document.getElementById('resultArea');
+  var card = document.getElementById('resultCard');
+  var outfitsSection = document.getElementById('outfitsSection');
+  var outfitsBody = document.getElementById('outfitsBody');
+  var currentUser = null;
+  var outfitsLoadedFor = null;
+
+  var LOCK_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+
+  function esc(s){
+    if (s === null || s === undefined) return '';
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function fmt(n){
+    if (n === null || n === undefined) return '-';
+    return Number(n).toLocaleString('en-US');
+  }
+  function fmtDate(iso){
+    if (!iso) return '-';
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '-';
+    return d.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric', timeZone:'Asia/Jakarta' });
+  }
+  function presenceBadge(t, isBanned){
+    if (isBanned) return '<span class="badge banned"><span class="dot"></span>Banned</span>';
+    switch(t){
+      case 2: return '<span class="badge game"><span class="dot"></span>In Game</span>';
+      case 1: return '<span class="badge online"><span class="dot"></span>Online</span>';
+      case 3: return '<span class="badge studio"><span class="dot"></span>In Studio</span>';
+      default: return '<span class="badge offline"><span class="dot"></span>Offline</span>';
+    }
+  }
+  function inventoryBadge(canView){
+    if (canView === false) return '<span class="badge priv">' + LOCK_SVG + 'Inventory: Private</span>';
+    if (canView === true) return '<span class="badge pub">Inventory: Public</span>';
+    return '';
+  }
+
+  function renderCard(u){
+    var title = u.displayName || u.username;
+    var desc = u.description ? '"' + esc(u.description) + '"' : 'No description';
+    var html = '';
+    html += '<div class="card-brand"><img src="/logo.png" alt=""><span class="bname">Roblox <em>Tools</em></span><span class="burl">roblox.xsrazy.web.id</span></div>';
+    html += '<div class="card-top">';
+    html += '<div class="avatar-ring">' + (u.headshot ? '<img crossorigin="anonymous" src="' + esc(u.headshot) + '" alt="Avatar headshot of ' + esc(u.username) + '">' : '') + '</div>';
+    html += '<div class="id-block"><div class="name-row"><h2>' + esc(title) + '</h2>';
+    html += '<div class="badges">' + presenceBadge(u.presenceType, u.isBanned) + inventoryBadge(u.canViewInventory) + '</div></div>';
+    html += '<div class="handle">@' + esc(u.username) + ' <span class="uid">&middot; ID ' + esc(u.id) + '</span></div>';
+    html += '</div></div>';
+    html += '<div class="stats">';
+    html += '<div class="stat"><b>' + fmt(u.friends) + '</b><small>Friends</small></div>';
+    html += '<div class="stat"><b>' + fmt(u.followers) + '</b><small>Followers</small></div>';
+    html += '<div class="stat"><b>' + fmt(u.followings) + '</b><small>Following</small></div>';
+    html += '</div>';
+    html += '<div class="meta-row">';
+    html += '<div class="meta"><small>Created</small><b>' + fmtDate(u.created) + '</b></div>';
+    html += '<div class="meta"><small>RAP</small><b>' + fmt(u.rap) + '</b></div>';
+    html += '<div class="meta"><small>Value</small><b>' + fmt(u.value) + '</b></div>';
+    html += '</div>';
+    html += '<div class="desc"><small>Description</small><p>' + desc + '</p></div>';
+    html += '<div class="actions">';
+    if (u.headshot) html += '<a href="' + esc(u.headshot) + '" download="roblox-' + esc(u.username) + '-avatar.png" target="_blank" rel="noopener">Download avatar</a>';
+    html += '<button type="button" id="viewOutfitsBtn">View outfits</button>';
+    html += '<a href="https://www.roblox.com/users/' + esc(u.id) + '/profile" target="_blank" rel="noopener">Open on Roblox</a>';
+    html += '<button type="button" class="primary" id="downloadCardBtn">Download card</button>';
+    html += '</div>';
+    card.innerHTML = html;
+
+    var ob = document.getElementById('viewOutfitsBtn');
+    ob.addEventListener('click', function(){ toggleOutfits(u); });
+    var ndl = document.getElementById('downloadCardBtn');
+    if (ndl) ndl.addEventListener('click', onDownloadCard);
+  }
+
+  function toggleOutfits(u){
+    if (!outfitsSection.hidden && outfitsLoadedFor === u.id) {
+      outfitsSection.hidden = true;
+      return;
+    }
+    outfitsSection.hidden = false;
+    outfitsLoadedFor = u.id;
+    outfitsBody.innerHTML = '<p class="empty">Loading outfits...</p>';
+    outfitsSection.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    (function fetchOutfits(attempt) {
+    fetch('/api/outfits?userId=' + encodeURIComponent(u.id))
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var list = (data && data.outfits) || [];
+        if (!list.length) {
+          var delays = [2500, 4000, 6000];
+          if (attempt < delays.length) {
+            outfitsBody.innerHTML = '<p class="empty">Roblox is responding slowly, trying again...</p>';
+            setTimeout(function(){ fetchOutfits(attempt + 1); }, delays[attempt]);
+            return;
+          }
+          outfitsBody.innerHTML = '<p class="empty">No saved outfits. This user has not saved any outfits in the Roblox avatar editor, so there is nothing to show yet.</p>';
+          return;
+        }
+        var html = '<div class="outfit-grid">';
+        list.forEach(function(o){
+          var itemsHtml = '';
+          var items = (o.items || []).filter(function(it){ return it.imageUrl; }).slice(0, 12);
+          if (items.length) {
+            itemsHtml = '<div class="outfit-items">' + items.map(function(it){
+              return '<img crossorigin="anonymous" loading="lazy" src="' + esc(it.imageUrl) + '" alt="" title="' + esc(it.name || '') + '">';
+            }).join('') + '</div>';
+          }
+          html += '<div class="outfit">' + (o.imageUrl ? '<img crossorigin="anonymous" src="' + esc(o.imageUrl) + '" alt="">' : '') + itemsHtml + '<span>' + esc(o.name || 'Outfit') + '</span></div>';
+        });
+        html += '</div>';
+        outfitsBody.innerHTML = html;
+      })
+      .catch(function(){
+        outfitsBody.innerHTML = '<p class="empty">Could not load outfits.</p>';
+      });
+    })(0);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = input.value.trim();
+    if (!name) return;
+    btn.disabled = true;
+    status.className = 'status';
+    status.textContent = 'Looking up ' + name + '...';
+    resultArea.hidden = true;
+    outfitsSection.hidden = true;
+    outfitsLoadedFor = null;
+    fetch('/api/user?username=' + encodeURIComponent(name))
+      .then(function(r){
+        return r.json().then(function(data){ return { ok: r.ok, data: data }; });
+      })
+      .then(function(res){
+        btn.disabled = false;
+        if (!res.ok || !res.data || res.data.error) {
+          status.className = 'status error';
+          status.textContent = res.data && res.data.error === 'User not found'
+            ? 'User not found. Check the username and try again.'
+            : 'Lookup failed. Please try again.';
+          currentUser = null;
+          return;
+        }
+        status.textContent = '';
+        currentUser = res.data;
+        renderCard(res.data);
+        resultArea.hidden = false;
+        // If the inventory check got rate limited (canView null), the badge
+        // row is incomplete; refetch once shortly after and patch the card
+        // when the answer comes back.
+        if (res.data.canViewInventory === null) {
+          setTimeout(function(){
+            fetch('/api/user?username=' + encodeURIComponent(name))
+              .then(function(r){ return r.json(); })
+              .then(function(d2){
+                if (d2 && !d2.error && d2.canViewInventory !== null && currentUser && currentUser.id === d2.id) {
+                  currentUser = d2;
+                  renderCard(d2);
+                }
+              })
+              .catch(function(){});
+          }, 2500);
+        }
+      })
+      .catch(function(){
+        btn.disabled = false;
+        status.className = 'status error';
+        status.textContent = 'Lookup failed. Please try again.';
+        currentUser = null;
+      });
+  });
+
+  function onDownloadCard(){
+    var dlBtn = document.getElementById('downloadCardBtn');
+    if (!currentUser || !dlBtn) return;
+    if (!window.htmlToImage) {
+      status.className = 'status error';
+      status.textContent = 'Card exporter is still loading. Try again in a few seconds.';
+      return;
+    }
+    status.className = 'status';
+    status.textContent = '';
+    dlBtn.disabled = true;
+    var old = dlBtn.textContent;
+    dlBtn.textContent = 'Rendering...';
+    // Export the card inside a frame (bingkai): clone the card at desktop width
+    // into an off-screen framed wrapper, so the PNG looks the same on any device.
+    var frame = document.createElement('div');
+    frame.className = 'card-frame-export';
+    frame.setAttribute('style', 'position:fixed;left:-12000px;top:0;width:1012px;box-sizing:border-box;padding:40px;border-radius:30px;border:1px solid rgba(37,99,235,.40);background:radial-gradient(ellipse 720px 420px at 50% -60px,rgba(37,99,235,.16),rgba(37,99,235,0) 65%),linear-gradient(160deg,#FFFFFF,#E9F1FD)');
+    var frameStyle = document.createElement('style');
+    frameStyle.textContent = '.card-frame-export .card{width:930px;padding:30px 32px}' +
+      '.card-frame-export .card-top{flex-direction:row;text-align:left}' +
+      '.card-frame-export .name-row{justify-content:flex-start}' +
+      '.card-frame-export .badges{justify-content:flex-start;flex-wrap:nowrap}' +
+      '.card-frame-export .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}' +
+      '.card-frame-export .stat{padding:18px 20px}' +
+      '.card-frame-export .stat b{font-size:34px;letter-spacing:-.5px}' +
+      '.card-frame-export .stat small{font-size:12.5px;letter-spacing:.8px}' +
+      '.card-frame-export .card-brand .burl{display:block;font-size:15px}' +
+      '.card-frame-export .actions{grid-template-columns:repeat(3,minmax(0,1fr))}';
+    frame.appendChild(frameStyle);
+    var clone = card.cloneNode(true);
+    clone.removeAttribute('id');
+    var cloneBtn = clone.querySelector('#downloadCardBtn');
+    if (cloneBtn) cloneBtn.remove();
+    frame.appendChild(clone);
+    document.body.appendChild(frame);
+    window.htmlToImage.toPng(frame, {
+      pixelRatio: 2,
+      cacheBust: true,
+      // Skip images that failed to load (e.g. blocked avatar CDN) so the export still works.
+      filter: function(node){ return !(node.tagName === 'IMG' && node.complete && node.naturalWidth === 0); }
+    })
+      .then(function(dataUrl){
+        var a = document.createElement('a');
+        a.download = currentUser.username + '-roblox.xsrazy.web.id.png';
+        a.href = dataUrl;
+        a.click();
+        frame.remove();
+        dlBtn.disabled = false;
+        dlBtn.textContent = old;
+      })
+      .catch(function(){
+        frame.remove();
+        dlBtn.disabled = false;
+        dlBtn.textContent = old;
+      });
+  }
+})();
+</script>
+
+<script>
+/* Category filter: pill click filters tool cards per category; search narrows by title. */
+(function(){
+  var bar = document.getElementById('filterBar');
+  if (!bar) return;
+  var heads = Array.prototype.slice.call(document.querySelectorAll('#tools .cat-head'));
+  var groups = heads.map(function(h){
+    var g = h.nextElementSibling;
+    return { head: h, grid: g, cards: g ? Array.prototype.slice.call(g.querySelectorAll('.tool-card')) : [] };
+  });
+  var pills = Array.prototype.slice.call(bar.querySelectorAll('.fpill'));
+  var search = document.getElementById('filterSearch');
+  var active = 'all';
+  function apply(){
+    var q = (search.value || '').trim().toLowerCase();
+    groups.forEach(function(gr, i){
+      var inCat = (active === 'all' || active === i);
+      var vis = 0;
+      gr.cards.forEach(function(c){
+        var t = c.querySelector('h3');
+        var ok = inCat && (!q || (t && t.textContent.toLowerCase().indexOf(q) > -1));
+        c.style.display = ok ? '' : 'none';
+        if (ok) vis++;
+      });
+      var show = inCat && vis > 0;
+      gr.head.style.display = show ? '' : 'none';
+      if (gr.grid) gr.grid.style.display = show ? '' : 'none';
+    });
+  }
+  pills.forEach(function(p){
+    p.addEventListener('click', function(){
+      pills.forEach(function(x){ x.classList.remove('active'); });
+      p.classList.add('active');
+      var v = p.getAttribute('data-cat');
+      active = (v === 'all') ? 'all' : parseInt(v, 10);
+      apply();
+    });
+  });
+  if (search) search.addEventListener('input', apply);
+})();
+</script>
+<script>
+  /* Scroll gate + pill strip drag/wheel (added 5 Nov 2026) */
+  (function(){
+    function unlock(){document.documentElement.classList.remove('gate-locked')}
+    document.addEventListener('click',function(e){
+      var a=e.target&&e.target.closest?e.target.closest('a[href^="#"]'):null;
+      if(a)unlock();
+    });
+    var f=document.getElementById('lookupForm');
+    if(f)f.addEventListener('submit',unlock);
+
+    function locked(){return document.documentElement.classList.contains('gate-locked')}
+    window.addEventListener('wheel',function(e){if(locked()&&!e.ctrlKey)e.preventDefault()},{passive:false});
+    window.addEventListener('touchmove',function(e){if(locked())e.preventDefault()},{passive:false});
+    document.addEventListener('keydown',function(e){
+      if(!locked())return;
+      var t=e.target,tag=t&&t.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT')return;
+      if([' ','ArrowDown','ArrowUp','PageDown','PageUp','End','Home'].indexOf(e.key)>=0)e.preventDefault();
+    });
+
+    var wrap=document.querySelector('.filter-pills');
+    if(wrap){
+      var down=false,moved=false,startX=0,startL=0;
+      wrap.addEventListener('pointerdown',function(e){down=true;moved=false;startX=e.clientX;startL=wrap.scrollLeft});
+      window.addEventListener('pointermove',function(e){
+        if(!down)return;
+        var dx=e.clientX-startX;
+        if(Math.abs(dx)>5){moved=true;wrap.classList.add('dragging')}
+        wrap.scrollLeft=startL-dx;
+      });
+      window.addEventListener('pointerup',function(){down=false;wrap.classList.remove('dragging')});
+      wrap.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
+      wrap.addEventListener('wheel',function(e){
+        if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){
+          var max=wrap.scrollWidth-wrap.clientWidth;
+          var nl=Math.max(0,Math.min(max,wrap.scrollLeft+e.deltaY));
+          if(nl!==wrap.scrollLeft){e.preventDefault();wrap.scrollLeft=nl}
+        }
+      },{passive:false});
+    }
+  })();
+</script>
+
+<script>
+(function(){
+  var form = document.getElementById('lookupForm');
+  if (!form) return;
+  form.addEventListener('submit', function(){
+    var v = document.getElementById('usernameInput').value.trim();
+    if (!v) return;
+    fetch('/api/user?username=' + encodeURIComponent(v)).then(function(r){ return r.ok ? r.json() : null; }).then(function(u){
+      if (!u || !u.id || !u.username) return;
+      fetch('/api/history', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u.username, userId: u.id, tool: 'Account Checker' }) }).catch(function(){});
+    }).catch(function(){});
+  });
+  try {
+    var q = new URLSearchParams(location.search).get('lookup');
+    if (q) {
+      document.getElementById('usernameInput').value = q;
+      setTimeout(function(){ form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); }, 350);
+    }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

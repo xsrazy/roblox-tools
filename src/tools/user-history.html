@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User History - Roblox Tools</title>
+<meta name="description" content="See the public history of any Roblox account: join date, account age in days, current friend and follower counts, and previous usernames.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/user-history.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="User History - Roblox Tools">
+<meta property="og:description" content="Join date, account age, current counts and previous usernames for any public Roblox account.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/user-history.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="User History - Roblox Tools">
+<meta name="twitter:description" content="Join date, account age, current counts and previous usernames for any public Roblox account.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / History</div>
+      <h1>User <span class="grad">History</span></h1>
+      <p class="tool-sub">The public history of a Roblox account: when it was created, how old it is today, its current counts, and the usernames it used before.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. CloudConcept" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="lookupBtn">Look up</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/compare-users.html"><h3>Compare Users</h3><p>Put two Roblox accounts side by side and see who leads on each public stat.</p></a>
+        <a class="rel-card" href="/tools/stat-graph.html"><h3>Stat Graph</h3><p>Chart the current public stats of one or two Roblox accounts as bars.</p></a>
+        <a class="rel-card" href="/tools/user-tracker.html"><h3>User Tracker</h3><p>Save accounts in this browser and check how their counts change over time.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("usernameInput");
+  var btn = document.getElementById("lookupBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+
+  function nameOf(entry) {
+    if (entry === null || entry === undefined) return "";
+    if (typeof entry === "string") return entry;
+    return entry.name || entry.username || entry.previousUsername || entry.value || "";
+  }
+
+  function render(user, names) {
+    var createdDate = user.created ? new Date(user.created) : null;
+    var ageDays = null;
+    if (createdDate && !isNaN(createdDate.getTime())) {
+      ageDays = Math.max(0, Math.floor((Date.now() - createdDate.getTime()) / 86400000));
+    }
+    var html = "";
+    var h2 = "<h2>" + RT.esc(user.displayName || user.username) + "</h2>";
+    html += user.headshot ? '<div class="head-flex"><img class="panel-thumb" src="' + RT.esc(user.headshot) + '" alt="">' + h2 + "</div>" : h2;
+    html += '<p class="note" style="text-align:left;margin-top:6px">@' + RT.esc(user.username) + " &middot; ID " + RT.esc(user.id) + "</p>";
+    html += '<div class="stats">';
+    html += '<div class="stat"><b>' + (ageDays === null ? "-" : RT.fmt(ageDays)) + '</b><small>Account age (days)</small></div>';
+    html += '<div class="stat"><b>' + RT.fmt(user.friends) + '</b><small>Friends</small></div>';
+    html += '<div class="stat"><b>' + RT.fmt(user.followers) + '</b><small>Followers</small></div>';
+    html += '<div class="stat"><b>' + RT.fmt(user.followings) + '</b><small>Following</small></div>';
+    html += "</div>";
+    html += '<div class="kv">';
+    html += '<div class="row"><span class="k">Account created</span><span class="v">' + RT.esc(RT.fmtDate(user.created)) + "</span></div>";
+    html += '<div class="row"><span class="k">Current username</span><span class="v">' + RT.esc(user.username) + "</span></div>";
+    html += "</div>";
+    html += "<h3>Previous usernames</h3>";
+    var prev = (names || []).map(nameOf).filter(function (n) { return n && n.toLowerCase() !== String(user.username).toLowerCase(); });
+    if (!prev.length) {
+      html += '<p class="empty">No previous usernames. This user has never changed their username.</p>';
+    } else {
+      html += '<div class="chips" style="flex-direction:column;align-items:flex-start">';
+      prev.forEach(function (n) {
+        html += '<span class="chip">' + RT.esc(n) + "</span>";
+      });
+      html += "</div>";
+    }
+    html += '<p class="note" style="text-align:left">This is public account history only: join date, name changes and current counts, fetched live from this site\'s APIs. It does not show private activity, logins or anything Roblox keeps behind an account login.</p>';
+    panel.innerHTML = html;
+    result.hidden = false;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = input.value.trim();
+    if (!name) return;
+    btn.disabled = true;
+    RT.setStatus(status, "Looking up " + name + "...");
+    result.hidden = true;
+
+    var userPromise = RT.fetchJson("/api/user?username=" + encodeURIComponent(name));
+    var resolvedPromise = RT.resolveUser(name).catch(function () { return null; });
+
+    userPromise.then(function (res) {
+      if (!res.ok || !res.data || res.data.error) {
+        btn.disabled = false;
+        RT.setStatus(status, res.data && res.data.error === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+        return null;
+      }
+      return res.data;
+    }).then(function (user) {
+      if (!user) return;
+      return resolvedPromise.then(function (resolved) {
+        var id = (resolved && resolved.id) || user.id;
+        return RT.fetchJson("/api/username-history?userId=" + encodeURIComponent(id))
+          .then(function (h) {
+            var names = h.ok && h.data && Array.isArray(h.data.names) ? h.data.names : [];
+            btn.disabled = false;
+            RT.setStatus(status, "");
+            render(user, names);
+          })
+          .catch(function () {
+            btn.disabled = false;
+            RT.setStatus(status, "");
+            render(user, []);
+          });
+      });
+    }).catch(function () {
+      btn.disabled = false;
+      RT.setStatus(status, "Lookup failed. Please try again.", true);
+    });
+  });
+})();
+</script>
+</body>
+</html>

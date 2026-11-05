@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Group Item Scan - Roblox Tools</title>
+<meta name="description" content="See which catalog items from a Roblox group a user owns. Live creator-filtered catalog search for the group, checked against the user's public inventory and collectibles.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/group-scan.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Group Item Scan - Roblox Tools">
+<meta property="og:description" content="See which catalog items from a Roblox group a user owns. Live data from public Roblox APIs.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/group-scan.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Group Item Scan - Roblox Tools">
+<meta name="twitter:description" content="See which catalog items from a Roblox group a user owns. Live data from public Roblox APIs.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Inventory</div>
+      <h1>Group <span class="grad">Item Scan</span></h1>
+      <p class="tool-sub">Pick a user and a group. We pull the group's catalog items with a live creator-filtered catalog search and check which of them the user owns in their public inventory.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. builderman" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <input type="text" id="groupInput" placeholder="Group ID or group link, e.g. 404589354" aria-label="Roblox group ID" autocomplete="off" spellcheck="false" inputmode="numeric">
+        <button type="submit" id="checkBtn">Scan</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/tools/necklaces.html">
+          <h3>Initial Necklaces</h3>
+          <p>Check whether a user owns any of the well-known initial necklaces.</p>
+        </a>
+        <a class="rel-card" href="/tools/pacifiers.html">
+          <h3>Pacifiers</h3>
+          <p>Check whether a user owns any of the well-known catalog pacifiers.</p>
+        </a>
+        <a class="rel-card" href="/">
+          <h3>Account Checker</h3>
+          <p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var form = document.getElementById("lookupForm");
+  var userInput = document.getElementById("usernameInput");
+  var groupInput = document.getElementById("groupInput");
+  var btn = document.getElementById("checkBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+
+  function loadThumbs(ids) {
+    if (!ids.length) return;
+    fetch("/api/thumbs?kind=assets&ids=" + ids.join(",") + "&size=150x150")
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var map = d.thumbs || {};
+        document.querySelectorAll("img[data-thumb]").forEach(function (img) {
+          var url = map[img.getAttribute("data-thumb")];
+          if (url) img.src = url; else img.style.display = "none";
+        });
+      })
+      .catch(function () {
+        document.querySelectorAll("img[data-thumb]").forEach(function (img) { img.style.display = "none"; });
+      });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = userInput.value.trim();
+    var groupId = groupInput.value.trim();
+    if (!name) { RT.setStatus(status, "Enter a username first.", true); return; }
+    if (!/^\d+$/.test(groupId)) { RT.setStatus(status, "Enter a numeric group ID.", true); return; }
+    btn.disabled = true;
+    result.hidden = true;
+    RT.setStatus(status, "Resolving " + name + "...");
+    RT.resolveUser(name)
+      .then(function (user) {
+        RT.setStatus(status, "Scanning group " + groupId + " items against @" + user.username + "'s inventory...");
+        return RT.fetchJson("/api/group-scan?userId=" + user.id + "&groupId=" + encodeURIComponent(groupId))
+          .then(function (s) { return { user: user, scan: s.data || {} }; });
+      })
+      .then(function (ctx) {
+        btn.disabled = false;
+        RT.setStatus(status, "");
+        var user = ctx.user, scan = ctx.scan;
+        var owned = scan.owned || [];
+        var html = "";
+        html += "<h2>@" + RT.esc(user.username) + " x group " + RT.esc(scan.groupId || groupId) + "</h2>";
+        if (scan.searchFailed) {
+          html += '<p class="empty">The catalog search for this group failed. Check the group ID and try again.</p>';
+          panel.innerHTML = html;
+          result.hidden = false;
+          return;
+        }
+        if (scan.private) {
+          html += '<p class="empty">This inventory is private, so it cannot be scanned. Roblox only lets us check public inventories.</p>';
+          panel.innerHTML = html;
+          result.hidden = false;
+          return;
+        }
+        html += '<div class="stats">';
+        html += '<div class="stat"><b>' + RT.fmt(scan.groupItemCount) + "</b><small>Group items checked</small></div>";
+        html += '<div class="stat"><b>' + RT.fmt(scan.scannedCollectibles) + "</b><small>Collectibles scanned</small></div>";
+        html += '<div class="stat"><b>' + RT.fmt(owned.length) + "</b><small>Owned found</small></div>";
+        html += "</div>";
+        if (!scan.groupItemCount) {
+          // The creator-filtered catalog search itself answered fine
+          // (see group-scan.js: a failed search sets searchFailed and a
+          // control group returns items), it simply lists nothing under
+          // this group. Say exactly that instead of implying the user's
+          // inventory was searched and came up empty.
+          html += '<p class="empty">Scan ran fine: Roblox\'s catalog lists 0 items under this group (' + RT.fmt(scan.scannedPages) + ' search page checked), so there is nothing to check ownership against. This group has no catalog items listed under it. Items its members sell under their own names are not group items and are not covered here.</p>';
+        } else if (owned.length) {
+          html += '<div class="thumb-grid">' + owned.map(function (o) {
+            var sub = o.rap != null ? "RAP " + RT.fmt(o.rap) : "";
+            return '<div class="tile"><img data-thumb="' + RT.esc(o.assetId) + '" alt="">' +
+              "<span>" + RT.esc(o.name || "Item " + o.assetId) + "</span>" +
+              (sub ? '<span class="sub">' + RT.esc(sub) + "</span>" : "") + "</div>";
+          }).join("") + "</div>";
+        } else {
+          html += '<p class="empty">No group-owned items found in @' + RT.esc(user.username) + "'s public inventory. None of this group\'s catalog items appear in the collectibles that were scanned.</p>";
+        }
+        html += '<p class="note">Coverage: checked against the group\'s catalog assets returned by catalog search (' + RT.fmt(scan.groupItemCount) + " assets from " + RT.fmt(scan.scannedPages) + " search pages, up to 150). Bundles are not included, and private inventories cannot be scanned.</p>";
+        panel.innerHTML = html;
+        result.hidden = false;
+        loadThumbs(owned.map(function (o) { return o.assetId; }));
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        RT.setStatus(status, err && err.message === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+      });
+  });
+})();
+</script>
+</body>
+</html>

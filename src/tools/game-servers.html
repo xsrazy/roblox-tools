@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Servers - Roblox Tools</title>
+<meta name="description" content="Browse the live public servers of any Roblox game: players per server, ping and FPS, straight from the Roblox games API.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/game-servers.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Game Servers - Roblox Tools">
+<meta property="og:description" content="Live public servers for any Roblox game, with players, ping and FPS from public Roblox APIs.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/game-servers.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Game Servers - Roblox Tools">
+<meta name="twitter:description" content="Live public servers for any Roblox game, with players, ping and FPS from public Roblox APIs.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <p class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Games</p>
+      <h1>Game <span class="grad">Servers</span></h1>
+      <p class="tool-sub">The live public servers of any Roblox game, with players, ping and FPS. Paste a place ID or a full game link.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="placeInput" placeholder="Place ID or game link, e.g. 2753915549" aria-label="Roblox place ID or game link" autocomplete="off" spellcheck="false">
+        <button type="submit" id="checkBtn">Check</button>
+      </form>
+      <div class="status" id="status"></div>
+      <p class="note">Live public servers from the Roblox games API. The API does not publish server regions, so no region is shown.</p>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <article class="panel" id="resultPanel"></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/">
+          <h3>Account Checker</h3>
+          <p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p>
+        </a>
+        <a class="rel-card" href="/tools/game-info.html">
+          <h3>Game Info</h3>
+          <p>Playing counts, visits, favorites, votes and details for any Roblox game.</p>
+        </a>
+        <a class="rel-card" href="/tools/group-check.html">
+          <h3>Group Check</h3>
+          <p>See the groups a user belongs to, their roles, and details for any group.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("placeInput");
+  var btn = document.getElementById("checkBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+
+  function extractPlaceId(raw) {
+    var v = String(raw || "").trim();
+    if (!v) return null;
+    if (/^\d+$/.test(v)) return v;
+    var m = v.match(/roblox\.com\/games\/(\d+)/i) || v.match(/\/games\/(\d+)/);
+    if (m) return m[1];
+    return null;
+  }
+
+  function render(placeId, servers, iconUrl) {
+    var html = "";
+    if (iconUrl) html += '<img class="big-render" style="max-width:120px" src="' + RT.esc(iconUrl) + '" alt="Game icon">';
+    html += "<h2>Live servers</h2>";
+    if (!servers.length) {
+      html += '<p class="empty">No public servers found. This game has no joinable public servers right now, or server access is restricted.</p>';
+      panel.innerHTML = html;
+      result.hidden = false;
+      return;
+    }
+    var totalPlaying = 0;
+    servers.forEach(function (s) {
+      if (typeof s.playing === "number") totalPlaying += s.playing;
+    });
+    html += '<div class="stats">';
+    html += '<div class="stat"><b>' + RT.fmt(servers.length) + "</b><small>Servers found</small></div>";
+    html += '<div class="stat"><b>' + RT.fmt(totalPlaying) + "</b><small>Total playing</small></div>";
+    html += "</div>";
+
+    html += '<div class="table-scroll"><table class="data">';
+    html += "<thead><tr><th>Server</th><th class=\"num\">Players</th><th class=\"num\">Ping</th><th class=\"num\">FPS</th></tr></thead><tbody>";
+    servers.forEach(function (s) {
+      var players = s.playing === null || s.playing === undefined ? "-" : RT.fmt(s.playing) + (s.maxPlayers === null || s.maxPlayers === undefined ? "" : "/" + RT.fmt(s.maxPlayers));
+      var ping = s.ping === null || s.ping === undefined ? "-" : RT.fmt(Math.round(s.ping)) + " ms";
+      var fps = s.fps === null || s.fps === undefined ? "-" : Number(s.fps).toFixed(1);
+      html += "<tr><td>" + RT.esc(String(s.id).slice(0, 8)) + '</td><td class="num">' + players + '</td><td class="num">' + ping + '</td><td class="num">' + fps + "</td></tr>";
+    });
+    html += "</tbody></table></div>";
+    html += '<div class="actions"><a class="btn" href="/tools/game-info.html?place=' + RT.esc(placeId) + '">Game info for this place</a></div>';
+    panel.innerHTML = html;
+    result.hidden = false;
+  }
+
+  function run(raw) {
+    var placeId = extractPlaceId(raw);
+    if (!placeId) {
+      RT.setStatus(status, "Enter a place ID or a roblox.com/games link.", true);
+      return;
+    }
+    btn.disabled = true;
+    RT.setStatus(status, "Loading servers for place " + placeId + "...");
+    result.hidden = true;
+    var gameCall = RT.fetchJson("/api/game?placeId=" + encodeURIComponent(placeId)).catch(function () { return null; });
+    RT.fetchJson("/api/servers?placeId=" + encodeURIComponent(placeId))
+      .then(function (res) {
+        btn.disabled = false;
+        if (!res.ok || !res.data || res.data.error) {
+          RT.setStatus(status, "Lookup failed. Please try again.", true);
+          return;
+        }
+        RT.setStatus(status, "");
+        return gameCall.then(function (g) {
+          render(placeId, res.data.servers || [], g && g.data ? g.data.iconUrl : null);
+        });
+      })
+      .catch(function () {
+        btn.disabled = false;
+        RT.setStatus(status, "Lookup failed. Please try again.", true);
+      });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    run(input.value);
+  });
+
+  var prefill = RT.param("place") || RT.param("placeId");
+  if (prefill) {
+    input.value = prefill;
+    run(prefill);
+  }
+})();
+</script>
+</body>
+</html>

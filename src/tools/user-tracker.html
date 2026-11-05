@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Tracker - Roblox Tools</title>
+<meta name="description" content="Track Roblox accounts in your own browser: save public stat snapshots, press Check to see what changed, and remove accounts at any time. Nothing runs in the background.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/user-tracker.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="User Tracker - Roblox Tools">
+<meta property="og:description" content="Manual, browser-only tracking of Roblox account stats. Snapshots live in localStorage and update only when you press Check.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/user-tracker.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="User Tracker - Roblox Tools">
+<meta name="twitter:description" content="Manual, browser-only tracking of Roblox account stats. Snapshots live in localStorage and update only when you press Check.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Tracking</div>
+      <h1>User <span class="grad">Tracker</span></h1>
+      <p class="tool-sub">Save Roblox accounts here and watch their public counts change. Stored only in this browser (localStorage). Tracking is manual: counts update when you press Check. Nothing runs in the background.</p>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+
+      <div id="add">
+        <div class="result-label">Add a user</div>
+        <div class="panel">
+          <form class="lookup" id="addForm" style="margin-top:0;max-width:none">
+            <input type="text" id="addInput" placeholder="Roblox username, e.g. CloudConcept" aria-label="Roblox username to track" autocomplete="off" spellcheck="false">
+            <button type="submit" id="addBtn">Add</button>
+          </form>
+          <p class="note" style="text-align:left">Adding a user fetches its current public stats once and saves them as the first snapshot.</p>
+        </div>
+      </div>
+
+      <div id="count" style="margin-top:34px">
+        <div class="result-label">Count</div>
+        <div class="panel">
+          <div class="stats">
+            <div class="stat"><b id="countUsers">0</b><small>Users tracked</small></div>
+            <div class="stat"><b id="countFollowers">0</b><small>Total followers across tracked</small></div>
+          </div>
+          <p class="note" style="text-align:left" id="countLine">You are tracking 0 users.</p>
+        </div>
+      </div>
+
+      <div id="list" style="margin-top:34px">
+        <div class="result-label">Tracked users</div>
+        <div class="panel">
+          <div id="listBody"></div>
+          <div id="removeall" style="margin-top:20px">
+            <button type="button" class="btn" id="removeAllBtn">Remove all</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="check" style="margin-top:34px">
+        <div class="result-label">Check for changes</div>
+        <div class="panel">
+          <p class="note" style="text-align:left;margin-top:0">Check all refetches every tracked account one by one and compares the new counts with the last snapshot. The Change column shows the difference from the previous check.</p>
+          <div class="actions">
+            <button type="button" class="btn primary" id="checkAllBtn">Check all</button>
+          </div>
+          <div class="status" id="checkStatus" style="text-align:left"></div>
+        </div>
+      </div>
+
+      <div id="settings" style="margin-top:34px">
+        <div class="result-label">Settings</div>
+        <div class="panel">
+          <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-size:15.5px;line-height:1.55">
+            <input type="checkbox" id="includeRapToggle" checked style="margin-top:4px;width:18px;height:18px;accent-color:var(--violet)">
+            <span>Include RAP in checks (slower, public inventories only)<br><span style="color:var(--muted);font-size:13.5px">When off, checks store no RAP and the table shows a dash for RAP. RAP is only ever available when an account's inventory is public.</span></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/user-history.html"><h3>User History</h3><p>Join date, account age, current counts and previous usernames for one account.</p></a>
+        <a class="rel-card" href="/tools/compare-users.html"><h3>Compare Users</h3><p>Put two Roblox accounts side by side and see who leads on each public stat.</p></a>
+        <a class="rel-card" href="/tools/stat-graph.html"><h3>Stat Graph</h3><p>Chart the current public stats of one or two Roblox accounts as bars.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var STORE_KEY = "rt_tracked_v1";
+  var SETTINGS_KEY = "rt_track_settings";
+  var status = document.getElementById("status");
+  var checkStatus = document.getElementById("checkStatus");
+  var listBody = document.getElementById("listBody");
+  var rapToggle = document.getElementById("includeRapToggle");
+
+  function loadTracked() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      var obj = raw ? JSON.parse(raw) : {};
+      return obj && typeof obj === "object" ? obj : {};
+    } catch (e) { return {}; }
+  }
+  function saveTracked(obj) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(obj)); } catch (e) { /* storage full or blocked */ }
+  }
+  function loadSettings() {
+    try {
+      var raw = localStorage.getItem(SETTINGS_KEY);
+      var obj = raw ? JSON.parse(raw) : null;
+      if (obj && typeof obj.includeRap === "boolean") return obj;
+    } catch (e) { /* ignore */ }
+    return { includeRap: true };
+  }
+  function saveSettings(s) {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); } catch (e) { /* ignore */ }
+  }
+  var settings = loadSettings();
+  rapToggle.checked = settings.includeRap !== false;
+  rapToggle.addEventListener("change", function () {
+    settings.includeRap = rapToggle.checked;
+    saveSettings(settings);
+    render();
+  });
+
+  function snapshotFrom(data) {
+    return {
+      friends: typeof data.friends === "number" ? data.friends : null,
+      followers: typeof data.followers === "number" ? data.followers : null,
+      followings: typeof data.followings === "number" ? data.followings : null,
+      rap: settings.includeRap && typeof data.rap === "number" ? data.rap : null
+    };
+  }
+  function fmtTime(iso) {
+    if (!iso) return "Never";
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return "Never";
+    return d.toLocaleString("en-US", { year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Jakarta" });
+  }
+  function deltaHtml(entry) {
+    var d = entry.lastDelta;
+    if (!d) return '<span style="color:var(--muted)">No check yet</span>';
+    var parts = [];
+    [["Friends", d.friends], ["Followers", d.followers], ["Following", d.followings], ["RAP", d.rap]].forEach(function (pair) {
+      var v = pair[1];
+      if (v === null || v === undefined) return;
+      if (v > 0) parts.push('<div style="color:var(--green);font-weight:700">' + pair[0] + " +" + RT.fmt(v) + "</div>");
+      else if (v < 0) parts.push('<div style="color:var(--red);font-weight:700">' + pair[0] + " " + RT.fmt(v) + "</div>");
+      else parts.push('<div style="color:var(--muted)">' + pair[0] + " 0</div>");
+    });
+    return parts.length ? parts.join("") : '<span style="color:var(--muted)">No check yet</span>';
+  }
+  function numOrDash(v) { return v === null || v === undefined ? "-" : RT.fmt(v); }
+
+  function render() {
+    var tracked = loadTracked();
+    var keys = Object.keys(tracked).sort(function (a, b) {
+      return String(tracked[a].username).toLowerCase().localeCompare(String(tracked[b].username).toLowerCase());
+    });
+    // Count section
+    var totalFollowers = 0;
+    keys.forEach(function (k) {
+      var f = tracked[k].snap && tracked[k].snap.followers;
+      if (typeof f === "number") totalFollowers += f;
+    });
+    document.getElementById("countUsers").textContent = RT.fmt(keys.length);
+    document.getElementById("countFollowers").textContent = RT.fmt(totalFollowers);
+    document.getElementById("countLine").textContent = "You are tracking " + keys.length + (keys.length === 1 ? " user" : " users") + ".";
+    document.getElementById("removeAllBtn").disabled = keys.length === 0;
+
+    if (!keys.length) {
+      listBody.innerHTML = '<p class="empty">No users tracked yet. Add a username above and its current public stats will be saved as the first snapshot.</p>';
+      return;
+    }
+    var html = '<div class="table-scroll"><table class="data">';
+    html += "<thead><tr><th>Username</th><th class=\"num\">Friends</th><th class=\"num\">Followers</th><th class=\"num\">Following</th><th class=\"num\">RAP</th><th>Last checked</th><th>Change</th><th>Actions</th></tr></thead><tbody>";
+    keys.forEach(function (k) {
+      var e = tracked[k];
+      var s = e.snap || {};
+      html += "<tr>";
+      html += '<td><div style="display:flex;align-items:center;gap:12px"><img class="thumb" data-user="' + RT.esc(e.id) + '" alt="" onerror="this.style.visibility=\'hidden\'"><div><b>' + RT.esc(e.username) + '</b><div style="color:var(--muted);font-size:12px">ID ' + RT.esc(e.id) + "</div></div></div></td>";
+      html += '<td class="num">' + numOrDash(s.friends) + "</td>";
+      html += '<td class="num">' + numOrDash(s.followers) + "</td>";
+      html += '<td class="num">' + numOrDash(s.followings) + "</td>";
+      html += '<td class="num">' + (settings.includeRap ? numOrDash(s.rap) : "-") + "</td>";
+      html += "<td>" + RT.esc(fmtTime(e.lastCheck)) + "</td>";
+      html += "<td>" + deltaHtml(e) + "</td>";
+      html += '<td><div style="display:flex;gap:6px;flex-wrap:wrap"><button type="button" class="btn" data-action="check" data-key="' + RT.esc(k) + '">Check</button><button type="button" class="btn" data-action="remove" data-key="' + RT.esc(k) + '">Remove</button></div></td>';
+      html += "</tr>";
+    });
+    html += "</tbody></table></div>";
+    listBody.innerHTML = html;
+    fillUserThumbs();
+  }
+
+  function fillUserThumbs() {
+    var imgs = listBody.querySelectorAll('img[data-user]');
+    if (!imgs.length) return;
+    var ids = [];
+    imgs.forEach(function (img) {
+      var v = img.getAttribute('data-user');
+      if (/^\d+$/.test(v)) ids.push(v);
+    });
+    if (!ids.length) return;
+    fetch('/api/thumbs?kind=users&endpoint=avatar-headshot&ids=' + ids.join(',') + '&size=150x150')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var map = (d && d.thumbs) || {};
+        imgs.forEach(function (img) {
+          var u = map[img.getAttribute('data-user')];
+          if (u) img.src = u;
+        });
+      })
+      .catch(function () { /* thumbnails are decorative */ });
+  }
+
+  function diff(oldV, newV) {
+    return (typeof oldV === "number" && typeof newV === "number") ? newV - oldV : null;
+  }
+
+  function checkOne(key) {
+    var tracked = loadTracked();
+    var entry = tracked[key];
+    if (!entry) return Promise.resolve(false);
+    return RT.fetchJson("/api/user?username=" + encodeURIComponent(entry.username)).then(function (res) {
+      if (!res.ok || !res.data || res.data.error) return false;
+      var data = res.data;
+      var fresh = loadTracked();
+      var cur = fresh[key];
+      if (!cur) return false;
+      var newSnap = snapshotFrom(data);
+      var oldSnap = cur.snap || {};
+      cur.lastDelta = {
+        friends: diff(oldSnap.friends, newSnap.friends),
+        followers: diff(oldSnap.followers, newSnap.followers),
+        followings: diff(oldSnap.followings, newSnap.followings),
+        rap: diff(oldSnap.rap, newSnap.rap)
+      };
+      cur.snap = newSnap;
+      cur.username = data.username || cur.username;
+      cur.id = data.id || cur.id;
+      cur.lastCheck = new Date().toISOString();
+      saveTracked(fresh);
+      return true;
+    }).catch(function () { return false; });
+  }
+
+  // Add
+  var addForm = document.getElementById("addForm");
+  var addInput = document.getElementById("addInput");
+  var addBtn = document.getElementById("addBtn");
+  addForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = addInput.value.trim();
+    if (!name) return;
+    addBtn.disabled = true;
+    RT.setStatus(status, "Fetching " + name + "...");
+    RT.fetchJson("/api/user?username=" + encodeURIComponent(name)).then(function (res) {
+      addBtn.disabled = false;
+      if (!res.ok || !res.data || res.data.error) {
+        RT.setStatus(status, res.data && res.data.error === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+        return;
+      }
+      var data = res.data;
+      var tracked = loadTracked();
+      var key = String(data.username).toLowerCase();
+      var now = new Date().toISOString();
+      tracked[key] = {
+        username: data.username,
+        id: data.id,
+        addedAt: tracked[key] && tracked[key].addedAt ? tracked[key].addedAt : now,
+        lastCheck: now,
+        snap: snapshotFrom(data),
+        lastDelta: tracked[key] && tracked[key].lastDelta ? tracked[key].lastDelta : null
+      };
+      saveTracked(tracked);
+      addInput.value = "";
+      RT.setStatus(status, "Now tracking " + data.username + ".");
+      render();
+    }).catch(function () {
+      addBtn.disabled = false;
+      RT.setStatus(status, "Lookup failed. Please try again.", true);
+    });
+  });
+
+  // Per-row actions (event delegation)
+  listBody.addEventListener("click", function (e) {
+    var btn = e.target.closest ? e.target.closest("button[data-action]") : null;
+    if (!btn) return;
+    var key = btn.getAttribute("data-key");
+    var action = btn.getAttribute("data-action");
+    if (action === "remove") {
+      var tracked = loadTracked();
+      delete tracked[key];
+      saveTracked(tracked);
+      render();
+    } else if (action === "check") {
+      btn.disabled = true;
+      checkOne(key).then(function (ok) {
+        RT.setStatus(status, ok ? "Checked " + key + "." : "Check failed for " + key + ".", !ok);
+        render();
+      });
+    }
+  });
+
+  // Check all (sequential)
+  var checkAllBtn = document.getElementById("checkAllBtn");
+  checkAllBtn.addEventListener("click", function () {
+    var keys = Object.keys(loadTracked());
+    if (!keys.length) {
+      RT.setStatus(checkStatus, "No users tracked yet.", true);
+      return;
+    }
+    checkAllBtn.disabled = true;
+    RT.setStatus(checkStatus, "Checking 0 of " + keys.length + "...");
+    var done = 0;
+    var chain = Promise.resolve();
+    keys.forEach(function (key) {
+      chain = chain.then(function () {
+        return checkOne(key).then(function () {
+          done++;
+          RT.setStatus(checkStatus, "Checking " + done + " of " + keys.length + "...");
+          render();
+        });
+      });
+    });
+    chain.then(function () {
+      checkAllBtn.disabled = false;
+      RT.setStatus(checkStatus, "Done. Checked " + keys.length + (keys.length === 1 ? " user" : " users") + ".");
+    });
+  });
+
+  // Remove all. Two-step inline confirmation on the button itself.
+  // The previous version gated the whole action on window.confirm();
+  // where that dialog is suppressed or auto-dismissed (some browsers
+  // and webviews), the click silently did nothing and the users stayed
+  // tracked - the exact failure reported on 5 Nov 2026. The handler,
+  // storage key and render were verified fine; only the dialog gate
+  // failed. First click arms the button, second click removes.
+  var removeAllBtn = document.getElementById("removeAllBtn");
+  var removeAllArmed = false;
+  var removeAllTimer = null;
+  function disarmRemoveAll() {
+    removeAllArmed = false;
+    if (removeAllTimer) { clearTimeout(removeAllTimer); removeAllTimer = null; }
+    removeAllBtn.textContent = "Remove all";
+  }
+  removeAllBtn.addEventListener("click", function () {
+    var keys = Object.keys(loadTracked());
+    if (!keys.length) return;
+    if (!removeAllArmed) {
+      removeAllArmed = true;
+      removeAllBtn.textContent = "Click again to confirm removing " + keys.length + (keys.length === 1 ? " user" : " users");
+      removeAllTimer = setTimeout(disarmRemoveAll, 5000);
+      return;
+    }
+    disarmRemoveAll();
+    saveTracked({});
+    RT.setStatus(status, "All tracked users removed.");
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

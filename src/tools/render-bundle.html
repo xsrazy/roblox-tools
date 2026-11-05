@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bundle Render - Roblox Tools</title>
+<meta name="description" content="Render any Roblox catalog bundle by its bundle ID, see what the bundle contains, who made it and its price, and download the render.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/render-bundle.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Bundle Render - Roblox Tools">
+<meta property="og:description" content="Render any catalog bundle by ID and download the image.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/render-bundle.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bundle Render - Roblox Tools">
+<meta name="twitter:description" content="Render any catalog bundle by ID and download the image.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Avatar &amp; Renders</div>
+      <h1>Bundle <span class="grad">Render</span></h1>
+      <p class="tool-sub">Enter a catalog bundle ID to see its render, what items it contains, who created it and its price, and download the image.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="bundleInput" placeholder="Bundle ID or bundle link, e.g. 192" aria-label="Bundle ID" autocomplete="off" spellcheck="false" inputmode="numeric">
+        <button type="submit" id="lookupBtn">Render</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/render-asset.html"><h3>Asset Render</h3><p>Render any Roblox asset by ID and download the image.</p></a>
+        <a class="rel-card" href="/tools/shirt-template.html"><h3>Shirt &amp; Pants Template</h3><p>Get the flat template texture of a classic Shirt or Pants asset.</p></a>
+        <a class="rel-card" href="/tools/render-avatar.html"><h3>Avatar Render</h3><p>Full body, bust and headshot renders for any Roblox user.</p></a>
+        <a class="rel-card" href="/tools/outfit-viewer.html"><h3>Outfit Viewer</h3><p>Browse the outfits any user has saved on their profile.</p></a>
+        <a class="rel-card" href="/tools/render-2d.html"><h3>2D Avatar Render</h3><p>Experimental avatar renders with size and style options.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("bundleInput");
+  var btn = document.getElementById("lookupBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var id = input.value.trim();
+    if (!/^\d+$/.test(id)) { RT.setStatus(status, "Enter a numeric bundle ID.", true); return; }
+    btn.disabled = true;
+    RT.setStatus(status, "Rendering bundle " + id + "...");
+    result.hidden = true;
+    RT.fetchJson("/api/bundle-info?bundleId=" + encodeURIComponent(id)).then(function (res) {
+      btn.disabled = false;
+      var d = res.data || {};
+      if (!res.ok || d.error) {
+        RT.setStatus(status, d.error === "Bundle not found" ? "Bundle not found. Check the ID and try again." : "Lookup failed. Please try again.", true);
+        return;
+      }
+      RT.setStatus(status, "");
+      var html = "<h2>" + RT.esc(d.name || "Bundle " + d.bundleId) + "</h2>";
+      if (d.imageUrl) {
+        html += '<img class="big-render" crossorigin="anonymous" src="' + RT.esc(d.imageUrl) + '" alt="Render of bundle ' + RT.esc(d.bundleId) + '">';
+      } else {
+        html += '<p class="empty">No render is available for this bundle.</p>';
+      }
+      html += '<div class="kv">';
+      html += '<div class="row"><span class="k">Bundle ID</span><span class="v num">' + RT.esc(d.bundleId) + "</span></div>";
+      if (d.name) html += '<div class="row"><span class="k">Name</span><span class="v">' + RT.esc(d.name) + "</span></div>";
+      if (d.bundleType) html += '<div class="row"><span class="k">Bundle type</span><span class="v">' + RT.esc(d.bundleType) + "</span></div>";
+      if (d.creator) html += '<div class="row"><span class="k">Creator</span><span class="v">' + RT.esc(d.creator) + (d.creatorType ? " (" + RT.esc(d.creatorType) + ")" : "") + "</span></div>";
+      if (d.priceInRobux != null) html += '<div class="row"><span class="k">Price</span><span class="v num">' + RT.fmt(d.priceInRobux) + " Robux</span></div>";
+      if (typeof d.itemsCount === "number") html += '<div class="row"><span class="k">Items</span><span class="v num">' + RT.fmt(d.itemsCount) + "</span></div>";
+      html += "</div>";
+      if (d.items && d.items.length) {
+        html += "<h3>What's in the bundle</h3><div class=\"chips\">";
+        d.items.forEach(function (it) { html += '<span class="chip">' + RT.esc(it.name || ("Item " + it.id)) + "</span>"; });
+        html += "</div>";
+      }
+      if (d.description) html += '<p class="note" style="text-align:left">' + RT.esc(d.description) + "</p>";
+      if (d.imageUrl) {
+        html += '<div class="actions"><a class="btn primary" href="' + RT.esc(d.imageUrl) + '" download="roblox-bundle-' + RT.esc(d.bundleId) + '.png" target="_blank" rel="noopener">Download render PNG</a></div>';
+      }
+      panel.innerHTML = html;
+      result.hidden = false;
+    }).catch(function () {
+      btn.disabled = false;
+      RT.setStatus(status, "Lookup failed. Please try again.", true);
+    });
+  });
+
+  var pre = RT.param("bundleId") || RT.param("id") || RT.param("bundle");
+  if (pre) { input.value = pre; form.dispatchEvent(new Event("submit")); }
+})();
+</script>
+</body>
+</html>

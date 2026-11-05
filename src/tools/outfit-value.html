@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outfit Value Estimator - Roblox Tools</title>
+<meta name="description" content="Estimate the Robux value of any saved Roblox outfit, item by item: catalog prices for regular items, the lowest resale price or RAP for limiteds, and a total for the whole outfit.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/outfit-value.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Outfit Value Estimator - Roblox Tools">
+<meta property="og:description" content="Price any saved Roblox outfit in Robux, item by item, with a total value.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/outfit-value.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Outfit Value Estimator - Roblox Tools">
+<meta name="twitter:description" content="Price any saved Roblox outfit in Robux, item by item, with a total value.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Avatar &amp; Renders</div>
+      <h1>Outfit Value <span class="grad">Estimator</span></h1>
+      <p class="tool-sub">See what a saved outfit is worth in Robux: pick a user, pick an outfit, and every item gets priced with a total for the whole look.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. builderman" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="lookupBtn">Load outfits</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+      <div id="valueZone" hidden>
+        <div class="result-label" style="margin-top:26px">Outfit value</div>
+        <div class="panel" id="valuePanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/tools/outfit-viewer.html"><h3>Outfit Viewer</h3><p>Browse the outfits any user has saved on their profile.</p></a>
+        <a class="rel-card" href="/tools/render-outfit.html"><h3>Outfit Render</h3><p>Pick a saved outfit and download its item sheet as a PNG.</p></a>
+        <a class="rel-card" href="/tools/rap-checker.html"><h3>RAP Checker</h3><p>Total RAP, limited count and the most valuable limiteds of a public inventory.</p></a>
+        <a class="rel-card" href="/tools/item-checker.html"><h3>Item Checker</h3><p>Check whether a user owns a specific item by its asset ID.</p></a>
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/render-outfits.html"><h3>Outfits Gallery Render</h3><p>A downloadable gallery of every saved outfit and its items.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("usernameInput");
+  var btn = document.getElementById("lookupBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+  var valueZone = document.getElementById("valueZone");
+  var valuePanel = document.getElementById("valuePanel");
+  var currentUser = null;
+
+  var SOURCE_LABELS = { catalog: "Catalog price", rap: "RAP", none: "No price data" };
+
+  function showValue(user, outfit) {
+    RT.setStatus(status, "Pricing outfit \"" + (outfit.name || "Outfit") + "\"...");
+    valueZone.hidden = true;
+    RT.fetchJson("/api/outfit-value?userId=" + encodeURIComponent(user.id) + "&outfitId=" + encodeURIComponent(outfit.id)).then(function (res) {
+      RT.setStatus(status, "");
+      var data = res.data || {};
+      if (!res.ok || data.error) {
+        RT.setStatus(status, data.error === "Outfit not found" ? "That outfit could not be found anymore." : "Could not price this outfit. Please try again.", true);
+        return;
+      }
+      var items = Array.isArray(data.items) ? data.items : [];
+      var html = "";
+      if (outfit.imageUrl) {
+        html += '<img class="big-render" crossorigin="anonymous" src="' + RT.esc(outfit.imageUrl) + '" alt="">';
+      }
+      html += "<h2>" + RT.esc(data.outfitName || outfit.name || "Outfit") + "</h2>";
+      html += '<p class="note" style="text-align:left;margin-top:6px">@' + RT.esc(user.username) + " &middot; outfit ID " + RT.esc(outfit.id) + " &middot; " + items.length + (items.length === 1 ? " item" : " items") + "</p>";
+      html += '<div class="stats">';
+      html += '<div class="stat"><b>' + RT.fmt(data.totalRobux) + ' R$</b><small>Total outfit value</small></div>';
+      html += '<div class="stat"><b>' + RT.fmt(data.pricedCount) + "</b><small>Items priced</small></div>";
+      html += '<div class="stat"><b>' + RT.fmt(data.unpricedCount) + "</b><small>No price data</small></div>";
+      html += "</div>";
+      if (!items.length) {
+        html += '<p class="empty">This outfit has no items at all, so there is nothing to price.</p>';
+      } else {
+        if (!data.pricedCount) {
+          html += '<p class="empty">No price data for any item in this outfit. Its items are things Roblox does not sell with a public price, such as body parts or items that are no longer in the catalog, so no honest total can be given.</p>';
+        }
+        html += '<div class="table-scroll"><table class="data"><thead><tr><th>Item</th><th>Price source</th><th class="num">Price</th></tr></thead><tbody>';
+        items.forEach(function (it) {
+          var img = it.imageUrl
+            ? '<img class="thumb" crossorigin="anonymous" loading="lazy" src="' + RT.esc(it.imageUrl) + '" alt="">'
+            : '<img class="thumb" alt="" style="visibility:hidden">';
+          var name = RT.esc(it.name || ("Asset " + it.assetId)) + (it.isLimited ? ' <span class="badge priv" style="margin-left:6px">Limited</span>' : "");
+          var price = typeof it.price === "number" ? RT.fmt(it.price) + " R$" : "-";
+          html += "<tr><td><div style=\"display:flex;align-items:center;gap:12px\">" + img + "<span>" + name + "</span></div></td>" +
+            "<td>" + RT.esc(SOURCE_LABELS[it.priceSource] || "No price data") + "</td>" +
+            '<td class="num">' + price + "</td></tr>";
+        });
+        html += "</tbody></table></div>";
+        html += '<p class="note" style="text-align:left">Prices come from the Roblox catalog: the current price for regular items (free items count as 0 R$, off-sale items use their last listed price). Limited items use the lowest current resale price, or their RAP (recent average price) when there are no resale listings. Items with no price data are not counted in the total.</p>';
+      }
+      valuePanel.innerHTML = html;
+      valueZone.hidden = false;
+      valueZone.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }).catch(function () {
+      RT.setStatus(status, "Could not price this outfit. Please try again.", true);
+    });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = input.value.trim();
+    if (!name) return;
+    btn.disabled = true;
+    RT.setStatus(status, "Loading outfits for " + name + "...");
+    result.hidden = true;
+    valueZone.hidden = true;
+    RT.resolveUser(name).then(function (user) {
+      currentUser = user;
+      var outfitsUrl = "/api/outfits?userId=" + encodeURIComponent(user.id);
+      function getOutfits(attempt) {
+        return RT.fetchJson(outfitsUrl).then(function (res) {
+          var d = res.data || {};
+          var l = Array.isArray(d.outfits) ? d.outfits : [];
+          var delays = [2500, 4000, 6000];
+          if (res.ok && !d.error && !l.length && attempt < delays.length) {
+            RT.setStatus(status, "Roblox is responding slowly, trying again...");
+            return new Promise(function (done) { setTimeout(done, delays[attempt]); }).then(function () { return getOutfits(attempt + 1); });
+          }
+          return res;
+        });
+      }
+      return getOutfits(0).then(function (res) {
+        btn.disabled = false;
+        var data = res.data || {};
+        if (!res.ok || data.error) { RT.setStatus(status, "Could not load outfits. Please try again.", true); return; }
+        RT.setStatus(status, "");
+        var list = Array.isArray(data.outfits) ? data.outfits : [];
+        var head = "<h2>" + RT.esc(user.displayName || user.username) + "</h2>" +
+          '<p class="note" style="text-align:left;margin-top:6px">@' + RT.esc(user.username) + " &middot; ID " + RT.esc(user.id) + "</p>";
+        if (!list.length) {
+          panel.innerHTML = head + '<p class="empty">No saved outfits. This user has not saved any outfits in the Roblox avatar editor, so there is nothing to show yet.</p>';
+          result.hidden = false;
+          return;
+        }
+        var html = head + '<p class="note" style="text-align:left">Pick an outfit to estimate its value:</p><div class="thumb-grid">';
+        list.forEach(function (o, idx) {
+          var outfitImg = o.imageUrl
+            ? '<img crossorigin="anonymous" loading="lazy" src="' + RT.esc(o.imageUrl) + '" alt="">'
+            : "";
+          html += '<div class="tile">' + outfitImg + "<span>" + RT.esc(o.name || "Outfit") + '</span><div class="actions" style="justify-content:center;margin-top:10px"><button type="button" class="btn" data-pick="' + idx + '">Estimate value</button></div></div>';
+        });
+        html += "</div>";
+        panel.innerHTML = html;
+        result.hidden = false;
+        panel.querySelectorAll("[data-pick]").forEach(function (b) {
+          b.addEventListener("click", function () { showValue(user, list[Number(b.getAttribute("data-pick"))]); });
+        });
+      });
+    }).catch(function (err) {
+      btn.disabled = false;
+      RT.setStatus(status, err && err.message === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+    });
+  });
+
+  var pre = RT.param("username") || RT.param("user");
+  if (pre) { input.value = pre; form.dispatchEvent(new Event("submit")); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outfits Gallery Render - Roblox Tools</title>
+<meta name="description" content="A gallery of every outfit a Roblox user has saved, with the items in each outfit. Download any outfit tile as a PNG.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/render-outfits.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Outfits Gallery Render - Roblox Tools">
+<meta property="og:description" content="Gallery of saved outfits with their items, each tile downloadable as a PNG.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/render-outfits.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Outfits Gallery Render - Roblox Tools">
+<meta name="twitter:description" content="Gallery of saved outfits with their items, each tile downloadable as a PNG.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Avatar &amp; Renders</div>
+      <h1>Outfits Gallery <span class="grad">Render</span></h1>
+      <p class="tool-sub">A gallery of all the outfits a user has saved, with their items. Download any single outfit tile as a PNG.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. builderman" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="lookupBtn">Build gallery</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/render-outfit.html"><h3>Outfit Render</h3><p>Pick a saved outfit and download its item sheet as a PNG.</p></a>
+        <a class="rel-card" href="/tools/outfit-viewer.html"><h3>Outfit Viewer</h3><p>Browse the outfits any user has saved on their profile.</p></a>
+        <a class="rel-card" href="/tools/cac-avatar-render.html"><h3>CAC Avatar Render</h3><p>Look up an outfit by its outfit ID and see its items.</p></a>
+        <a class="rel-card" href="/tools/render-avatar.html"><h3>Avatar Render</h3><p>Full body, bust and headshot renders for any Roblox user.</p></a>
+        <a class="rel-card" href="/tools/shirt-template.html"><h3>Shirt &amp; Pants Template</h3><p>Get the flat template texture of a classic Shirt or Pants asset.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script src="/vendor/html-to-image.min.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("usernameInput");
+  var btn = document.getElementById("lookupBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+  var currentUser = null;
+
+  function slug(s) { return String(s || "outfit").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "outfit"; }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = input.value.trim();
+    if (!name) return;
+    btn.disabled = true;
+    RT.setStatus(status, "Building the gallery for " + name + "...");
+    result.hidden = true;
+    RT.resolveUser(name).then(function (user) {
+      currentUser = user;
+      var outfitsUrl = "/api/outfits?userId=" + encodeURIComponent(user.id);
+      function getOutfits(attempt) {
+        return RT.fetchJson(outfitsUrl).then(function (res) {
+          var d = res.data || {};
+          var l = Array.isArray(d.outfits) ? d.outfits : [];
+          var delays = [2500, 4000, 6000];
+          if (res.ok && !d.error && !l.length && attempt < delays.length) {
+            RT.setStatus(status, "Roblox is responding slowly, trying again...");
+            return new Promise(function (done) { setTimeout(done, delays[attempt]); }).then(function () { return getOutfits(attempt + 1); });
+          }
+          return res;
+        });
+      }
+      return getOutfits(0).then(function (res) {
+        btn.disabled = false;
+        var data = res.data || {};
+        if (!res.ok || data.error) { RT.setStatus(status, "Could not load outfits. Please try again.", true); return; }
+        RT.setStatus(status, "");
+        var list = Array.isArray(data.outfits) ? data.outfits : [];
+        var head = "<h2>" + RT.esc(user.displayName || user.username) + "</h2>" +
+          '<p class="note" style="text-align:left;margin-top:6px">@' + RT.esc(user.username) + " &middot; ID " + RT.esc(user.id) + " &middot; gallery of saved outfits with their items</p>";
+        if (!list.length) {
+          panel.innerHTML = head + '<p class="empty">No saved outfits. This user has not saved any outfits in the Roblox avatar editor, so there is nothing to show yet.</p>';
+          result.hidden = false;
+          return;
+        }
+        var html = head + '<div class="thumb-grid">';
+        list.forEach(function (o, idx) {
+          var items = (o.items || []).filter(function (it) { return it.imageUrl; }).slice(0, 12);
+          var outfitImg = o.imageUrl
+            ? '<img crossorigin="anonymous" loading="lazy" src="' + RT.esc(o.imageUrl) + '" alt="">'
+            : "";
+          var itemsHtml = items.length
+            ? '<div class="tile-items">' + items.map(function (it) {
+                return '<img crossorigin="anonymous" loading="lazy" src="' + RT.esc(it.imageUrl) + '" alt="" title="' + RT.esc(it.name || "") + '">';
+              }).join("") + "</div>"
+            : (outfitImg ? "" : '<p class="empty" style="margin-top:0">No item images resolved</p>');
+          html += '<div class="tile" id="tile-' + idx + '">' + outfitImg + itemsHtml + "<span>" + RT.esc(o.name || "Outfit") + '</span><div class="actions" style="justify-content:center;margin-top:10px"><button type="button" class="btn" data-dl="' + idx + '" data-name="' + RT.esc(o.name || "Outfit") + '">Download PNG</button></div></div>';
+        });
+        html += "</div>";
+        panel.innerHTML = html;
+        result.hidden = false;
+        panel.querySelectorAll("[data-dl]").forEach(function (b) {
+          b.addEventListener("click", function () {
+            var tile = document.getElementById("tile-" + b.getAttribute("data-dl"));
+            if (!tile || !window.htmlToImage) { RT.setStatus(status, "Exporter is still loading. Try again in a few seconds.", true); return; }
+            b.disabled = true;
+            var old = b.textContent;
+            b.textContent = "Rendering...";
+            window.htmlToImage.toPng(tile, {
+              pixelRatio: 2,
+              cacheBust: true,
+              filter: function (node) { return !(node.tagName === "IMG" && node.complete && node.naturalWidth === 0); }
+            }).then(function (dataUrl) {
+              var a = document.createElement("a");
+              a.download = "roblox-outfit-" + slug(b.getAttribute("data-name")) + ".png";
+              a.href = dataUrl;
+              a.click();
+              b.disabled = false;
+              b.textContent = old;
+            }).catch(function () {
+              b.disabled = false;
+              b.textContent = old;
+              RT.setStatus(status, "Could not render that tile. Please try again.", true);
+            });
+          });
+        });
+      });
+    }).catch(function (err) {
+      btn.disabled = false;
+      RT.setStatus(status, err && err.message === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+    });
+  });
+
+  var pre = RT.param("username") || RT.param("user");
+  if (pre) { input.value = pre; form.dispatchEvent(new Event("submit")); }
+})();
+</script>
+</body>
+</html>

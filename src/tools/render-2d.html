@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2D Avatar Render - Roblox Tools</title>
+<meta name="description" content="Experimental 2D avatar renders with your choice of framing, size and circular headshots. Preview updates as you change the options, then download the PNG.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/render-2d.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="2D Avatar Render - Roblox Tools">
+<meta property="og:description" content="Experimental 2D avatar renders with framing, size and circular options.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/render-2d.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2D Avatar Render - Roblox Tools">
+<meta name="twitter:description" content="Experimental 2D avatar renders with framing, size and circular options.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Avatar &amp; Renders</div>
+      <h1>2D Avatar <span class="grad">Render</span></h1>
+      <p class="tool-sub">Experimental: compose a flat avatar render with your choice of framing and size. The preview and the download link update as you change the options.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. builderman" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="lookupBtn">Render</button>
+      </form>
+      <div class="lookup" style="margin-top:10px">
+        <select id="typeSel" aria-label="Render type">
+          <option value="avatar">Full body</option>
+          <option value="bust">Bust</option>
+          <option value="headshot">Headshot</option>
+        </select>
+        <select id="sizeSel" aria-label="Render size"></select>
+        <label style="display:flex;align-items:center;gap:8px;color:var(--muted);font-size:15px;font-weight:600;padding:0 6px;white-space:nowrap">
+          <input type="checkbox" id="circularChk" style="width:18px;height:18px;accent-color:#2563EB"> Circular (headshot)
+        </label>
+      </div>
+      <div class="status" id="status"></div>
+      <p class="note">Sizes are the ones each Roblox render endpoint actually accepts, verified live: full body goes up to 720x720, bust and headshot up to 420x420.</p>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/render-avatar.html"><h3>Avatar Render</h3><p>Full body, bust and headshot renders for any Roblox user.</p></a>
+        <a class="rel-card" href="/tools/render-outfit.html"><h3>Outfit Render</h3><p>Pick a saved outfit and download its item sheet as a PNG.</p></a>
+        <a class="rel-card" href="/tools/render-outfits.html"><h3>Outfits Gallery Render</h3><p>A downloadable gallery of every saved outfit and its items.</p></a>
+        <a class="rel-card" href="/tools/render-asset.html"><h3>Asset Render</h3><p>Render any Roblox asset by ID and download the image.</p></a>
+        <a class="rel-card" href="/tools/shirt-template.html"><h3>Shirt &amp; Pants Template</h3><p>Get the flat template texture of a classic Shirt or Pants asset.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("usernameInput");
+  var btn = document.getElementById("lookupBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+  var typeSel = document.getElementById("typeSel");
+  var sizeSel = document.getElementById("sizeSel");
+  var circularChk = document.getElementById("circularChk");
+
+  // Sizes probed live per endpoint (HTTP 200, state Completed):
+  // avatar: 720/420/352/150/100/48 - avatar-bust: 420/352/150/100 (720 is rejected)
+  // avatar-headshot: 420/352/150/100/48 (420 is the max used for headshots)
+  var SIZES = {
+    avatar: ["720x720", "420x420", "352x352", "150x150", "100x100"],
+    bust: ["420x420", "352x352", "150x150", "100x100"],
+    headshot: ["420x420", "352x352", "150x150", "100x100"]
+  };
+  var LABELS = { avatar: "Full body", bust: "Bust", headshot: "Headshot" };
+  var currentUser = null;
+  var loadSeq = 0;
+
+  function fillSizes() {
+    var sizes = SIZES[typeSel.value] || SIZES.avatar;
+    sizeSel.innerHTML = sizes.map(function (s) { return '<option value="' + s + '">' + s.replace("x", " x ") + "</option>"; }).join("");
+    circularChk.disabled = typeSel.value !== "headshot";
+  }
+
+  function loadRender() {
+    if (!currentUser) return;
+    var seq = ++loadSeq;
+    var type = typeSel.value;
+    var size = sizeSel.value;
+    var circular = type === "headshot" && circularChk.checked;
+    RT.setStatus(status, "Rendering...");
+    RT.fetchJson("/api/avatar-render?userId=" + encodeURIComponent(currentUser.id) + "&type=" + encodeURIComponent(type) + "&size=" + encodeURIComponent(size) + "&isCircular=" + (circular ? "true" : "false")).then(function (res) {
+      if (seq !== loadSeq) return;
+      var d = res.data || {};
+      if (!res.ok || !d.imageUrl) { RT.setStatus(status, "This render is not available right now.", true); return; }
+      RT.setStatus(status, "");
+      var html = "<h2>" + RT.esc(currentUser.displayName || currentUser.username) + "</h2>";
+      html += '<p class="note" style="text-align:left;margin-top:6px">@' + RT.esc(currentUser.username) + " &middot; " + RT.esc(LABELS[type]) + " &middot; " + RT.esc(size) + (circular ? " &middot; circular" : "") + "</p>";
+      html += '<img class="big-render" crossorigin="anonymous" src="' + RT.esc(d.imageUrl) + '" alt="' + RT.esc(LABELS[type]) + " render of " + RT.esc(currentUser.username) + '">';
+      html += '<div class="actions"><a class="btn primary" href="' + RT.esc(d.imageUrl) + '" download="roblox-' + RT.esc(currentUser.username) + "-" + RT.esc(type) + "-" + RT.esc(size) + '.png" target="_blank" rel="noopener">Download this render</a></div>';
+      panel.innerHTML = html;
+      result.hidden = false;
+    }).catch(function () {
+      if (seq === loadSeq) RT.setStatus(status, "Render failed. Please try again.", true);
+    });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = input.value.trim();
+    if (!name) return;
+    btn.disabled = true;
+    RT.setStatus(status, "Looking up " + name + "...");
+    result.hidden = true;
+    RT.resolveUser(name).then(function (user) {
+      btn.disabled = false;
+      currentUser = user;
+      loadRender();
+    }).catch(function (err) {
+      btn.disabled = false;
+      currentUser = null;
+      RT.setStatus(status, err && err.message === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+    });
+  });
+
+  typeSel.addEventListener("change", function () { fillSizes(); loadRender(); });
+  sizeSel.addEventListener("change", loadRender);
+  circularChk.addEventListener("change", loadRender);
+  fillSizes();
+
+  var pre = RT.param("username") || RT.param("user");
+  if (pre) { input.value = pre; form.dispatchEvent(new Event("submit")); }
+})();
+</script>
+</body>
+</html>

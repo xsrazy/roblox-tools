@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recently Looked Up - Roblox Tools</title>
+<meta name="description" content="The latest Roblox usernames people checked on Roblox Tools, and which tool they used. Tap a name to pull up its card.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/recent.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Recently Looked Up - Roblox Tools">
+<meta property="og:description" content="The latest Roblox usernames people checked on Roblox Tools, and which tool they used.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/recent.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Recently Looked Up - Roblox Tools">
+<meta name="twitter:description" content="The latest Roblox usernames people checked on Roblox Tools, and which tool they used.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+<style>
+.rlist{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:860px;margin:6px auto 0;padding:0 24px}
+.rchip{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #D9E6F5;border-radius:999px;padding:5px 16px 5px 5px;cursor:pointer;font:inherit;text-align:left;text-decoration:none;transition:border-color .15s,transform .15s}
+.rchip:hover{border-color:rgba(37,99,235,.5);transform:translateY(-1px)}
+.rchip img{width:36px;height:36px;border-radius:50%;background:#EAF2FE;flex:0 0 auto}
+.rchip b{display:block;font-size:14px;color:#16283F;line-height:1.2}
+.rchip small{display:block;font-size:11.5px;color:rgba(31,41,55,.55)}
+.rmeta{display:flex;align-items:center;gap:7px;margin-top:3px}
+.rtool{display:inline-block;padding:2px 9px;border-radius:999px;background:rgba(37,99,235,.10);color:#2563EB;font-size:11px;font-weight:700;line-height:1.5}
+.r ago,.rago{font-size:11.5px;color:rgba(31,41,55,.55)}
+.rnote{text-align:center;color:rgba(31,41,55,.55);font-size:13.5px;max-width:560px;margin:22px auto 0;padding:0 24px;line-height:1.6}
+.rstatus{text-align:center;color:rgba(31,41,55,.6);font-size:15px;max-width:560px;margin:0 auto;padding:0 24px;line-height:1.6}
+.rstatus a{color:#2563EB;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / Recently Looked Up</div>
+      <h1>Recently looked up</h1>
+      <p class="tool-sub">Real lookups from people using this site. Tap any name to pull up their card.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rstatus" id="recentStatus">Loading the latest lookups...</p>
+    <div class="rlist" id="recentRow"></div>
+    <p class="rnote">Only the latest 12 lookups are shown here. Names are public Roblox usernames, and tapping one opens its profile card.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function(){
+  var status = document.getElementById('recentStatus');
+  var row = document.getElementById('recentRow');
+  function ago(ts){ var s = Math.max(1, Math.floor((Date.now() - ts) / 1000)); if (s < 60) return s + 's ago'; var m = Math.floor(s / 60); if (m < 60) return m + 'm ago'; var h = Math.floor(m / 60); if (h < 24) return h + 'h ago'; return Math.floor(h / 24) + 'd ago'; }
+  function render(items, map){
+    row.innerHTML = '';
+    items.forEach(function(i){
+      var a = document.createElement('a');
+      a.className = 'rchip';
+      a.href = '/?lookup=' + encodeURIComponent(i.username);
+      var img = document.createElement('img'); img.alt = ''; img.loading = 'lazy';
+      if (map[i.user_id]) img.src = map[i.user_id];
+      var tx = document.createElement('span');
+      var n = document.createElement('b'); n.textContent = i.username;
+      var m = document.createElement('span'); m.className = 'rmeta';
+      var tp = document.createElement('span'); tp.className = 'rtool'; tp.textContent = i.tool;
+      var ag = document.createElement('span'); ag.className = 'rago'; ag.textContent = ago(i.ts);
+      m.appendChild(tp); m.appendChild(ag);
+      tx.appendChild(n); tx.appendChild(m);
+      a.appendChild(img); a.appendChild(tx);
+      row.appendChild(a);
+    });
+  }
+  fetch('/api/history').then(function(r){ return r.json(); }).then(function(d){
+    var items = (d && d.items) || [];
+    if (!items.length) {
+      status.innerHTML = 'Nothing here yet. <a href="/">Look someone up</a> and they will show up on this page.';
+      return;
+    }
+    status.style.display = 'none';
+    var ids = items.map(function(i){ return i.user_id; }).join(',');
+    fetch('/api/thumbs?kind=users&endpoint=avatar-headshot&ids=' + ids + '&size=48x48&circular=false')
+      .then(function(r){ return r.json(); })
+      .then(function(t){ render(items, (t && t.thumbs) || {}); })
+      .catch(function(){ render(items, {}); });
+  }).catch(function(){
+    status.textContent = 'Could not load the latest lookups right now. Try again in a bit.';
+  });
+})();
+</script>
+</body>
+</html>

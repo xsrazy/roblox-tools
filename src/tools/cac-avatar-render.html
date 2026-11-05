@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAC Avatar Render - Roblox Tools</title>
+<meta name="description" content="Enter an outfit ID to see the items that make up that outfit as a sheet, with the outfit name and every item's image and type.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/cac-avatar-render.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="CAC Avatar Render - Roblox Tools">
+<meta property="og:description" content="Look up an outfit by ID and see the items that make it up.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/cac-avatar-render.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CAC Avatar Render - Roblox Tools">
+<meta name="twitter:description" content="Look up an outfit by ID and see the items that make it up.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Avatar &amp; Renders</div>
+      <h1>CAC Avatar <span class="grad">Render</span></h1>
+      <p class="tool-sub">Enter an outfit ID to see the outfit's name and every item that makes it up, laid out as a sheet.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="outfitInput" data-nolink placeholder="Outfit ID, e.g. 6505210781156933" aria-label="Outfit ID" autocomplete="off" spellcheck="false" inputmode="numeric">
+        <button type="submit" id="lookupBtn">Render outfit</button>
+      </form>
+      <div class="status" id="status"></div>
+      <p class="note">CAC outfit IDs are read as Roblox outfit IDs; the render shows the items that make up the outfit.</p>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/render-outfit.html"><h3>Outfit Render</h3><p>Pick a saved outfit and download its item sheet as a PNG.</p></a>
+        <a class="rel-card" href="/tools/outfit-viewer.html"><h3>Outfit Viewer</h3><p>Browse the outfits any user has saved on their profile.</p></a>
+        <a class="rel-card" href="/tools/render-outfits.html"><h3>Outfits Gallery Render</h3><p>A downloadable gallery of every saved outfit and its items.</p></a>
+        <a class="rel-card" href="/tools/render-avatar.html"><h3>Avatar Render</h3><p>Full body, bust and headshot renders for any Roblox user.</p></a>
+        <a class="rel-card" href="/tools/render-asset.html"><h3>Asset Render</h3><p>Render any Roblox asset by ID and download the image.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("outfitInput");
+  var btn = document.getElementById("lookupBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var id = input.value.trim();
+    if (!/^\d+$/.test(id)) { RT.setStatus(status, "Enter a numeric outfit ID.", true); return; }
+    btn.disabled = true;
+    RT.setStatus(status, "Loading outfit " + id + "...");
+    result.hidden = true;
+    RT.fetchJson("/api/outfit-details?outfitId=" + encodeURIComponent(id)).then(function (res) {
+      btn.disabled = false;
+      var d = res.data || {};
+      if (!res.ok || d.error) {
+        RT.setStatus(status, "");
+        panel.innerHTML = res.status === 404
+          ? '<p class="empty">Outfit not found. No Roblox outfit exists with ID ' + RT.esc(id) + ". Check the ID and try again.</p>"
+          : '<p class="empty">Could not load this outfit right now. The outfit service is busy; please try again in a moment.</p>';
+        result.hidden = false;
+        return;
+      }
+      RT.setStatus(status, "");
+      var items = Array.isArray(d.items) ? d.items : [];
+      var html = "<h2>" + RT.esc(d.name || "Outfit") + "</h2>";
+      html += '<p class="note" style="text-align:left;margin-top:6px">Outfit ID ' + RT.esc(d.outfitId) + (d.playerAvatarType ? " &middot; " + RT.esc(d.playerAvatarType) : "") + "</p>";
+      html += '<div class="stats"><div class="stat"><b>' + RT.fmt(items.length) + "</b><small>Items in this outfit</small></div></div>";
+      if (items.length) {
+        html += '<div class="thumb-grid">';
+        items.forEach(function (it) {
+          var img = it.imageUrl
+            ? '<img crossorigin="anonymous" loading="lazy" src="' + RT.esc(it.imageUrl) + '" alt="">'
+            : '<div style="width:100%;aspect-ratio:1;border-radius:10px;background:#EAF2FE"></div>';
+          html += '<div class="tile">' + img + "<span>" + RT.esc(it.name || "Item") + "</span>" +
+            (it.assetType ? '<span class="sub">' + RT.esc(it.assetType) + "</span>" : "") + "</div>";
+        });
+        html += "</div>";
+      } else {
+        html += '<p class="empty">This outfit has no items.</p>';
+      }
+      html += '<p class="note" style="text-align:left">CAC outfit IDs are read as Roblox outfit IDs; the render shows the items that make up the outfit.</p>';
+      panel.innerHTML = html;
+      result.hidden = false;
+    }).catch(function () {
+      btn.disabled = false;
+      RT.setStatus(status, "Lookup failed. Please try again.", true);
+    });
+  });
+
+  var pre = RT.param("outfitId") || RT.param("id") || RT.param("outfit");
+  if (pre) { input.value = pre; form.dispatchEvent(new Event("submit")); }
+})();
+</script>
+</body>
+</html>

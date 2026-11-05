@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robux Tax Calculator - Roblox Tools</title>
+<meta name="description" content="Calculate the Roblox marketplace fee of 30%: see the net you receive from a gross amount, or the gross price needed to receive a target net amount.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/tax-calculator.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Robux Tax Calculator - Roblox Tools">
+<meta property="og:description" content="Calculate the 30% Roblox marketplace fee in both directions: gross to net and net to gross.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/tax-calculator.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Robux Tax Calculator - Roblox Tools">
+<meta name="twitter:description" content="Calculate the 30% Roblox marketplace fee in both directions: gross to net and net to gross.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Calculators</div>
+      <h1>Robux <span class="grad">Tax Calculator</span></h1>
+      <p class="tool-sub">Roblox marketplace fee is 30%. Enter a gross sale amount to see what you actually receive, or enter the net you want to see the gross price you need to charge.</p>
+      <form class="lookup" id="grossForm">
+        <input type="number" id="grossInput" placeholder="Gross amount in R$, e.g. 1000" aria-label="Gross amount in Robux" min="0" step="1" autocomplete="off">
+        <button type="submit">Gross to net</button>
+      </form>
+      <form class="lookup" id="netForm">
+        <input type="number" id="netInput" placeholder="Desired net in R$, e.g. 700" aria-label="Desired net amount in Robux" min="0" step="1" autocomplete="off">
+        <button type="submit">Net to gross</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result">
+        <div class="result-label">Result</div>
+        <div class="panel">
+          <h3>From a gross amount</h3>
+          <div class="kv">
+            <div class="row"><span class="k">Gross amount</span><span class="v num" id="kvGross">-</span></div>
+            <div class="row"><span class="k">Marketplace fee (30%)</span><span class="v num" id="kvFee">-</span></div>
+            <div class="row"><span class="k">You receive (net)</span><span class="v num" id="kvNet">-</span></div>
+          </div>
+          <h3>To receive a target net</h3>
+          <div class="kv">
+            <div class="row"><span class="k">Desired net</span><span class="v num" id="kvDesired">-</span></div>
+            <div class="row"><span class="k">Required gross</span><span class="v num" id="kvRequired">-</span></div>
+            <div class="row"><span class="k">Fee on that gross</span><span class="v num" id="kvRequiredFee">-</span></div>
+          </div>
+          <p class="note">Net received is rounded down to whole Robux: net = floor(gross x 0.7). Required gross is rounded up so you never fall short: gross = ceil(desired net / 0.7). Roblox marketplace fee is 30%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/robux-calculator.html"><h3>Robux to USD Calculator</h3><p>Convert Robux into US dollars with an editable rate, defaulting to DevEx.</p></a>
+        <a class="rel-card" href="/tools/usd-calculator.html"><h3>USD to Robux Calculator</h3><p>Convert US dollars back into Robux using the same editable rate.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var grossForm = document.getElementById("grossForm");
+  var netForm = document.getElementById("netForm");
+  var grossInput = document.getElementById("grossInput");
+  var netInput = document.getElementById("netInput");
+  var status = document.getElementById("status");
+
+  function rx(n) { return RT.fmt(n) + " R$"; }
+
+  function calcGross() {
+    var gross = parseFloat(grossInput.value);
+    if (isNaN(gross) || gross < 0) {
+      RT.setStatus(status, "Enter a gross amount of 0 or more.", true);
+      return;
+    }
+    RT.setStatus(status, "");
+    var net = Math.floor(gross * 0.7);
+    var fee = Math.floor(gross) - net;
+    document.getElementById("kvGross").textContent = rx(Math.floor(gross));
+    document.getElementById("kvFee").textContent = rx(fee);
+    document.getElementById("kvNet").textContent = rx(net);
+  }
+  function calcNet() {
+    var desired = parseFloat(netInput.value);
+    if (isNaN(desired) || desired < 0) {
+      RT.setStatus(status, "Enter a desired net amount of 0 or more.", true);
+      return;
+    }
+    RT.setStatus(status, "");
+    var required = Math.ceil(desired / 0.7 - 1e-9); // epsilon guards float error (700 / 0.7 = 1000.0000000000001)
+    var actualNet = Math.floor(required * 0.7);
+    document.getElementById("kvDesired").textContent = rx(Math.floor(desired));
+    document.getElementById("kvRequired").textContent = rx(required);
+    document.getElementById("kvRequiredFee").textContent = rx(required - actualNet);
+  }
+  grossForm.addEventListener("submit", function (e) { e.preventDefault(); calcGross(); });
+  netForm.addEventListener("submit", function (e) { e.preventDefault(); calcNet(); });
+  grossInput.addEventListener("input", calcGross);
+  netInput.addEventListener("input", calcNet);
+})();
+</script>
+</body>
+</html>

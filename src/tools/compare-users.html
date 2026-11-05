@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Users - Roblox Tools</title>
+<meta name="description" content="Compare two Roblox accounts side by side: friends, followers, following, RAP, join date, presence and description, with the higher stat highlighted.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/compare-users.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Compare Users - Roblox Tools">
+<meta property="og:description" content="Two Roblox accounts side by side, with the higher public stat highlighted in green.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/compare-users.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compare Users - Roblox Tools">
+<meta name="twitter:description" content="Two Roblox accounts side by side, with the higher public stat highlighted in green.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / History</div>
+      <h1>Compare <span class="grad">Users</span></h1>
+      <p class="tool-sub">Put two Roblox accounts side by side. The higher number on each stat is highlighted in green.</p>
+      <form class="lookup" id="compareForm">
+        <input type="text" id="userAInput" placeholder="First username, e.g. CloudConcept" aria-label="First Roblox username" autocomplete="off" spellcheck="false">
+        <input type="text" id="userBInput" placeholder="Second username, e.g. builderman" aria-label="Second Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="compareBtn">Compare</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/user-history.html"><h3>User History</h3><p>Join date, account age, current counts and previous usernames for one account.</p></a>
+        <a class="rel-card" href="/tools/stat-graph.html"><h3>Stat Graph</h3><p>Chart the current public stats of one or two Roblox accounts as bars.</p></a>
+        <a class="rel-card" href="/tools/user-tracker.html"><h3>User Tracker</h3><p>Save accounts in this browser and check how their counts change over time.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("compareForm");
+  var inputA = document.getElementById("userAInput");
+  var inputB = document.getElementById("userBInput");
+  var btn = document.getElementById("compareBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+  var WIN = ' style="color:var(--green);font-weight:800"';
+
+  function presenceLabel(u) {
+    if (u.isBanned) return "Banned";
+    switch (u.presenceType) {
+      case 2: return "In Game";
+      case 1: return "Online";
+      case 3: return "In Studio";
+      case 0: return "Offline";
+      default: return "-";
+    }
+  }
+  function trunc(s, n) {
+    if (!s) return "No description";
+    var t = String(s);
+    return t.length > n ? t.slice(0, n - 1) + "..." : t;
+  }
+  function numCell(a, b, isA) {
+    var v = isA ? a : b;
+    if (v === null || v === undefined) return "<td>-</td>";
+    var other = isA ? b : a;
+    var win = typeof other === "number" && v > other;
+    return '<td class="num"' + (win ? WIN : "") + ">" + RT.fmt(v) + "</td>";
+  }
+  function rapCell(u, other) {
+    if (u.rap === null || u.rap === undefined || u.canViewInventory === false) return "<td>Private</td>";
+    var win = other && typeof other.rap === "number" && u.canViewInventory !== false && u.rap > other.rap;
+    return '<td class="num"' + (win ? WIN : "") + ">" + RT.fmt(u.rap) + "</td>";
+  }
+  function headCell(u) {
+    var img = u.headshot ? '<img class="thumb" src="' + RT.esc(u.headshot) + '" alt="">' : '';
+    return '<th><div style="display:flex;align-items:center;gap:10px">' + img + "<span>" + RT.esc(u.username) + "</span></div></th>";
+  }
+  function render(a, b) {
+    var bothRap = typeof a.rap === "number" && typeof b.rap === "number" && a.canViewInventory !== false && b.canViewInventory !== false;
+    var html = "";
+    html += '<div class="table-scroll"><table class="data">';
+    html += "<thead><tr><th>Stat</th>" + headCell(a) + headCell(b) + "</tr></thead><tbody>";
+    html += "<tr><td>Friends</td>" + numCell(a.friends, b.friends, true) + numCell(a.friends, b.friends, false) + "</tr>";
+    html += "<tr><td>Followers</td>" + numCell(a.followers, b.followers, true) + numCell(a.followers, b.followers, false) + "</tr>";
+    html += "<tr><td>Following</td>" + numCell(a.followings, b.followings, true) + numCell(a.followings, b.followings, false) + "</tr>";
+    if (bothRap) {
+      html += "<tr><td>RAP</td>" + rapCell(a, b) + rapCell(b, a) + "</tr>";
+    } else {
+      html += "<tr><td>RAP</td>" +
+        (typeof a.rap === "number" && a.canViewInventory !== false ? '<td class="num">' + RT.fmt(a.rap) + "</td>" : "<td>Private</td>") +
+        (typeof b.rap === "number" && b.canViewInventory !== false ? '<td class="num">' + RT.fmt(b.rap) + "</td>" : "<td>Private</td>") + "</tr>";
+    }
+    html += "<tr><td>Created</td><td>" + RT.esc(RT.fmtDate(a.created)) + "</td><td>" + RT.esc(RT.fmtDate(b.created)) + "</td></tr>";
+    html += "<tr><td>Presence</td><td>" + RT.esc(presenceLabel(a)) + "</td><td>" + RT.esc(presenceLabel(b)) + "</td></tr>";
+    html += "<tr><td>Description</td><td>" + RT.esc(trunc(a.description, 120)) + "</td><td>" + RT.esc(trunc(b.description, 120)) + "</td></tr>";
+    html += "</tbody></table></div>";
+    html += '<p class="note" style="text-align:left">RAP is only compared when both inventories are public. A private inventory shows as Private and is never treated as zero.</p>';
+    panel.innerHTML = html;
+    result.hidden = false;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nameA = inputA.value.trim();
+    var nameB = inputB.value.trim();
+    if (!nameA || !nameB) {
+      RT.setStatus(status, "Enter both usernames to compare.", true);
+      return;
+    }
+    btn.disabled = true;
+    RT.setStatus(status, "Fetching both accounts...");
+    result.hidden = true;
+    Promise.all([
+      RT.fetchJson("/api/user?username=" + encodeURIComponent(nameA)),
+      RT.fetchJson("/api/user?username=" + encodeURIComponent(nameB))
+    ]).then(function (results) {
+      btn.disabled = false;
+      var ra = results[0], rb = results[1];
+      if (!ra.ok || !ra.data || ra.data.error) {
+        RT.setStatus(status, "First user not found. Check the username and try again.", true);
+        return;
+      }
+      if (!rb.ok || !rb.data || rb.data.error) {
+        RT.setStatus(status, "Second user not found. Check the username and try again.", true);
+        return;
+      }
+      RT.setStatus(status, "");
+      render(ra.data, rb.data);
+    }).catch(function () {
+      btn.disabled = false;
+      RT.setStatus(status, "Lookup failed. Please try again.", true);
+    });
+  });
+})();
+</script>
+</body>
+</html>

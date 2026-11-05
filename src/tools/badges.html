@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Badges - Roblox Tools</title>
+<meta name="description" content="See the player badges any Roblox account has earned, with badge icons, names and descriptions, read live through a signed-in session.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/badges.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="User Badges - Roblox Tools">
+<meta property="og:description" content="Player badges earned by any Roblox account, with icons and descriptions.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/badges.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="User Badges - Roblox Tools">
+<meta name="twitter:description" content="Player badges earned by any Roblox account, with icons and descriptions.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Player (session)</div>
+      <h1>User <span class="grad">Badges</span></h1>
+      <p class="tool-sub">See the player badges a Roblox account has earned, with icons, names and descriptions.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. CloudConcept" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="lookupBtn">Look up</button>
+      </form>
+      <div class="status" id="status"></div>
+      <p class="note">Badges are read through a signed-in session; visibility follows the account's privacy settings.</p>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/friends.html"><h3>Friends List</h3><p>See the full friends list of any Roblox account whose list is visible.</p></a>
+        <a class="rel-card" href="/tools/followers.html"><h3>Followers List</h3><p>Browse who follows a Roblox account, page by page.</p></a>
+        <a class="rel-card" href="/tools/following.html"><h3>Following List</h3><p>Browse who a Roblox account follows, page by page.</p></a>
+        <a class="rel-card" href="/tools/mutual-friends.html"><h3>Mutual Friends</h3><p>Find the friends two Roblox accounts have in common.</p></a>
+        <a class="rel-card" href="/tools/avatar-3d.html"><h3>Avatar 3D Model</h3><p>Download the 3D model files for any Roblox avatar.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("usernameInput");
+  var btn = document.getElementById("lookupBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+  var UNAVAILABLE = "This tool is temporarily unavailable. It depends on a signed-in session that is currently down; the other tools keep working.";
+  var NOT_VISIBLE = "This user's list is not visible.";
+  function showPanel(html) { panel.innerHTML = html; result.hidden = false; }
+  function showMessage(msg) { showPanel('<p class="empty">' + RT.esc(msg) + "</p>"); }
+
+  function fetchBadgeIcons(badges) {
+    var map = {};
+    var ids = badges.map(function (b) { return b.iconImageId; }).filter(function (v) { return v !== null && v !== undefined && v !== ""; });
+    var chunks = [];
+    for (var i = 0; i < ids.length; i += 100) chunks.push(ids.slice(i, i + 100));
+    return Promise.all(chunks.map(function (chunk) {
+      var url = "/api/thumbs?kind=assets&ids=" + chunk.join(",") + "&size=150x150";
+      return fetch(url).then(function (r) { return r.json(); }).then(function (d) { var thumbs = d.thumbs || {}; Object.keys(thumbs).forEach(function (k) { map[k] = thumbs[k]; }); }).catch(function () {});
+    })).then(function () { return map; });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = input.value.trim(); if (!name) return;
+    btn.disabled = true; RT.setStatus(status, "Looking up " + name + "..."); result.hidden = true;
+    RT.resolveUser(name).then(function (user) {
+      return RT.fetchJson("/api/badges?userId=" + encodeURIComponent(user.id)).then(function (res) {
+        btn.disabled = false; var data = res.data || {};
+        if (data.unavailable) { RT.setStatus(status, ""); showMessage(UNAVAILABLE); return; }
+        if (data.notVisible) { RT.setStatus(status, ""); showMessage(NOT_VISIBLE); return; }
+        if (!res.ok || data.error) { RT.setStatus(status, "Lookup failed. Please try again.", true); return; }
+        RT.setStatus(status, "");
+        var badges = Array.isArray(data.badges) ? data.badges : [];
+        var total = typeof data.total === "number" ? data.total : badges.length;
+        if (!badges.length) {
+          showPanel("<h2>" + RT.esc(user.displayName || user.username) + '</h2><p class="empty">No badges found. This account has not earned any player badges that are visible.</p>');
+          return;
+        }
+        fetchBadgeIcons(badges).then(function (icons) {
+          var html = "<h2>" + RT.esc(user.displayName || user.username) + "</h2>";
+          html += '<p class="note" style="text-align:left;margin-top:6px">@' + RT.esc(user.username) + " &middot; ID " + RT.esc(user.id) + "</p>";
+          html += '<div class="stats"><div class="stat"><b>' + RT.fmt(total) + "</b><small>Badges</small></div></div>";
+          html += '<div class="thumb-grid">';
+          badges.forEach(function (b) {
+            var iconUrl = b.iconImageId != null ? icons[b.iconImageId] : null;
+            var img = iconUrl ? '<img loading="lazy" src="' + RT.esc(iconUrl) + '" alt="">' : '<div style="width:100%;aspect-ratio:1;border-radius:10px;background:#EAF2FE"></div>';
+            var desc = b.description ? '<span class="sub" style="word-break:break-word">' + RT.esc(b.description) + "</span>" : "";
+            html += '<div class="tile">' + img + "<span>" + RT.esc(b.name || "Badge") + "</span>" + desc + "</div>";
+          });
+          html += "</div>";
+          showPanel(html);
+        });
+      });
+    }).catch(function (err) {
+      btn.disabled = false;
+      RT.setStatus(status, err && err.message === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+    });
+  });
+  var pre = RT.param("username") || RT.param("user");
+  if (pre) { input.value = pre; form.dispatchEvent(new Event("submit")); }
+})();
+</script>
+</body>
+</html>

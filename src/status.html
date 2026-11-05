@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Status - Roblox Tools</title>
+<meta name="description" content="Live status of Roblox Tools: whether the lookup API is answering right now, and which tools depend on a helper session.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/status.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="System Status - Roblox Tools">
+<meta property="og:description" content="Live status of Roblox Tools: whether the lookup API is answering right now, and which tools depend on a helper session.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/status.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="System Status - Roblox Tools">
+<meta name="twitter:description" content="Live status of Roblox Tools: whether the lookup API is answering right now, and which tools depend on a helper session.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / System Status</div>
+      <h1>System status</h1>
+      <p class="tool-sub">Is everything working right now? This page checks the lookup API live, in your browser.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="prose">
+<p><span class="status-pill wait" id="statusPill"><span class="status-dot"></span> Checking...</span></p>
+<p id="statusWhen">Running the checks in your browser...</p>
+<div class="status-rows">
+<div class="status-row"><div class="sr-body"><h3>Website</h3><p>This page itself, served from roblox.xsrazy.web.id.</p></div><span class="status-pill sm" id="pillWeb"><span class="status-dot"></span> Up</span></div>
+<div class="status-row"><div class="sr-body"><h3>Public API tools</h3><p>43 of the 49 tools run purely on Roblox's public APIs, including the Account Checker, RAP and the calculators. Checked live below with a builderman lookup.</p></div><span class="status-pill sm wait" id="pillApi"><span class="status-dot"></span> Checking</span></div>
+<div class="status-row"><div class="sr-body"><h3>Session tools (6)</h3><p>Friends List, Mutual Friends, Followers, Following, User Badges and Avatar 3D run through a helper account session. If that session drops, only these six pause.</p></div><span class="status-pill sm wait" id="pillSession"><span class="status-dot"></span> Checking</span></div>
+<div class="status-row"><div class="sr-body"><h3>Lookup history</h3><p>The feed behind the Recently looked up page. If this one is down, lookups still work, the public list just stops updating for a bit.</p></div><span class="status-pill sm wait" id="pillHist"><span class="status-dot"></span> Checking</span></div>
+</div>
+<p>These checks run in your browser when you open this page, against the same endpoints the tools use. No uptime percentages or history graphs here, just what answers right now.</p>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+
+<script>
+(function(){
+  var overall = document.getElementById('statusPill');
+  var when = document.getElementById('statusWhen');
+  function setPill(el, state, text){
+    if (!el) return;
+    el.className = 'status-pill sm' + (state === 'bad' ? ' bad' : state === 'wait' ? ' wait' : '');
+    el.innerHTML = '<span class="status-dot"></span> ' + text;
+  }
+  function done(apiOk){
+    var t = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    overall.className = 'status-pill' + (apiOk ? '' : ' bad');
+    overall.innerHTML = '<span class="status-dot"></span> ' + (apiOk ? 'Core tools are up' : 'The lookup API is having trouble');
+    when.textContent = 'Checked just now, ' + t + ' WIB, from your browser.';
+  }
+  var apiOk = false, pending = 3;
+  function tick(){ if (--pending === 0) done(apiOk); }
+  fetch('/api/user?username=builderman').then(function(r){ return r.ok ? r.json() : null; }).then(function(u){
+    apiOk = !!(u && u.id);
+    setPill(document.getElementById('pillApi'), apiOk ? 'ok' : 'bad', apiOk ? 'Up' : 'Trouble');
+  }).catch(function(){ setPill(document.getElementById('pillApi'), 'bad', 'No answer'); }).then(tick);
+  fetch('/api/social?mode=friends&userId=156').then(function(r){ return r.json(); }).then(function(d){
+    if (d && d.unavailable) setPill(document.getElementById('pillSession'), 'bad', 'Session paused');
+    else if (d && (d.users || d.notVisible)) setPill(document.getElementById('pillSession'), 'ok', 'Up');
+    else setPill(document.getElementById('pillSession'), 'bad', 'No answer');
+  }).catch(function(){ setPill(document.getElementById('pillSession'), 'bad', 'No answer'); }).then(tick);
+  fetch('/api/history').then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    var ok = !!(d && d.items);
+    setPill(document.getElementById('pillHist'), ok ? 'ok' : 'bad', ok ? 'Up' : 'Trouble');
+  }).catch(function(){ setPill(document.getElementById('pillHist'), 'bad', 'No answer'); }).then(tick);
+})();
+</script>
+</body>
+</html>

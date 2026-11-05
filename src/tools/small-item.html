@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheapest Limited - Roblox Tools</title>
+<meta name="description" content="Find the cheapest limited items in a specific Roblox user's inventory, ranked by recent average price. Public inventories only.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/small-item.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Cheapest Limited - Roblox Tools">
+<meta property="og:description" content="Find the cheapest limited items in a specific Roblox user's inventory, ranked by recent average price. Public inventories only.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/small-item.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cheapest Limited - Roblox Tools">
+<meta name="twitter:description" content="Find the cheapest limited items in a specific Roblox user's inventory, ranked by recent average price. Public inventories only.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Cheapest Limited</div>
+      <h1>Cheapest <span class="grad">Limited</span></h1>
+      <p class="tool-sub">Find the cheapest limited items in a specific user's inventory, ranked by recent average price.</p>
+      <form class="lookup" id="form">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. builderman" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="submitBtn">Find items</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="panel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>More tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/tools/rap-checker.html">
+          <h3>RAP Checker</h3>
+          <p>Total RAP, item counts and the most valuable limiteds in a public inventory.</p>
+        </a>
+        <a class="rel-card" href="/tools/recent-items.html">
+          <h3>Recent Items</h3>
+          <p>The most recently acquired limited items in a public inventory.</p>
+        </a>
+        <a class="rel-card" href="/tools/item-checker.html">
+          <h3>Inventory Item Checker</h3>
+          <p>Check whether a user owns a specific item by its asset ID.</p>
+        </a>
+        <a class="rel-card" href="/tools/uaid.html">
+          <h3>UAID Lookup</h3>
+          <p>Find the UAID, serial number and RAP of a limited item copy.</p>
+        </a>
+        <a class="rel-card" href="/">
+          <h3>Account Checker</h3>
+          <p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('form');
+  var input = document.getElementById('usernameInput');
+  var btn = document.getElementById('submitBtn');
+  var status = document.getElementById('status');
+  var result = document.getElementById('result');
+  var panel = document.getElementById('panel');
+
+  function renderPrivate(username) {
+    result.hidden = false;
+    panel.innerHTML =
+      '<h2>@' + RT.esc(username) + '</h2>' +
+      '<div class="chips"><span class="badge priv">Inventory: Private</span></div>' +
+      '<p class="empty">This inventory is private, so Roblox does not share its items publicly. Cheapest limiteds can only be listed for public inventories.</p>';
+  }
+
+  function loadThumbs(ids) {
+    if (!ids.length) return;
+    fetch('/api/thumbs?kind=assets&ids=' + ids.join(',') + '&size=150x150')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var map = d.thumbs || {};
+        panel.querySelectorAll('img[data-asset]').forEach(function (img) {
+          var u = map[img.getAttribute('data-asset')];
+          if (u) img.src = u;
+        });
+      })
+      .catch(function () { /* thumbnails are decorative; names and RAP still show */ });
+  }
+
+  function render(user, data) {
+    result.hidden = false;
+    var items = data.items || [];
+    var html = '<h2>@' + RT.esc(user.username) + '</h2>';
+    html += '<div class="chips"><span class="badge pub">Inventory: Public</span></div>';
+    if (items.length) {
+      html += '<h3>Cheapest limiteds in this inventory</h3>';
+      html += '<div class="table-scroll"><table class="data"><thead><tr><th>Item</th><th class="num">RAP</th></tr></thead><tbody>';
+      items.forEach(function (it) {
+        html += '<tr><td><div style="display:flex;align-items:center;gap:12px"><img class="thumb" data-asset="' + RT.esc(it.assetId) + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'"><span>' + RT.esc(it.name || ('Asset ' + it.assetId)) + '</span></div></td>' +
+          '<td class="num">' + RT.fmt(it.rap) + '</td></tr>';
+      });
+      html += '</tbody></table></div>';
+    } else {
+      html += '<p class="empty">No limited items matched. This user owns no limiteds with a recent average price in the scanned range.</p>';
+    }
+    html += '<p class="note">These are the cheapest limited items in <b>this user\'s</b> inventory by recent average price. This is not a list of the cheapest limiteds on all of Roblox.</p>';
+    panel.innerHTML = html;
+    loadThumbs(items.map(function (it) { return it.assetId; }));
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = input.value.trim();
+    if (!name) return;
+    btn.disabled = true;
+    RT.setStatus(status, 'Looking up ' + name + '...');
+    result.hidden = true;
+    RT.resolveUser(name)
+      .then(function (user) {
+        return RT.fetchJson('/api/inventory?userId=' + encodeURIComponent(user.id) + '&mode=cheapest')
+          .then(function (r) { return { user: user, r: r }; });
+      })
+      .then(function (ctx) {
+        btn.disabled = false;
+        var data = ctx.r.data;
+        if (!ctx.r.ok || !data) {
+          RT.setStatus(status, 'Lookup failed. Please try again.', true);
+          return;
+        }
+        if (data.private === true) {
+          RT.setStatus(status, '');
+          renderPrivate(ctx.user.username);
+          return;
+        }
+        if (data.error) {
+          RT.setStatus(status, data.error, true);
+          return;
+        }
+        RT.setStatus(status, '');
+        render(ctx.user, data);
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        RT.setStatus(status, err && err.message === 'User not found'
+          ? 'User not found. Check the username and try again.'
+          : 'Lookup failed. Please try again.', true);
+      });
+  });
+
+  var pre = RT.param('user') || RT.param('username');
+  if (pre) { input.value = pre; form.dispatchEvent(new Event('submit')); }
+})();
+</script>
+</body>
+</html>

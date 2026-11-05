@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avatar 3D Model - Roblox Tools</title>
+<meta name="description" content="Get the 3D model files for any Roblox avatar: OBJ, MTL and textures, plus an interactive viewer and a 2D render for reference.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/avatar-3d.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Avatar 3D Model - Roblox Tools">
+<meta property="og:description" content="Download OBJ, MTL and texture files for any Roblox avatar and preview it in 3D.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/avatar-3d.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Avatar 3D Model - Roblox Tools">
+<meta name="twitter:description" content="Download OBJ, MTL and texture files for any Roblox avatar and preview it in 3D.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+<style>
+  #viewerWrap{margin-top:20px}
+  #viewerCanvas{width:100%;height:480px;display:block;background:#EAF2FE;border:1px solid var(--line-soft);border-radius:16px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Player (session)</div>
+      <h1>Avatar <span class="grad">3D Model</span></h1>
+      <p class="tool-sub">Get the real 3D model files for a Roblox avatar: OBJ geometry, MTL materials and textures, with a live preview.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. CloudConcept" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="lookupBtn">Look up</button>
+      </form>
+      <div class="status" id="status"></div>
+      <p class="note">3D avatar data is read through a signed-in session; visibility follows the account's privacy settings.</p>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/friends.html"><h3>Friends List</h3><p>See the full friends list of any Roblox account whose list is visible.</p></a>
+        <a class="rel-card" href="/tools/followers.html"><h3>Followers List</h3><p>Browse who follows a Roblox account, page by page.</p></a>
+        <a class="rel-card" href="/tools/following.html"><h3>Following List</h3><p>Browse who a Roblox account follows, page by page.</p></a>
+        <a class="rel-card" href="/tools/mutual-friends.html"><h3>Mutual Friends</h3><p>Find the friends two Roblox accounts have in common.</p></a>
+        <a class="rel-card" href="/tools/badges.html"><h3>User Badges</h3><p>See the player badges a Roblox account has earned.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script src="/vendor/three-r128/three.min.js"></script>
+<script src="/vendor/three-r128/MTLLoader.js"></script>
+<script src="/vendor/three-r128/OBJLoader.js"></script>
+<script src="/vendor/three-r128/OrbitControls.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("usernameInput");
+  var btn = document.getElementById("lookupBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+  var UNAVAILABLE = "This tool is temporarily unavailable. It depends on a signed-in session that is currently down; the other tools keep working.";
+  var NOT_VISIBLE = "This user's list is not visible.";
+  var renderer = null;
+
+  function showPanel(html) { panel.innerHTML = html; result.hidden = false; }
+  function showMessage(msg) { showPanel('<p class="empty">' + RT.esc(msg) + "</p>"); }
+
+  function fetchFullBody(userId) {
+    var url = "/api/thumbs?kind=users&endpoint=avatar&ids=" + encodeURIComponent(userId) + "&size=420x420&circular=false";
+    return fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+      var thumbs = (d && d.thumbs) || {};
+      return thumbs[userId] || null;
+    }).catch(function () { return null; });
+  }
+
+  function initViewer(manifest) {
+    var canvas = document.getElementById("viewerCanvas");
+    if (!canvas || !window.THREE) return;
+    try {
+      if (renderer) { try { renderer.dispose(); } catch (e) {} renderer = null; }
+      var scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x1f1440);
+      var w = canvas.clientWidth || 760, h = 480;
+      var camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
+      camera.position.set(0, 3, 10);
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+      renderer.setSize(w, h, false);
+      renderer.setPixelRatio(window.devicePixelRatio || 1);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.75));
+      var dir = new THREE.DirectionalLight(0xffffff, 0.7);
+      dir.position.set(5, 10, 7);
+      scene.add(dir);
+      var controls = null;
+      if (THREE.OrbitControls) {
+        controls = new THREE.OrbitControls(camera, canvas);
+        controls.enableDamping = true;
+        controls.autoRotate = false;
+      }
+      function animate() {
+        requestAnimationFrame(animate);
+        if (controls) controls.update();
+        renderer.render(scene, camera);
+      }
+      function addObject(obj) {
+        // Center and frame the model.
+        var box = new THREE.Box3().setFromObject(obj);
+        var center = box.getCenter(new THREE.Vector3());
+        var size = box.getSize(new THREE.Vector3());
+        obj.position.sub(center);
+        var maxDim = Math.max(size.x, size.y, size.z) || 1;
+        camera.position.set(0, maxDim * 0.4, maxDim * 2.2);
+        if (controls) { controls.target.set(0, 0, 0); controls.update(); }
+        scene.add(obj);
+        animate();
+      }
+      var onError = function () { /* downloads still work if the viewer fails */ };
+      if (manifest.mtl && THREE.MTLLoader && THREE.OBJLoader) {
+        new THREE.MTLLoader().setCrossOrigin("anonymous").load(manifest.mtl, function (materials) {
+          materials.preload();
+          new THREE.OBJLoader().setMaterials(materials).setCrossOrigin("anonymous").load(manifest.obj, addObject, undefined, function () {
+            new THREE.OBJLoader().load(manifest.obj, addObject, undefined, onError);
+          });
+        }, undefined, function () {
+          new THREE.OBJLoader().load(manifest.obj, addObject, undefined, onError);
+        });
+      } else if (manifest.obj && THREE.OBJLoader) {
+        new THREE.OBJLoader().load(manifest.obj, addObject, undefined, onError);
+      }
+    } catch (e) { /* viewer is optional; downloads remain available */ }
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = input.value.trim(); if (!name) return;
+    btn.disabled = true; RT.setStatus(status, "Looking up " + name + "..."); result.hidden = true;
+    RT.resolveUser(name).then(function (user) {
+      return Promise.all([
+        RT.fetchJson("/api/avatar-3d?userId=" + encodeURIComponent(user.id)),
+        fetchFullBody(user.id)
+      ]).then(function (pair) {
+        btn.disabled = false;
+        var res = pair[0], fullBody = pair[1];
+        var data = res.data || {};
+        if (data.unavailable) { RT.setStatus(status, ""); showMessage(UNAVAILABLE); return; }
+        if (data.notVisible) { RT.setStatus(status, ""); showMessage(NOT_VISIBLE); return; }
+        if (!res.ok || data.error) { RT.setStatus(status, "Lookup failed. Please try again.", true); return; }
+        RT.setStatus(status, "");
+        var state = data.state || "";
+        var manifest = data.manifest || null;
+        if (!manifest) {
+          if (state === "Pending" || state === "TemporarilyUnavailable") {
+            showPanel("<h2>" + RT.esc(user.displayName || user.username) + '</h2><p class="empty">The 3D model is still generating. Try again in a few moments.</p>' + (fullBody ? '<img class="big-render" src="' + RT.esc(fullBody) + '" alt="Avatar render">' : ""));
+          } else if (state) {
+            showPanel("<h2>" + RT.esc(user.displayName || user.username) + '</h2><p class="empty">No 3D model is available right now (state: ' + RT.esc(state) + ").</p>");
+          } else {
+            showPanel('<p class="empty">No 3D model found for this account.</p>');
+          }
+          return;
+        }
+        var html = "<h2>" + RT.esc(user.displayName || user.username) + "</h2>";
+        html += '<p class="note" style="text-align:left;margin-top:6px">@' + RT.esc(user.username) + " &middot; ID " + RT.esc(user.id) + "</p>";
+        if (fullBody) html += '<img class="big-render" src="' + RT.esc(fullBody) + '" alt="Avatar full-body render for reference">';
+        html += '<div id="viewerWrap"><canvas id="viewerCanvas" width="760" height="480"></canvas><p class="note">Drag to orbit, scroll to zoom. If the preview does not load, the download links below still work.</p></div>';
+        html += '<div class="actions">';
+        if (manifest.obj) html += '<a class="btn primary" href="' + RT.esc(manifest.obj) + '" target="_blank" rel="noopener" download>Download OBJ</a>';
+        if (manifest.mtl) html += '<a class="btn" href="' + RT.esc(manifest.mtl) + '" target="_blank" rel="noopener" download>Download MTL</a>';
+        (manifest.textures || []).forEach(function (t, i) {
+          html += '<a class="btn" href="' + RT.esc(t) + '" target="_blank" rel="noopener" download>Texture ' + (i + 1) + "</a>";
+        });
+        html += "</div>";
+        showPanel(html);
+        initViewer(manifest);
+      });
+    }).catch(function (err) {
+      btn.disabled = false;
+      RT.setStatus(status, err && err.message === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+    });
+  });
+  var pre = RT.param("username") || RT.param("user");
+  if (pre) { input.value = pre; form.dispatchEvent(new Event("submit")); }
+})();
+</script>
+</body>
+</html>

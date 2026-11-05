@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Group Check - Roblox Tools</title>
+<meta name="description" content="See which Roblox groups a user belongs to and the role they hold in each, plus owner, member count and description for any group. Live data from public Roblox APIs.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/group-check.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Group Check - Roblox Tools">
+<meta property="og:description" content="Group memberships, roles and group details for Roblox users and groups, live from public Roblox APIs.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/group-check.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Group Check - Roblox Tools">
+<meta name="twitter:description" content="Group memberships, roles and group details for Roblox users and groups, live from public Roblox APIs.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <p class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Groups</p>
+      <h1>Group <span class="grad">Check</span></h1>
+      <p class="tool-sub">See every group a Roblox user belongs to and the role they hold in each one, then look up any group on its own.</p>
+      <form class="lookup" id="userForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username or user ID, e.g. CloudConcept" aria-label="Roblox username or user ID" autocomplete="off" spellcheck="false">
+        <button type="submit" id="userBtn">Check groups</button>
+      </form>
+      <div class="status" id="userStatus"></div>
+      <p class="note">Roblox does not publish group join dates publicly, so membership and role are shown instead of a join date.</p>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">User groups</div>
+        <article class="panel" id="resultPanel"></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="membership" hidden>
+        <div class="result-label">Membership check</div>
+        <article class="panel" id="membershipPanel"></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div class="result-label">Check a group</div>
+      <article class="panel">
+        <h2>Look up a group by ID</h2>
+        <form class="lookup" id="groupForm" style="margin-top:18px;max-width:none">
+          <input type="text" id="groupInput" placeholder="Group ID or group link" aria-label="Roblox group ID or group link" autocomplete="off" spellcheck="false">
+          <button type="submit" id="groupBtn">Check group</button>
+        </form>
+        <div class="status" id="groupStatus"></div>
+      </article>
+      <div id="groupResult" hidden style="margin-top:22px">
+        <div class="result-label">Group</div>
+        <article class="panel" id="groupPanel"></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/">
+          <h3>Account Checker</h3>
+          <p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p>
+        </a>
+        <a class="rel-card" href="/tools/game-info.html">
+          <h3>Game Info</h3>
+          <p>Playing counts, visits, favorites, votes and details for any Roblox game.</p>
+        </a>
+        <a class="rel-card" href="/tools/game-servers.html">
+          <h3>Game Servers</h3>
+          <p>Browse the live public servers of any Roblox game, with players, ping and FPS.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+
+  var userForm = document.getElementById("userForm");
+  var usernameInput = document.getElementById("usernameInput");
+  var userBtn = document.getElementById("userBtn");
+  var userStatus = document.getElementById("userStatus");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+
+  var groupForm = document.getElementById("groupForm");
+  var groupInput = document.getElementById("groupInput");
+  var groupBtn = document.getElementById("groupBtn");
+  var groupStatus = document.getElementById("groupStatus");
+  var groupResult = document.getElementById("groupResult");
+  var groupPanel = document.getElementById("groupPanel");
+
+  var membership = document.getElementById("membership");
+  var membershipPanel = document.getElementById("membershipPanel");
+
+  var userData = null; // { user: {...}, groups: [...] }
+  var groupData = null; // one group detail object
+
+  function updateMembership() {
+    if (!userData || !groupData) {
+      membership.hidden = true;
+      return;
+    }
+    var found = null;
+    userData.groups.forEach(function (g) {
+      if (Number(g.groupId) === Number(groupData.id)) found = g;
+    });
+    var name = userData.user.username || "This user";
+    var html = "";
+    if (found) {
+      html += '<p class="big-yes ok">Member</p>';
+      html += '<p style="margin-top:10px;line-height:1.6">' + RT.esc(name) + " is a member of <b>" + RT.esc(groupData.name || "this group") + "</b>";
+      if (found.roleName) html += " with the role <b>" + RT.esc(found.roleName) + "</b>";
+      if (found.rank !== null && found.rank !== undefined) html += " (rank " + RT.esc(found.rank) + ")";
+      html += ".</p>";
+    } else {
+      html += '<p class="big-yes no">Not a member</p>';
+      html += '<p style="margin-top:10px;line-height:1.6">' + RT.esc(name) + " is not a member of <b>" + RT.esc(groupData.name || "this group") + "</b>.</p>";
+    }
+    membershipPanel.innerHTML = html;
+    membership.hidden = false;
+  }
+
+  function fillGroupThumbs(scope) {
+    var imgs = scope.querySelectorAll('img[data-group]');
+    if (!imgs.length) return;
+    var ids = [];
+    imgs.forEach(function (img) { ids.push(img.getAttribute('data-group')); });
+    fetch('/api/thumbs?kind=groups&ids=' + ids.join(',') + '&size=150x150')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var map = (d && d.thumbs) || {};
+        imgs.forEach(function (img) {
+          var u = map[img.getAttribute('data-group')];
+          if (u) img.src = u;
+        });
+      })
+      .catch(function () { /* thumbnails are decorative */ });
+  }
+
+  function renderUserGroups(user, groups) {
+    var html = "<h2>" + RT.esc(user.username) + "'s groups</h2>";
+    html += '<div class="stats"><div class="stat"><b>' + RT.fmt(groups.length) + "</b><small>Total groups</small></div></div>";
+    if (!groups.length) {
+      html += '<p class="empty">This user is not in any public groups.</p>';
+      panel.innerHTML = html;
+      result.hidden = false;
+      return;
+    }
+    html += '<div class="table-scroll"><table class="data">';
+    html += '<thead><tr><th>Group</th><th>Role</th><th class="num">Rank</th><th class="num">Members</th></tr></thead><tbody>';
+    groups.forEach(function (g) {
+      html += "<tr>";
+      html += '<td><div style="display:flex;align-items:center;gap:12px"><img class="thumb" data-group="' + RT.esc(g.groupId) + '" alt="" onerror="this.style.visibility=\'hidden\'"><a href="https://www.roblox.com/groups/' + RT.esc(g.groupId) + '" target="_blank" rel="noopener" style="color:var(--pale);text-decoration:underline">' + RT.esc(g.name || "Group " + g.groupId) + "</a></div></td>";
+      html += "<td>" + RT.esc(g.roleName || "-") + "</td>";
+      html += '<td class="num">' + RT.fmt(g.rank) + "</td>";
+      html += '<td class="num">' + RT.fmt(g.memberCount) + "</td>";
+      html += "</tr>";
+    });
+    html += "</tbody></table></div>";
+    panel.innerHTML = html;
+    result.hidden = false;
+    fillGroupThumbs(panel);
+  }
+
+  function renderGroup(g) {
+    var html = '<div class="head-flex"><img class="panel-thumb" data-group="' + RT.esc(g.id) + '" alt="" onerror="this.style.visibility=\'hidden\'"><h2>' + RT.esc(g.name || "Unknown group") + "</h2></div>";
+    html += '<div class="stats">';
+    html += '<div class="stat"><b>' + RT.fmt(g.memberCount) + "</b><small>Members</small></div>";
+    if (g.ownerName) html += '<div class="stat small"><b>' + RT.esc(g.ownerName) + "</b><small>Owner</small></div>";
+    html += "</div>";
+
+    var rows = "";
+    if (g.ownerName) {
+      var ownerCell = g.ownerId
+        ? '<a href="https://www.roblox.com/users/' + RT.esc(g.ownerId) + '/profile" target="_blank" rel="noopener">' + RT.esc(g.ownerName) + "</a>"
+        : RT.esc(g.ownerName);
+      rows += '<div class="row"><span class="k">Owner</span><span class="v">' + ownerCell + "</span></div>";
+    }
+    rows += '<div class="row"><span class="k">Group ID</span><span class="v num">' + RT.esc(g.id) + "</span></div>";
+    if (g.publicEntryAllowed !== null && g.publicEntryAllowed !== undefined) {
+      rows += '<div class="row"><span class="k">Public entry</span><span class="v">' + (g.publicEntryAllowed ? "Allowed" : "Not allowed") + "</span></div>";
+    }
+    if (g.isBuildersClubOnly !== null && g.isBuildersClubOnly !== undefined) {
+      rows += '<div class="row"><span class="k">Builders Club only</span><span class="v">' + (g.isBuildersClubOnly ? "Yes" : "No") + "</span></div>";
+    }
+    if (g.created) {
+      rows += '<div class="row"><span class="k">Created</span><span class="v">' + RT.esc(RT.fmtDate(g.created)) + "</span></div>";
+    }
+    if (rows) html += '<div class="kv">' + rows + "</div>";
+
+    if (g.description) {
+      html += '<h3 style="margin-top:24px">Description</h3>';
+      html += '<p style="margin-top:10px;line-height:1.65;color:#24344E;white-space:pre-wrap;word-break:break-word">' + RT.esc(g.description) + "</p>";
+    }
+    html += '<div class="actions"><a class="btn primary" href="https://www.roblox.com/groups/' + RT.esc(g.id) + '" target="_blank" rel="noopener">Open on Roblox</a></div>';
+    groupPanel.innerHTML = html;
+    groupResult.hidden = false;
+    fillGroupThumbs(groupPanel);
+  }
+
+  function runUser(raw) {
+    var v = String(raw || "").trim();
+    if (!v) {
+      RT.setStatus(userStatus, "Enter a username or user ID.", true);
+      return;
+    }
+    userBtn.disabled = true;
+    RT.setStatus(userStatus, "Looking up " + v + "...");
+    result.hidden = true;
+    RT.resolveUser(v)
+      .then(function (user) {
+        return RT.fetchJson("/api/groups?userId=" + encodeURIComponent(user.id)).then(function (res) {
+          return { user: user, res: res };
+        });
+      })
+      .then(function (out) {
+        userBtn.disabled = false;
+        if (!out.res.ok || !out.res.data || out.res.data.error) {
+          RT.setStatus(userStatus, "Could not load groups for this user. Please try again.", true);
+          userData = null;
+          updateMembership();
+          return;
+        }
+        RT.setStatus(userStatus, "");
+        userData = { user: out.user, groups: out.res.data.groups || [] };
+        renderUserGroups(out.user, userData.groups);
+        updateMembership();
+      })
+      .catch(function (err) {
+        userBtn.disabled = false;
+        RT.setStatus(userStatus, err && err.message === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+        userData = null;
+        updateMembership();
+      });
+  }
+
+  function extractGroupId(raw) {
+    var v = String(raw || "").trim();
+    if (!v) return null;
+    if (/^\d+$/.test(v)) return v;
+    var m = v.match(/roblox\.com\/share\/g\/(\d+)/i) || v.match(/\/share\/g\/(\d+)/i) || v.match(/roblox\.com\/(?:groups|communities)\/(\d+)/i) || v.match(/\/(?:groups|communities)\/(\d+)/);
+    if (m) return m[1];
+    return null;
+  }
+
+  function runGroup(raw) {
+    var groupId = extractGroupId(raw);
+    if (!groupId) {
+      RT.setStatus(groupStatus, "Enter a group ID or a Roblox group link.", true);
+      return;
+    }
+    groupBtn.disabled = true;
+    RT.setStatus(groupStatus, "Looking up group " + groupId + "...");
+    groupResult.hidden = true;
+    RT.fetchJson("/api/groups?groupId=" + encodeURIComponent(groupId))
+      .then(function (res) {
+        groupBtn.disabled = false;
+        if (!res.ok || !res.data || res.data.error) {
+          RT.setStatus(groupStatus, res.data && res.data.error === "Group not found" ? "Group not found. Check the group ID and try again." : "Lookup failed. Please try again.", true);
+          groupData = null;
+          updateMembership();
+          return;
+        }
+        RT.setStatus(groupStatus, "");
+        groupData = res.data;
+        renderGroup(res.data);
+        updateMembership();
+      })
+      .catch(function () {
+        groupBtn.disabled = false;
+        RT.setStatus(groupStatus, "Lookup failed. Please try again.", true);
+        groupData = null;
+        updateMembership();
+      });
+  }
+
+  userForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    runUser(usernameInput.value);
+  });
+  groupForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    runGroup(groupInput.value);
+  });
+
+  var preUser = RT.param("user") || RT.param("username");
+  if (preUser) {
+    usernameInput.value = preUser;
+    runUser(preUser);
+  }
+  var preGroup = RT.param("group") || RT.param("groupId");
+  if (preGroup) {
+    groupInput.value = preGroup;
+    runGroup(preGroup);
+  }
+})();
+</script>
+</body>
+</html>

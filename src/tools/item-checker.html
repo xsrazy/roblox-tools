@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory Item Checker - Roblox Tools</title>
+<meta name="description" content="Check whether a Roblox user owns a specific item by entering their username and the item's asset ID. Public inventories only.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/item-checker.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Inventory Item Checker - Roblox Tools">
+<meta property="og:description" content="Check whether a Roblox user owns a specific item by entering their username and the item's asset ID. Public inventories only.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/item-checker.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inventory Item Checker - Roblox Tools">
+<meta name="twitter:description" content="Check whether a Roblox user owns a specific item by entering their username and the item's asset ID. Public inventories only.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Inventory Item Checker</div>
+      <h1>Inventory Item <span class="grad">Checker</span></h1>
+      <p class="tool-sub">Enter a username and an asset ID to see whether that user owns the item.</p>
+      <form class="lookup" id="form">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. builderman" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <input type="text" id="assetInput" placeholder="Asset ID or item link, e.g. 1285307" aria-label="Asset ID" autocomplete="off" spellcheck="false" inputmode="numeric">
+        <button type="submit" id="submitBtn">Check item</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="panel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>More tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/tools/rap-checker.html">
+          <h3>RAP Checker</h3>
+          <p>Total RAP, item counts and the most valuable limiteds in a public inventory.</p>
+        </a>
+        <a class="rel-card" href="/tools/recent-items.html">
+          <h3>Recent Items</h3>
+          <p>The most recently acquired limited items in a public inventory.</p>
+        </a>
+        <a class="rel-card" href="/tools/small-item.html">
+          <h3>Cheapest Limited</h3>
+          <p>The cheapest limited items in a user's inventory by recent average price.</p>
+        </a>
+        <a class="rel-card" href="/tools/uaid.html">
+          <h3>UAID Lookup</h3>
+          <p>Find the UAID, serial number and RAP of a limited item copy.</p>
+        </a>
+        <a class="rel-card" href="/">
+          <h3>Account Checker</h3>
+          <p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('form');
+  var input = document.getElementById('usernameInput');
+  var assetInput = document.getElementById('assetInput');
+  var btn = document.getElementById('submitBtn');
+  var status = document.getElementById('status');
+  var result = document.getElementById('result');
+  var panel = document.getElementById('panel');
+
+  function renderPrivate(username) {
+    result.hidden = false;
+    panel.innerHTML =
+      '<h2>@' + RT.esc(username) + '</h2>' +
+      '<div class="chips"><span class="badge priv">Inventory: Private</span></div>' +
+      '<p class="empty">This inventory is private, so Roblox does not share its items publicly. Ownership can only be checked on public inventories.</p>';
+  }
+
+  function row(k, v, num) {
+    return '<div class="row"><span class="k">' + RT.esc(k) + '</span><span class="v' + (num ? ' num' : '') + '">' + v + '</span></div>';
+  }
+
+  function fillAssetThumb(assetId) {
+    fetch('/api/thumbs?kind=assets&ids=' + encodeURIComponent(assetId) + '&size=150x150')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var u = d && d.thumbs && d.thumbs[assetId];
+        var img = panel.querySelector('img[data-asset-thumb]');
+        if (u && img) img.src = u;
+      })
+      .catch(function () { /* thumbnails are decorative; the data still shows */ });
+  }
+
+  function render(user, assetId, data) {
+    result.hidden = false;
+    var html = '<div class="head-flex" style="margin-bottom:16px"><img class="panel-thumb" data-asset-thumb="' + RT.esc(assetId) + '" alt="" onerror="this.style.visibility=\'hidden\'"><div><div style="font-weight:700">' + RT.esc(data.name || ('Asset ' + assetId)) + '</div><div class="note" style="text-align:left">Asset ' + RT.fmt(assetId) + '</div></div></div>';
+    if (data.owned === true) {
+      html += '<p class="big-yes ok">Yes, @' + RT.esc(user.username) + ' owns this item.</p>';
+      html += '<div class="kv">';
+      if (data.name) html += row('Item', RT.esc(data.name));
+      html += row('Asset ID', RT.fmt(assetId), true);
+      if (data.userAssetId !== null && data.userAssetId !== undefined) html += row('UAID', RT.fmt(data.userAssetId), true);
+      if (data.serialNumber !== null && data.serialNumber !== undefined) html += row('Serial #', RT.fmt(data.serialNumber), true);
+      if (data.rap !== null && data.rap !== undefined) html += row('RAP', RT.fmt(data.rap), true);
+      if (data.copies && data.copies > 1) html += row('Copies owned', RT.fmt(data.copies), true);
+      html += '</div>';
+    } else if (data.owned === false) {
+      html += '<p class="big-yes no">No, @' + RT.esc(user.username) + ' does not own this item.</p>';
+      html += '<div class="kv">' + row('Asset ID', RT.fmt(assetId), true) + '</div>';
+    } else {
+      html += '<p class="big-yes warn">Could not determine ownership right now. Please try again.</p>';
+    }
+    if (data.limitedOnly) {
+      html += '<p class="note">This check covers limited (collectible) items on public inventories.</p>';
+    }
+    panel.innerHTML = html;
+    fillAssetThumb(assetId);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = input.value.trim();
+    var assetId = assetInput.value.trim();
+    if (!name) return;
+    if (!/^\d+$/.test(assetId)) {
+      RT.setStatus(status, 'Enter a valid numeric asset ID.', true);
+      return;
+    }
+    btn.disabled = true;
+    RT.setStatus(status, 'Checking item for ' + name + '...');
+    result.hidden = true;
+    RT.resolveUser(name)
+      .then(function (user) {
+        return RT.fetchJson('/api/inventory?userId=' + encodeURIComponent(user.id) + '&mode=check&assetId=' + encodeURIComponent(assetId))
+          .then(function (r) { return { user: user, r: r }; });
+      })
+      .then(function (ctx) {
+        btn.disabled = false;
+        var data = ctx.r.data;
+        if (!ctx.r.ok || !data) {
+          RT.setStatus(status, 'Lookup failed. Please try again.', true);
+          return;
+        }
+        if (data.private === true) {
+          RT.setStatus(status, '');
+          renderPrivate(ctx.user.username);
+          return;
+        }
+        if (data.error) {
+          RT.setStatus(status, data.error, true);
+          return;
+        }
+        RT.setStatus(status, '');
+        render(ctx.user, assetId, data);
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        RT.setStatus(status, err && err.message === 'User not found'
+          ? 'User not found. Check the username and try again.'
+          : 'Lookup failed. Please try again.', true);
+      });
+  });
+
+  var pre = RT.param('user') || RT.param('username');
+  var preAsset = RT.param('assetId') || RT.param('asset');
+  if (pre) input.value = pre;
+  if (preAsset) assetInput.value = preAsset;
+  if (pre && preAsset) form.dispatchEvent(new Event('submit'));
+})();
+</script>
+</body>
+</html>

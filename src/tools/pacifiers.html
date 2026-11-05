@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pacifiers - Roblox Tools</title>
+<meta name="description" content="Check whether a Roblox user owns any of the well-known catalog pacifiers. Live scan of public inventories against the top catalog pacifiers, plus name matching over their collectibles.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/pacifiers.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Pacifiers - Roblox Tools">
+<meta property="og:description" content="Check whether a Roblox user owns any of the well-known catalog pacifiers. Live data from public Roblox APIs.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/pacifiers.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pacifiers - Roblox Tools">
+<meta name="twitter:description" content="Check whether a Roblox user owns any of the well-known catalog pacifiers. Live data from public Roblox APIs.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Inventory</div>
+      <h1><span class="grad">Pacifiers</span></h1>
+      <p class="tool-sub">Does this user own any of the well-known pacifiers? We take the top pacifiers from live catalog search and check each one against the user's public inventory, and also name-match their public collectibles list.</p>
+      <form class="lookup" id="lookupForm">
+        <input type="text" id="usernameInput" placeholder="Roblox username, e.g. builderman" aria-label="Roblox username" autocomplete="off" spellcheck="false">
+        <button type="submit" id="checkBtn">Check</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="resultPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/tools/necklaces.html">
+          <h3>Initial Necklaces</h3>
+          <p>Check whether a user owns any of the well-known initial necklaces.</p>
+        </a>
+        <a class="rel-card" href="/tools/group-scan.html">
+          <h3>Group Item Scan</h3>
+          <p>See which items from a Roblox group a user owns.</p>
+        </a>
+        <a class="rel-card" href="/">
+          <h3>Account Checker</h3>
+          <p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var KIND = "pacifiers";
+  var NAMES = "pacifier";
+  var LABEL = "pacifiers";
+  var form = document.getElementById("lookupForm");
+  var input = document.getElementById("usernameInput");
+  var btn = document.getElementById("checkBtn");
+  var status = document.getElementById("status");
+  var result = document.getElementById("result");
+  var panel = document.getElementById("resultPanel");
+
+  function loadThumbs(ids) {
+    if (!ids.length) return;
+    fetch("/api/thumbs?kind=assets&ids=" + ids.join(",") + "&size=150x150")
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var map = d.thumbs || {};
+        document.querySelectorAll("img[data-thumb]").forEach(function (img) {
+          var url = map[img.getAttribute("data-thumb")];
+          if (url) img.src = url; else img.style.display = "none";
+        });
+      })
+      .catch(function () {
+        document.querySelectorAll("img[data-thumb]").forEach(function (img) { img.style.display = "none"; });
+      });
+  }
+
+  function tile(item, tag) {
+    var sub = "";
+    if (item.rap != null) sub = "RAP " + RT.fmt(item.rap);
+    else if (item.price != null) sub = "Catalog price " + RT.fmt(item.price) + " Robux";
+    return '<div class="tile"><img data-thumb="' + RT.esc(item.assetId) + '" alt="">' +
+      "<span>" + RT.esc(item.name || "Item " + item.assetId) + "</span>" +
+      (sub ? '<span class="sub">' + RT.esc(sub) + "</span>" : "") +
+      (tag ? '<span class="sub">' + RT.esc(tag) + "</span>" : "") + "</div>";
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = input.value.trim();
+    if (!name) return;
+    btn.disabled = true;
+    result.hidden = true;
+    RT.setStatus(status, "Resolving " + name + "...");
+    RT.resolveUser(name)
+      .then(function (user) {
+        RT.setStatus(status, "Loading top " + LABEL + " from the catalog...");
+        return RT.fetchJson("/api/catalog-candidates?kind=" + KIND).then(function (c) {
+          return { user: user, cand: c.data || {} };
+        });
+      })
+      .then(function (ctx) {
+        var candidates = ctx.cand.candidates || [];
+        var byId = {};
+        candidates.forEach(function (c) { byId[c.assetId] = c; });
+        RT.setStatus(status, "Scanning @" + ctx.user.username + "'s inventory...");
+        var ids = candidates.map(function (c) { return c.assetId; }).join(",");
+        return RT.fetchJson("/api/inventory-scan?userId=" + ctx.user.id + "&ids=" + encodeURIComponent(ids) + "&names=" + encodeURIComponent(NAMES))
+          .then(function (s) { return { user: ctx.user, cand: ctx.cand, byId: byId, scan: s.data || {} }; });
+      })
+      .then(function (ctx) {
+        btn.disabled = false;
+        RT.setStatus(status, "");
+        var user = ctx.user, scan = ctx.scan, byId = ctx.byId;
+        var candCount = (ctx.cand.candidates || []).length;
+        var html = "";
+        if (scan.private) {
+          html += "<h2>@" + RT.esc(user.username) + "</h2>";
+          html += '<p class="empty">This inventory is private, so it cannot be scanned. Roblox only lets us check public inventories.</p>';
+          panel.innerHTML = html;
+          result.hidden = false;
+          return;
+        }
+        var merged = [];
+        var seen = {};
+        (scan.owned || []).forEach(function (o) {
+          var c = byId[o.assetId];
+          merged.push({ assetId: o.assetId, name: o.name || (c && c.name) || null, rap: o.rap, price: c ? c.price : null, tag: "" });
+          seen[o.assetId] = true;
+        });
+        (scan.nameMatches || []).forEach(function (o) {
+          if (seen[o.assetId]) return;
+          merged.push({ assetId: o.assetId, name: o.name, rap: o.rap, price: null, tag: "Limited, matched by name" });
+          seen[o.assetId] = true;
+        });
+        if (!candCount) {
+          // The candidate list itself failed to load, so a by-ID check
+          // never ran: an empty result here proves nothing and must not
+          // be presented as "none owned".
+          html += "<h2>@" + RT.esc(user.username) + "</h2>";
+          if (merged.length) {
+            html += '<p class="empty">The catalog candidate list could not be loaded this time, so the by-ID check did not run and this result is incomplete. The items below were still found by matching names in the public collectibles list.</p>';
+            html += '<div class="thumb-grid">' + merged.map(function (m) { return tile(m, m.tag); }).join("") + "</div>";
+          } else {
+            html += '<p class="empty">Could not verify. The catalog list of well-known ' + LABEL + ' could not be loaded this time, so there was nothing reliable to check this inventory against. This is not a "none owned" result; please try again in a moment.</p>';
+          }
+          panel.innerHTML = html;
+          result.hidden = false;
+          loadThumbs(merged.map(function (m) { return m.assetId; }));
+          return;
+        }
+        html += "<h2>@" + RT.esc(user.username) + "</h2>";
+        html += '<div class="stats">';
+        html += '<div class="stat"><b>' + RT.fmt(candCount) + "</b><small>Catalog candidates checked</small></div>";
+        html += '<div class="stat"><b>' + RT.fmt(scan.scannedCollectibles) + "</b><small>Collectibles scanned</small></div>";
+        html += '<div class="stat"><b>' + RT.fmt(merged.length) + "</b><small>Owned found</small></div>";
+        html += "</div>";
+        if (merged.length) {
+          html += '<div class="thumb-grid">' + merged.map(function (m) { return tile(m, m.tag); }).join("") + "</div>";
+        } else {
+          html += '<p class="empty">None found. This user\'s public inventory contains no ' + LABEL + ' among the items scanned.</p>';
+        }
+        html += '<p class="note">Coverage: the top ' + candCount + " " + LABEL + " from " + (ctx.cand.source === "fallback" ? "a verified catalog list" : "live catalog search") + ' were checked by item ID against this inventory, and the public collectibles list was also matched by item name ("pacifier"). Items outside that catalog list are not covered.</p>';
+        panel.innerHTML = html;
+        result.hidden = false;
+        loadThumbs(merged.map(function (m) { return m.assetId; }));
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        RT.setStatus(status, err && err.message === "User not found" ? "User not found. Check the username and try again." : "Lookup failed. Please try again.", true);
+      });
+  });
+})();
+</script>
+</body>
+</html>

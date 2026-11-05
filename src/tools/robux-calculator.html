@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robux to USD Calculator - Roblox Tools</title>
+<meta name="description" content="Convert Robux to US dollars, Indonesian rupiah, euros and 13 more currencies with an editable rate and live exchange rates. Defaults to the DevEx cash-out rate of US$0.0038 per Robux.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/robux-calculator.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Robux to USD Calculator - Roblox Tools">
+<meta property="og:description" content="Convert Robux to 16 currencies with an editable rate, defaulting to the DevEx cash-out rate.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/robux-calculator.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Robux to USD Calculator - Roblox Tools">
+<meta name="twitter:description" content="Convert Robux to 16 currencies with an editable rate, defaulting to the DevEx cash-out rate.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Calculators</div>
+      <h1>Robux to <span class="grad">USD Calculator</span></h1>
+      <p class="tool-sub">Convert any Robux amount to the currency you pick below. The Robux rate is editable, so you can use the DevEx cash-out rate, an approximate buying price, or your own rate.</p>
+      <form class="lookup" id="calcForm">
+        <input type="number" id="robuxInput" placeholder="Robux amount, e.g. 10000" aria-label="Robux amount" min="0" step="any" autocomplete="off">
+        <input type="number" id="rateInput" placeholder="USD per 1,000 R$" aria-label="USD per 1,000 Robux" min="0" step="0.01" value="3.80" autocomplete="off">
+        <select id="currencySelect" aria-label="Currency"></select>
+        <button type="submit">Calculate</button>
+      </form>
+      <div class="actions" style="justify-content:center;margin-top:16px">
+        <button type="button" class="btn primary" data-rate="3.80">DevEx: $3.80 per 1,000 R$</button>
+        <button type="button" class="btn" data-rate="12.50">Buying price approx.: $12.50 per 1,000 R$</button>
+      </div>
+      <p class="note"><b>Rate basis:</b> the default $3.80 per 1,000 R$ is the DevEx cash-out rate (US$0.0038 per R$). The buying price preset is approximate: the price you pay for Robux varies by package and platform, so treat $12.50 per 1,000 R$ as a rough guide, not an exact quote.</p>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result">
+        <div class="result-label">Result</div>
+        <div class="panel">
+          <div class="stats">
+            <div class="stat"><b id="usdOut">$0.00</b><small id="moneyLabel">US Dollar</small></div>
+          </div>
+          <div class="kv">
+            <div class="row"><span class="k">Robux</span><span class="v num" id="kvRobux">-</span></div>
+            <div class="row"><span class="k">Rate used</span><span class="v num" id="kvRate">-</span></div>
+            <div class="row"><span class="k">Exchange rate</span><span class="v num" id="kvFx">-</span></div>
+            <div class="row"><span class="k">Formula</span><span class="v" id="kvFormula">Enter a Robux amount to see the conversion.</span></div>
+          </div>
+          <p class="note">The Robux rate is the one entered above. Currency conversion uses live exchange rates from open.er-api.com when available; if that fetch fails, a built-in snapshot from 5 Nov 2026 is used instead, and the exchange rate row above says which one is active.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/usd-calculator.html"><h3>USD to Robux Calculator</h3><p>Convert US dollars back into Robux using the same editable rate.</p></a>
+        <a class="rel-card" href="/tools/tax-calculator.html"><h3>Robux Tax Calculator</h3><p>Work out the 30% marketplace fee on a sale, or the gross you need for a target net.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var form = document.getElementById("calcForm");
+  var robuxInput = document.getElementById("robuxInput");
+  var rateInput = document.getElementById("rateInput");
+  var currencySelect = document.getElementById("currencySelect");
+  var status = document.getElementById("status");
+  var usdOut = document.getElementById("usdOut");
+  var moneyLabel = document.getElementById("moneyLabel");
+  var kvRobux = document.getElementById("kvRobux");
+  var kvRate = document.getElementById("kvRate");
+  var kvFx = document.getElementById("kvFx");
+  var kvFormula = document.getElementById("kvFormula");
+
+  var CURRENCIES = [["USD", "US Dollar"], ["IDR", "Indonesian Rupiah"], ["EUR", "Euro"], ["GBP", "British Pound"], ["PHP", "Philippine Peso"], ["THB", "Thai Baht"], ["VND", "Vietnamese Dong"], ["MYR", "Malaysian Ringgit"], ["SGD", "Singapore Dollar"], ["JPY", "Japanese Yen"], ["KRW", "South Korean Won"], ["INR", "Indian Rupee"], ["BRL", "Brazilian Real"], ["MXN", "Mexican Peso"], ["AUD", "Australian Dollar"], ["CAD", "Canadian Dollar"]];
+  var FALLBACK = { USD: 1, IDR: 18132, EUR: 0.8899, GBP: 0.7423, PHP: 63.48, THB: 33.64, VND: 25701, MYR: 4.065, SGD: 1.2788, JPY: 158.38, KRW: 1340, INR: 94.62, BRL: 5.469, MXN: 18.62, AUD: 1.4276, CAD: 1.3967 };
+  var ZERO_DEC = { JPY: 1, KRW: 1, VND: 1, IDR: 1 };
+  var fxRates = FALLBACK, fxLive = false;
+
+  CURRENCIES.forEach(function (c) {
+    var opt = document.createElement("option");
+    opt.value = c[0];
+    opt.textContent = c[0] + " - " + c[1];
+    currencySelect.appendChild(opt);
+  });
+
+  function money(n) {
+    return "$" + Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function fmtCur(n, code) {
+    var dec = ZERO_DEC[code] ? 0 : 2;
+    try {
+      return new Intl.NumberFormat("en-US", { style: "currency", currency: code, minimumFractionDigits: dec, maximumFractionDigits: dec }).format(n);
+    } catch (e) {
+      return code + " " + Number(n).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    }
+  }
+  function fxText(code) {
+    if (code === "USD") return "Not needed (USD)";
+    var r = fxRates[code];
+    if (!r) return "-";
+    return "1 USD = " + Number(r).toLocaleString("en-US", { maximumFractionDigits: 4 }) + " " + code + (fxLive ? " (live)" : " (snapshot 5 Nov 2026)");
+  }
+  function calculate() {
+    var code = currencySelect.value || "USD";
+    kvFx.textContent = fxText(code);
+    moneyLabel.textContent = (CURRENCIES.filter(function (c) { return c[0] === code; })[0] || CURRENCIES[0])[1];
+    var robux = parseFloat(robuxInput.value);
+    var rate = parseFloat(rateInput.value);
+    if (isNaN(robux) || robux < 0) {
+      RT.setStatus(status, "Enter a Robux amount of 0 or more.", true);
+      return;
+    }
+    if (isNaN(rate) || rate < 0) {
+      RT.setStatus(status, "Enter a rate of 0 or more (USD per 1,000 R$).", true);
+      return;
+    }
+    RT.setStatus(status, "");
+    var usd = (robux / 1000) * rate;
+    var conv = usd * (fxRates[code] || 1);
+    usdOut.textContent = fmtCur(conv, code);
+    kvRobux.textContent = RT.fmt(robux) + " R$";
+    kvRate.textContent = money(rate) + " per 1,000 R$";
+    kvFormula.textContent = RT.fmt(robux) + " R$ / 1,000 x " + money(rate) + " = " + money(usd) + (code === "USD" ? "" : " = " + fmtCur(conv, code));
+  }
+  form.addEventListener("submit", function (e) { e.preventDefault(); calculate(); });
+  robuxInput.addEventListener("input", calculate);
+  rateInput.addEventListener("input", calculate);
+  currencySelect.addEventListener("change", calculate);
+  fetch("https://open.er-api.com/v6/latest/USD")
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (d && d.result === "success" && d.rates && d.rates.IDR) {
+        fxRates = d.rates;
+        fxLive = true;
+        if (robuxInput.value !== "") calculate(); else kvFx.textContent = fxText(currencySelect.value || "USD");
+      }
+    })
+    .catch(function () { });
+  document.querySelectorAll("[data-rate]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      rateInput.value = btn.getAttribute("data-rate");
+      calculate();
+    });
+  });
+})();
+</script>
+</body>
+</html>

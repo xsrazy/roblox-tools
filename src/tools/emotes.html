@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipped Emotes - Roblox Tools</title>
+<meta name="description" content="See the emotes any Roblox avatar has equipped, with a thumbnail and wheel position for each emote.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/emotes.html">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Equipped Emotes - Roblox Tools">
+<meta property="og:description" content="See the emotes any Roblox avatar has equipped, with a thumbnail and wheel position for each emote.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/emotes.html">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Player</div>
+      <h1>Equipped <span class="grad">Emotes</span></h1>
+      <p class="tool-sub">The emotes a Roblox avatar currently has equipped on its emote wheel.</p>
+      <form class="lookup" id="form">
+        <input type="text" id="username" placeholder="Roblox username or user ID" aria-label="Roblox username or user ID" autocomplete="off" spellcheck="false">
+        <button type="submit" id="submitBtn">Look up</button>
+      </form>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone">
+    <div class="narrow">
+      <div id="result" hidden>
+        <div class="result-label">Result</div>
+        <div class="panel" id="panel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>More tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/tools/currently-wearing.html"><h3>Currently Wearing</h3><p>See every item an avatar is wearing right now.</p></a>
+        <a class="rel-card" href="/tools/pose.html"><h3>Avatar Pose &amp; Animations</h3><p>See the animation assets an avatar has equipped.</p></a>
+        <a class="rel-card" href="/tools/avatar.html"><h3>Avatar Viewer</h3><p>View and download any avatar in high resolution.</p></a>
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP and more.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/guides.html">Guides</a>
+      <a href="/blogs.html">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about.html">About Us</a>
+      <a href="/contact.html">Contact Us</a>
+      <a href="/status.html">System Status</a>
+      <a href="/changelog.html">Changelog</a>
+      <a href="/recent.html">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('form');
+  var input = document.getElementById('username');
+  var btn = document.getElementById('submitBtn');
+  var status = document.getElementById('status');
+  var result = document.getElementById('result');
+  var panel = document.getElementById('panel');
+
+  function thumbMap(ids) {
+    var map = {};
+    var chunks = [];
+    for (var i = 0; i < ids.length; i += 100) chunks.push(ids.slice(i, i + 100));
+    return Promise.all(chunks.map(function (chunk) {
+      return RT.fetchJson('/api/thumbs?kind=assets&ids=' + chunk.join(',') + '&size=150x150')
+        .then(function (r) {
+          var thumbs = (r.data && r.data.thumbs) || {};
+          Object.keys(thumbs).forEach(function (k) { map[k] = thumbs[k]; });
+        })
+        .catch(function () {});
+    })).then(function () { return map; });
+  }
+
+  async function run() {
+    var v = input.value.trim();
+    if (!v) return;
+    btn.disabled = true;
+    result.hidden = true;
+    RT.setStatus(status, 'Loading emotes for ' + v + '...');
+    try {
+      var user = await RT.resolveUser(v);
+      var r = await RT.fetchJson('/api/avatar-info?userId=' + encodeURIComponent(user.id));
+      var emotes = (r.data && r.data.emotes) || [];
+      var html = '<h2>' + RT.esc(user.username) + '</h2>';
+      if (!emotes.length) {
+        html += '<p class="empty">No emotes equipped. This avatar is not using any emotes right now.</p>';
+      } else {
+        var sorted = emotes.slice().sort(function (a, b) {
+          return (a.position || 0) - (b.position || 0);
+        });
+        var map = await thumbMap(sorted.map(function (e) { return e.assetId; }).filter(function (id) { return id != null; }));
+        html += '<div class="thumb-grid">' + sorted.map(function (e) {
+          var img = map[e.assetId] ? '<img loading="lazy" src="' + RT.esc(map[e.assetId]) + '" alt="">' : '';
+          var sub = e.position != null ? 'Slot ' + e.position : '';
+          return '<div class="tile">' + img + '<span>' + RT.esc(e.assetName || 'Emote') + '</span><span class="sub">' + RT.esc(sub) + '</span></div>';
+        }).join('') + '</div>';
+      }
+      panel.innerHTML = html;
+      result.hidden = false;
+      RT.setStatus(status, '');
+    } catch (e) {
+      RT.setStatus(status, e.message === 'User not found' ? 'User not found. Check the username and try again.' : 'Lookup failed. Please try again.', true);
+    }
+    btn.disabled = false;
+  }
+
+  form.addEventListener('submit', function (e) { e.preventDefault(); run(); });
+  var pre = RT.param('username');
+  if (pre) { input.value = pre; run(); }
+})();
+</script>
+</body>
+</html>
