@@ -206,6 +206,21 @@ Favorite Games and Last Online are also not offered: the endpoints behind them n
 - **Deploys do not come from this repo.** The live site is deployed from a separate working copy with a deploy script that logs the changelog on every release. This repo mirrors the result after each meaningful update.
 - **Game servers and 3D models work on the live site.** The same Roblox endpoints reject requests from some datacenter IPs, which is why those tools depend on this backend.
 
+## Credits
+
+- **Created and maintained by Rahmatul Usra** ([@xsrazy](https://github.com/xsrazy)): design, development, content and upkeep of Roblox Tools and of this snapshot. Live site: https://roblox.xsrazy.web.id
+- **Data: Roblox.** Every lookup result comes from the public Roblox APIs (users, avatar, thumbnails, inventory, collectibles, games, groups, catalog and presence). Game names, item names, images and all other game data belong to Roblox Corporation and the respective creators. Roblox is a registered trademark of Roblox Corporation. This project is not affiliated with, endorsed by, or sponsored by Roblox Corporation.
+- **Open source libraries:**
+  - **three.js r128** (MIT License, Three.js contributors): 3D avatar and outfit rendering.
+  - **html-to-image** (MIT License): PNG export of the account result card.
+- **Typography:** Inter, designed by Rasmus Andersson and released under the SIL Open Font License 1.1. Self-hosted, no external font requests.
+- **Icons:** inline SVG icons on a 24x24 stroke grid, embedded directly in the pages. No icon font, no external requests.
+- **Exchange rates:** live rates from open.er-api.com (ExchangeRate-API) in the Robux calculators, with a dated fallback snapshot stored in the page when the service is unreachable.
+- **Infrastructure:** Vercel (hosting and serverless functions) and Cloudflare (DNS, plus the D1 database behind the lookup history).
+- **Screenshots:** captured from the live site on 6 November 2026.
+
+The Roblox Tools source code in this repo is MIT licensed (see [LICENSE](LICENSE)). Third-party components keep their own licenses, as listed above.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
