@@ -1,33 +1,45 @@
 // Roblox Tools - Appeal Generator AI writer.
 // POST /api/appeal { type, username, story } -> { draft }
-// Writes ONE unique appeal draft per request through the Pollinations
-// text API (keyless, anonymous lane), called server-side only so the
-// browser never talks to the provider directly. Nothing is stored and
-// nothing is recorded to /api/history. Measured locally 2026-11-06:
-// Pollinations gpt-oss-20b answers in about 18-23 s with a per-request
-// seed (without a seed it serves cached answers); OVHcloud anonymous
-// took 77 s and LLM7 anonymous models were unavailable, so Pollinations
-// is the only keyless provider that passed. There is NO template or
-// canned draft anywhere: every draft is written fresh by the provider.
-// To keep the success rate up, the handler retries the provider up to
-// 3 times per request (fresh random seed each attempt). If all attempts
-// fail, the handler answers with an error and the page shows a busy
-// message so the visitor can simply try again. No draft is faked.
+// Writes ONE unique appeal draft per request, server-side only so the
+// browser never talks to a provider directly. Nothing is stored and
+// nothing is recorded to /api/history. There is NO template or canned
+// draft anywhere: every draft is written fresh by a provider.
+//
+// Provider order (changed 2026-11-06): the Gemini API is the primary
+// writer (key in the GEMINI_API_KEY env var, model in GEMINI_MODEL,
+// currently gemini-3-flash-preview with thinking level low). Measured
+// direct from this machine before wiring it in: all four appeal types
+// answered in about 8 to 11 s with valid letters, versus 15 to 35 s on
+// the old lane, and the owner hit the old lane's anonymous limit in a
+// live test. Pollinations (keyless, gpt-oss-20b) stays wired in as the
+// backup and is only tried if both Gemini attempts fail.
+// Retry design: Gemini gets 2 attempts (fresh generation each time),
+// then the Pollinations path runs its usual 3 attempts. A single
+// internal deadline (55 s, under the 60 s function limit in
+// vercel.json) caps every attempt, so the worst case still answers in
+// time. If everything fails, the handler answers with an error and the
+// page shows a busy message so the visitor can simply try again.
+
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
+const GEMINI_TIMEOUTS_MS = [20000, 15000];
+const GEMINI_BACKOFF_MS = 1000;
 
 const PROVIDER_URL = "https://text.pollinations.ai/openai";
 const MODEL = "gpt-oss-20b";
-// Attempt timeouts shrink per attempt so 3 attempts plus backoff stay
-// safely under the 60 s function limit (vercel.json maxDuration):
-// worst case 23 + 2 + 16 + 3 + 10 = 54 s. The first attempt gets the
-// longest window because measured provider latency is often 15-25 s;
-// later attempts are shorter retries for a faster lane moment.
+// Pollinations attempt timeouts shrink per attempt; measured provider
+// latency there is often 15-25 s, so the first attempt gets the
+// longest window. In backup duty each attempt is additionally capped
+// by whatever is left of the overall deadline.
 const ATTEMPT_TIMEOUTS_MS = [23000, 16000, 10000];
 const RETRY_BACKOFF_MS = [2000, 3000];
+
+const DEADLINE_MS = 55000;
+const MIN_ATTEMPT_MS = 5000;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Light in-memory rate limit per IP (best effort per warm instance).
-// The anonymous provider lane also wants requests spaced out.
 const MIN_GAP_MS = 8000;
 const lastByIp = new Map();
 
@@ -95,6 +107,68 @@ function cleanDraft(text, username) {
   return t;
 }
 
+// One Gemini generateContent call. The key travels in the
+// x-goog-api-key header, server-side only. maxOutputTokens is kept
+// generous and the thinking level low: the Flash thinking models spend
+// tokens on reasoning first, and a tight output budget truncates the
+// letter mid sentence (finishReason MAX_TOKENS), which the sign-off
+// check in cleanDraft then rejects.
+async function callGemini(type, username, story, timeoutMs) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const r = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/" +
+        encodeURIComponent(GEMINI_MODEL) +
+        ":generateContent",
+      {
+        method: "POST",
+        signal: ctrl.signal,
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": GEMINI_API_KEY,
+        },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents: [
+            { role: "user", parts: [{ text: buildUserPrompt(type, username, story) }] },
+          ],
+          generationConfig: {
+            temperature: 0.9,
+            maxOutputTokens: 4096,
+            thinkingConfig: { thinkingLevel: "low" },
+          },
+        }),
+      }
+    );
+    if (!r.ok) return { ok: false, reason: "gemini_status_" + r.status };
+    const j = await r.json().catch(() => null);
+    const cand =
+      j && j.candidates && j.candidates[0] ? j.candidates[0] : null;
+    if (!cand) return { ok: false, reason: "gemini_no_candidate" };
+    if (cand.finishReason && cand.finishReason !== "STOP") {
+      return { ok: false, reason: "gemini_finish_" + cand.finishReason.toLowerCase() };
+    }
+    const parts =
+      cand.content && Array.isArray(cand.content.parts) ? cand.content.parts : [];
+    const raw = parts
+      .filter((p) => p && typeof p.text === "string" && !p.thought)
+      .map((p) => p.text)
+      .join("");
+    const draft = cleanDraft(raw, username);
+    if (!draft) return { ok: false, reason: "gemini_bad_output" };
+    return { ok: true, draft };
+  } catch (e) {
+    return {
+      ok: false,
+      reason: e && e.name === "AbortError" ? "gemini_timeout" : "gemini_fetch_failed",
+    };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// One Pollinations call (backup lane, unchanged from before).
 async function callProvider(type, username, story, timeoutMs) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
@@ -136,23 +210,41 @@ async function callProvider(type, username, story, timeoutMs) {
   }
 }
 
-// Retry loop: any provider failure (error status such as 402/429/5xx,
-// timeout, empty or truncated output) waits briefly and tries again
-// with a fresh random seed. Only when every attempt fails does the
-// caller get an error. These internal retries happen inside a single
-// client request, so the per-IP rate limit below (checked once per
-// client request) never blocks them.
-async function callProviderWithRetries(type, username, story) {
+// Full write path: Gemini first (2 attempts), Pollinations backup
+// (3 attempts). Every attempt is capped by the time left before the
+// internal deadline, and a lane is skipped when too little time is
+// left for a meaningful attempt. These internal retries happen inside
+// a single client request, so the per-IP rate limit below (checked
+// once per client request) never blocks them.
+async function writeDraft(type, username, story, startedAt) {
+  const remaining = () => DEADLINE_MS - (Date.now() - startedAt);
   let last = { ok: false, reason: "provider_unknown" };
+
+  if (GEMINI_API_KEY) {
+    for (let attempt = 0; attempt < GEMINI_TIMEOUTS_MS.length; attempt++) {
+      if (remaining() < MIN_ATTEMPT_MS) break;
+      if (attempt > 0) await sleep(Math.min(GEMINI_BACKOFF_MS, Math.max(0, remaining())));
+      const out = await callGemini(
+        type,
+        username,
+        story,
+        Math.min(GEMINI_TIMEOUTS_MS[attempt], remaining())
+      );
+      if (out.ok) return { ...out, source: "primary" };
+      last = out;
+    }
+  }
+
   for (let attempt = 0; attempt < ATTEMPT_TIMEOUTS_MS.length; attempt++) {
-    if (attempt > 0) await sleep(RETRY_BACKOFF_MS[attempt - 1]);
+    if (remaining() < MIN_ATTEMPT_MS) break;
+    if (attempt > 0) await sleep(Math.min(RETRY_BACKOFF_MS[attempt - 1], Math.max(0, remaining())));
     const out = await callProvider(
       type,
       username,
       story,
-      ATTEMPT_TIMEOUTS_MS[attempt]
+      Math.min(ATTEMPT_TIMEOUTS_MS[attempt], remaining())
     );
-    if (out.ok) return out;
+    if (out.ok) return { ...out, source: "backup" };
     last = out;
   }
   return last;
@@ -188,10 +280,13 @@ module.exports = async (req, res) => {
   lastByIp.set(ip, now);
   if (lastByIp.size > 500) lastByIp.clear();
 
-  const out = await callProviderWithRetries(type, username, story);
+  const out = await writeDraft(type, username, story, now);
   if (!out.ok) {
-    const status = out.reason === "provider_timeout" ? 504 : 502;
+    const status = /timeout/.test(out.reason) ? 504 : 502;
     return res.status(status).json({ error: out.reason });
   }
+  // Neutral lane marker for our own QA (primary = first writing lane,
+  // backup = second); it names no provider.
+  res.setHeader("X-Draft-Source", out.source || "primary");
   return res.status(200).json({ draft: out.draft });
 };

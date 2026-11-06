@@ -10,9 +10,9 @@ Free tools to look up Roblox accounts, avatars, games, groups and more. Live dat
 
 Roblox Tools is a free lookup toolbox for Roblox at [roblox.xsrazy.web.id](https://roblox.xsrazy.web.id). It packs 50 tools into one site: account and avatar checks, friend and follower lists, inventory and limited item values, game and group info, avatar renders and 3D models, Robux calculators, an AI appeal letter writer, and a local account tracker. Every result comes from live Roblox data, and everything works without an account.
 
-This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_Cj3sXavHuc8zJ77yuLHwxZ2QCPNn`). It contains the complete frontend as served by the live deployment (123 files, 110 of them HTML pages) plus all 25 server-side API handlers under `src/api/` (148 files in total). Private values in the backend copies are redacted as `*****`; the actual credentials are read from environment variables and were never written in the code. See [Notes](#notes).
+This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_CfKgPC3ho8tksRUY5oz2PgvGQgHL`). It contains the complete frontend as served by the live deployment (123 files, 110 of them HTML pages) plus all 25 server-side API handlers under `src/api/` (148 files in total). Private values in the backend copies are redacted as `*****`; the actual credentials are read from environment variables and were never written in the code. See [Notes](#notes).
 
-Site version: **v1.6.25** (6 November 2026). Full version history: [Changelog](https://roblox.xsrazy.web.id/changelog).
+Site version: **v1.6.26** (6 November 2026). Full version history: [Changelog](https://roblox.xsrazy.web.id/changelog).
 
 ## Screenshots
 
@@ -174,17 +174,18 @@ Base URL: `/api/<name>`. These endpoints run as serverless functions on the live
 | `/api/thumbs` | Thumbnail URLs, proxied so pages can use them cross-origin. |
 | `/api/resolve` | Resolve usernames, user IDs and profile or group links. |
 | `/api/social` | Friends, followers, following and mutuals (session-backed). |
-| `/api/appeal` | Writes one unique moderation appeal draft per request through a keyless AI writing service, retrying up to 3 times when the service is busy. There is no template fallback: on failure it returns an error and no draft. Stores nothing, and appeals are never recorded in the lookup history. |
+| `/api/appeal` | Writes one unique moderation appeal draft per request with Google Gemini as the primary writer (the API key is held only in a server environment variable, never in code), trying Gemini up to 2 times and then falling back automatically to the keyless Pollinations writing service for up to 3 more attempts. There is no template fallback: on failure it returns an error and no draft. Stores nothing, and appeals are never recorded in the lookup history. |
 | `/api/probe` | Liveness probe for the backend. |
 
 ## Changelog
 
-The site launched on 5 November 2026 and is versioned on every deploy. A deploy script logs each release with its date and time (WIB) and rebuilds the public changelog page. Current state: **44 releases, 88 changes, latest v1.6.25**.
+The site launched on 5 November 2026 and is versioned on every deploy. A deploy script logs each release with its date and time (WIB) and rebuilds the public changelog page. Current state: **45 releases, 91 changes, latest v1.6.26**.
 
 Recent releases:
 
 | Version | Date | Summary |
 | --- | --- | --- |
+| v1.6.26 | 6 November 2026, 17:20 WIB | Appeal Generator: Gemini is now the main writer, Pollinations kept as backup |
 | v1.6.25 | 6 November 2026, 16:46 WIB | Appeal Generator: template drafts removed, AI only with automatic retries |
 | v1.6.24 | 6 November 2026, 16:16 WIB | Appeal Generator now writes unique drafts with AI |
 | v1.6.23 | 6 November 2026, 15:54 WIB | New tool: Appeal Generator |
@@ -205,7 +206,7 @@ Favorite Games and Last Online are also not offered: the endpoints behind them n
 
 ## Notes
 
-- **Snapshot scope.** This repo holds the production deployment `dpl_Cj3sXavHuc8zJ77yuLHwxZ2QCPNn` as source: 123 frontend files plus the 25 API handlers under `src/api/` (the compiled function bundles are not included). In the backend copies, the maintainer's own Roblox username and user ID (used as the test target in the probe endpoint and in two code comments) are replaced with `*****`. Real secrets never appear in the code at all: the signed-in session cookie and the Cloudflare credentials are read from environment variables (`ROBLOSECURITY`, `CF_ACCOUNT_ID`, `CF_D1_ID`, `CF_API_TOKEN`) on the server only.
+- **Snapshot scope.** This repo holds the production deployment `dpl_CfKgPC3ho8tksRUY5oz2PgvGQgHL` as source: 123 frontend files plus the 25 API handlers under `src/api/` (the compiled function bundles are not included). In the backend copies, the maintainer's own Roblox username and user ID (used as the test target in the probe endpoint and in two code comments) are replaced with `*****`. Real secrets never appear in the code at all: the signed-in session cookie, the Cloudflare credentials and the Gemini API key are read from environment variables (`ROBLOSECURITY`, `CF_ACCOUNT_ID`, `CF_D1_ID`, `CF_API_TOKEN`, `GEMINI_API_KEY`) on the server only.
 - **Deploys do not come from this repo.** The live site is deployed from a separate working copy with a deploy script that logs the changelog on every release. This repo mirrors the result after each meaningful update.
 - **Game servers and 3D models work on the live site.** The same Roblox endpoints reject requests from some datacenter IPs, which is why those tools depend on this backend.
 
@@ -220,7 +221,7 @@ Favorite Games and Last Online are also not offered: the endpoints behind them n
 - **Icons:** inline SVG icons on a 24x24 stroke grid, embedded directly in the pages. No icon font, no external requests.
 - **Exchange rates:** live rates from open.er-api.com (ExchangeRate-API) in the Robux calculators, with a dated fallback snapshot stored in the page when the service is unreachable.
 - **Infrastructure:** Vercel (hosting and serverless functions) and Cloudflare (DNS, plus the D1 database behind the lookup history).
-- **AI writing:** Pollinations (keyless, anonymous lane) writes the Appeal Generator drafts server-side through `/api/appeal`.
+- **AI writing:** Google Gemini API is the main writer for the Appeal Generator drafts, called server-side through `/api/appeal` (API key held only in a server environment variable, never in code). Pollinations (keyless, anonymous lane) runs as the automatic backup writer.
 - **Screenshots:** captured from the live site on 6 November 2026.
 
 The Roblox Tools source code in this repo is MIT licensed (see [LICENSE](LICENSE)). Third-party components keep their own licenses, as listed above.
