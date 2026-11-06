@@ -1,1 +1,1 @@
-{"cleanUrls":true,"redirects":[{"destination":"/","permanent":true,"source":"/index.html"}]}
+{"cleanUrls":true,"functions":{"api/appeal.js":{"maxDuration":60}},"redirects":[{"destination":"/","permanent":true,"source":"/index.html"}]}

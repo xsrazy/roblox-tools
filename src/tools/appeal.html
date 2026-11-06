@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appeal Generator - Roblox Tools</title>
+<meta name="description" content="Draft a polite Roblox moderation appeal you can copy and send to Roblox: account terminations, unusual warnings, deleted items and login problems.">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/appeal">
+<link rel="icon" type="image/png" href="/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roblox Tools">
+<meta property="og:title" content="Appeal Generator - Roblox Tools">
+<meta property="og:description" content="Turn your situation into a clear, polite appeal draft for Roblox Support in a few seconds.">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/appeal">
+<meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Appeal Generator - Roblox Tools">
+<meta name="twitter:description" content="Turn your situation into a clear, polite appeal draft for Roblox Support in a few seconds.">
+<meta name="twitter:image" content="https://roblox.xsrazy.web.id/og.png">
+<link rel="stylesheet" href="/assets/tools.css">
+<style>
+.appeal-form{max-width:620px;margin:36px auto 0;text-align:left;background:rgba(255,255,255,.88);border:1px solid #D7E3F2;border-radius:20px;padding:22px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.appeal-form label{display:block;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.appeal-form .field{margin-bottom:18px}
+.appeal-form input[type="text"],.appeal-form select,.appeal-form textarea{width:100%;background:#fff;border:1px solid #D7E3F2;border-radius:12px;color:var(--text);font-size:15.5px;font-family:inherit;padding:12px 14px;outline:none;transition:border-color .2s}
+.appeal-form input[type="text"]:focus,.appeal-form select:focus,.appeal-form textarea:focus{border-color:rgba(37,99,235,.55)}
+.appeal-form textarea{resize:vertical;line-height:1.55}
+.appeal-form .gen-btn{width:100%;background:var(--accent);color:var(--accent-ink);border:0;cursor:pointer;font:inherit;font-size:15px;font-weight:600;padding:13px 32px;border-radius:999px;box-shadow:0 10px 24px -6px rgba(37,99,235,.40);transition:transform .2s,background .2s}
+.appeal-form .gen-btn:hover{transform:translateY(-1px);background:var(--violet-deep)}
+.appeal-form .gen-btn:disabled{opacity:.65;cursor:wait;transform:none}
+#draftOut{width:100%;background:#fff;border:1px solid var(--line-soft);border-radius:12px;color:var(--text);font-size:14.5px;font-family:inherit;line-height:1.65;padding:16px;resize:vertical;outline:none}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand-head" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+    <nav class="nav-links">
+      <a href="/#tools"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Tools</a>
+      <a href="/#how"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17h.01"/></svg>How it works</a>
+    </nav>
+    <a class="nav-cta" href="/">Start a lookup</a>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="wrap tool-hero-in">
+      <div class="hero-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></div>
+      <div class="crumb"><a href="/">Home</a> / <a href="/#tools">Tools</a> / Player</div>
+      <h1>Appeal <span class="grad">Generator</span></h1>
+      <p class="tool-sub">Staring at a moderation message and not sure what to write? Pick what happened, add your username, and get a calm, polite appeal draft you can copy and send to Roblox Support.</p>
+      <div class="appeal-form" id="appealForm">
+        <div class="field">
+          <label for="appealUsername">Roblox username</label>
+          <input type="text" id="appealUsername" placeholder="Your Roblox username" aria-label="Roblox username" autocomplete="off" data-nolink>
+        </div>
+        <div class="field">
+          <label for="appealType">Appeal type</label>
+          <select id="appealType" aria-label="Appeal type">
+            <option value="terminated">Account terminated</option>
+            <option value="warning">Unusual warning</option>
+            <option value="item">Item deleted</option>
+            <option value="login">Cannot log in</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="appealStory">What happened</label>
+          <textarea id="appealStory" rows="4" placeholder="Briefly describe what happened (optional)" aria-label="Briefly describe what happened (optional)"></textarea>
+        </div>
+        <button type="button" class="gen-btn" id="generateBtn">Generate Draft</button>
+      </div>
+      <div class="status" id="status"></div>
+    </div>
+  </section>
+
+  <section class="result-zone" id="resultZone" style="display:none">
+    <div class="narrow">
+      <div id="result">
+        <div class="result-label">Your appeal draft</div>
+        <div class="panel">
+          <textarea id="draftOut" rows="16" readonly aria-label="Your appeal draft"></textarea>
+          <div class="actions">
+            <button type="button" class="btn primary" id="copyBtn">Copy draft</button>
+          </div>
+          <p class="note" style="text-align:left">This is only a draft for you to copy. Each draft is written fresh by a writing service when you press the button, and nothing you type here is stored. If the writing service is busy, no draft appears and you can simply try again in a moment. Appeals themselves go through the official Roblox support page at <a href="https://www.roblox.com/support" target="_blank" rel="noopener">roblox.com/support</a>. This site is not affiliated with Roblox Corporation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <div class="wrap">
+      <h2>Related tools</h2>
+      <div class="rel-grid">
+        <a class="rel-card" href="/"><h3>Account Checker</h3><p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p></a>
+        <a class="rel-card" href="/tools/username-checker"><h3>Username Checker</h3><p>See if a Roblox username is available, taken, or not allowed.</p></a>
+        <a class="rel-card" href="/tools/user-history"><h3>User History</h3><p>Join date, account age, name changes and current counts in one report.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-main">
+      <a class="foot-brand" href="/"><img src="/logo.png" alt="Roblox Tools logo"><span>Roblox <em>Tools</em></span></a>
+      <p class="foot-desc">Look up any Roblox account in seconds. Profiles, RAP, outfits, badges and more, all free and right in your browser. No sign up, no downloads.</p>
+      <div class="foot-cta">
+        <a class="fbtn fbtn-solid" href="/#top">Start a lookup</a>
+        <a class="fbtn fbtn-ghost" href="/#tools">See all tools</a>
+      </div>
+    </div>
+    <nav class="foot-col">
+      <h4>General</h4>
+      <a href="/#tools">Features</a>
+      <a href="/faq">FAQ</a>
+      <a href="/guides">Guides</a>
+      <a href="/blogs">Blogs</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Resources</h4>
+      <a href="/about">About Us</a>
+      <a href="/contact">Contact Us</a>
+      <a href="/status">System Status</a>
+      <a href="/changelog">Changelog</a>
+      <a href="/recent">Recently Looked Up</a>
+    </nav>
+    <nav class="foot-col">
+      <h4>Legal</h4>
+      <a href="/terms">Terms of Service</a>
+      <a href="/privacy">Privacy Policy</a>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Copyright © 2026 Roblox Tools. <span class="foot-note">Not affiliated with Roblox Corporation.</span></span>
+  </div>
+</footer>
+
+<script src="/assets/tools.js"></script>
+<script>
+(function () {
+  var RT = window.RT;
+  var usernameInput = document.getElementById("appealUsername");
+  var typeSelect = document.getElementById("appealType");
+  var storyInput = document.getElementById("appealStory");
+  var generateBtn = document.getElementById("generateBtn");
+  var copyBtn = document.getElementById("copyBtn");
+  var status = document.getElementById("status");
+  var resultZone = document.getElementById("resultZone");
+  var draftOut = document.getElementById("draftOut");
+
+  var busy = false;
+
+  function showDraft(text) {
+    draftOut.value = text;
+    resultZone.style.display = "";
+    resultZone.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function generate() {
+    if (busy) return;
+    var username = usernameInput.value.trim();
+    if (!username) {
+      RT.setStatus(status, "Enter your Roblox username first.", true);
+      usernameInput.focus();
+      return;
+    }
+    if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) {
+      RT.setStatus(status, "That does not look like a Roblox username. Usernames are 3 to 20 letters, numbers or underscores.", true);
+      usernameInput.focus();
+      return;
+    }
+    var type = typeSelect.value;
+    var story = storyInput.value.trim();
+    busy = true;
+    generateBtn.disabled = true;
+    generateBtn.textContent = "Writing...";
+    RT.setStatus(status, "Writing your draft...");
+    var ctrl = ("AbortController" in window) ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 75000) : null;
+    fetch("/api/appeal", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: type, username: username, story: story }),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) {
+      if (!r.ok) throw new Error("api " + r.status);
+      return r.json();
+    }).then(function (j) {
+      if (!j || !j.draft) throw new Error("empty draft");
+      RT.setStatus(status, "");
+      showDraft(j.draft);
+    }).catch(function () {
+      draftOut.value = "";
+      resultZone.style.display = "none";
+      RT.setStatus(status, "The writing service is busy right now. Nothing was generated. Please try again in a moment.", true);
+    }).then(function () {
+      if (timer) clearTimeout(timer);
+      busy = false;
+      generateBtn.disabled = false;
+      generateBtn.textContent = "Generate Draft";
+    });
+  }
+
+  generateBtn.addEventListener("click", generate);
+  usernameInput.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); generate(); } });
+  storyInput.addEventListener("keydown", function (e) { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); generate(); } });
+
+  copyBtn.addEventListener("click", function () {
+    function done() {
+      var old = copyBtn.textContent;
+      copyBtn.textContent = "Copied";
+      setTimeout(function () { copyBtn.textContent = old; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(draftOut.value).then(done).catch(function () {
+        draftOut.select();
+        try { document.execCommand("copy"); } catch (e) {}
+        done();
+      });
+    } else {
+      draftOut.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      done();
+    }
+  });
+})();
+</script>
+</body>
+</html>

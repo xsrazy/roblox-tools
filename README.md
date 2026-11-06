@@ -8,11 +8,11 @@ Free tools to look up Roblox accounts, avatars, games, groups and more. Live dat
 
 ## About
 
-Roblox Tools is a free lookup toolbox for Roblox at [roblox.xsrazy.web.id](https://roblox.xsrazy.web.id). It packs 49 tools into one site: account and avatar checks, friend and follower lists, inventory and limited item values, game and group info, avatar renders and 3D models, Robux calculators, and a local account tracker. Every result comes from live Roblox data, and everything runs in the browser without an account.
+Roblox Tools is a free lookup toolbox for Roblox at [roblox.xsrazy.web.id](https://roblox.xsrazy.web.id). It packs 50 tools into one site: account and avatar checks, friend and follower lists, inventory and limited item values, game and group info, avatar renders and 3D models, Robux calculators, an AI appeal letter writer, and a local account tracker. Every result comes from live Roblox data, and everything works without an account.
 
-This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_EDhvu71F7E4Q45YQdbV3HShueL3U`). It contains the complete frontend as served by the live deployment (121 files, 108 of them HTML pages) plus all 24 server-side API handlers under `src/api/` (145 files in total). Private values in the backend copies are redacted as `*****`; the actual credentials are read from environment variables and were never written in the code. See [Notes](#notes).
+This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_Cj3sXavHuc8zJ77yuLHwxZ2QCPNn`). It contains the complete frontend as served by the live deployment (123 files, 110 of them HTML pages) plus all 25 server-side API handlers under `src/api/` (148 files in total). Private values in the backend copies are redacted as `*****`; the actual credentials are read from environment variables and were never written in the code. See [Notes](#notes).
 
-Site version: **v1.6.22** (6 November 2026). Full version history: [Changelog](https://roblox.xsrazy.web.id/changelog).
+Site version: **v1.6.25** (6 November 2026). Full version history: [Changelog](https://roblox.xsrazy.web.id/changelog).
 
 ## Screenshots
 
@@ -26,7 +26,7 @@ The toolbox section, with category filters and tool search:
 
 ## Features
 
-- **49 free tools in 8 categories**, listed in full in the [tool catalog](#tool-catalog) below.
+- **50 free tools in 8 categories**, listed in full in the [tool catalog](#tool-catalog) below.
 - **Live data only.** Results come from Roblox public APIs through the site's `/api/*` endpoints, never from a cached database.
 - **Shareable result cards.** The account checker builds a profile card (avatar, counts, RAP, join date) that can be downloaded as a framed PNG named after the user.
 - **3D avatar models.** View any avatar in 3D and download the model files for Blender or Roblox Studio.
@@ -34,12 +34,13 @@ The toolbox section, with category filters and tool search:
 - **Calculators with 16 currencies.** Robux conversions use the DevEx rate (USD 3.80 per 1,000 Robux) with live exchange rates and a dated fallback snapshot.
 - **Recently Looked Up.** Every lookup on the site is recorded, and the latest 12 appear on the [Recently Looked Up](https://roblox.xsrazy.web.id/recent) page, each one click away from a fresh check.
 - **Local tracking.** The tracker keeps its list and snapshots in the browser (localStorage), so tracked accounts never leave the device.
-- **55 guides and blog posts**, one for every tool plus general explainers.
+- **Appeal letters written fresh.** The Appeal Generator writes a unique moderation appeal draft for each request through an AI writing service. There is no template fallback: if the service is busy after automatic retries, no draft is shown and the visitor can simply try again. Nothing typed into the form is stored, and appeals are never recorded in Recently Looked Up.
+- **56 guides and blog posts**, one for every tool plus general explainers.
 - **No login, no sign-up, no install, no cost.**
 
 ## Tool catalog
 
-### Player (11)
+### Player (12)
 
 | Tool | What it does |
 | --- | --- |
@@ -54,6 +55,7 @@ The toolbox section, with category filters and tool search:
 | Avatar History | Past avatar setups a user saved as outfits, plus what they wear now. |
 | Outfit Viewer | Browse the outfits any user has saved on their profile. |
 | Outfit Value Estimator | Estimate what a saved outfit is worth in Robux, item by item. |
+| Appeal Generator | A unique, polite moderation appeal draft, written fresh for each request by an AI writing service: terminations, unusual warnings, deleted items and login problems. |
 
 ### Social (6)
 
@@ -124,11 +126,11 @@ The User Tracker page hosts seven functions that work on a list stored in the br
 
 Next to the tools, the site ships a full set of info pages:
 
-- **Features, FAQ, Guides, Blogs**: highlights, answers grouped by topic with a live search filter, 12 tutorial cards, and the blog index with 55 posts.
-- **About**: how the site started (one checker that grew into 49 tools in a day) and what it runs on.
+- **Features, FAQ, Guides, Blogs**: highlights, answers grouped by topic with a live search filter, 12 tutorial cards, and the blog index with 56 posts.
+- **About**: how the site started (one checker that grew into 50 tools in a day) and what it runs on.
 - **Contact**: the contact email and the three kinds of reports the site accepts.
 - **Status**: live status of the site, the Roblox APIs, the lookup history and the tracking storage.
-- **Changelog**: every release since launch, currently 40 releases and 76 changes.
+- **Changelog**: every release since launch, currently 44 releases and 88 changes.
 - **Recently Looked Up**: the latest 12 lookups across the whole site.
 - **Terms and Privacy**: the rules and the data policy, each section in its own card with a side navigation.
 
@@ -137,9 +139,9 @@ Next to the tools, the site ships a full set of info pages:
 - **Frontend:** static HTML, CSS and JavaScript under `src/`, no framework. Shared code lives in `src/assets/tools.css` and `src/assets/tools.js`. Vendor libraries: three.js r128 (3D rendering) and html-to-image (PNG export of the result card).
 - **Typography:** one self-hosted font family, Inter (`src/fonts/Inter.woff2`), loaded on every page including the exported result card.
 - **Design:** light blue glass theme. Primary blue `#2563EB`, glass cards `rgba(255,255,255,.72)` with a `#D9E6F5` border and 16px radius, page background built from soft blue radial glows over `#F8FBFF` to `#E9F1FD`. The OG image (`src/og.png`) uses the same values, the same logo file and the same tool names and descriptions as the homepage.
-- **Backend:** 24 serverless API handlers under `src/api/` that proxy Roblox public APIs and power every tool. See the [API](#api) table.
+- **Backend:** 25 serverless API handlers under `src/api/` that proxy Roblox public APIs and power every tool. See the [API](#api) table.
 - **Lookup history:** a Cloudflare D1 database behind `/api/history`. New lookups are validated and deduplicated, and the endpoint returns the latest 12.
-- **Session tools:** six tools (Friends List, Mutual Friends, Followers List, Following List, User Badges, Avatar 3D Model) need data that Roblox only serves to signed-in accounts. On the live site they run through a session stored as a server-side environment variable, never in code. If that session is unavailable, those six tools say so and the other 43 keep working.
+- **Session tools:** six tools (Friends List, Mutual Friends, Followers List, Following List, User Badges, Avatar 3D Model) need data that Roblox only serves to signed-in accounts. On the live site they run through a session stored as a server-side environment variable, never in code. If that session is unavailable, those six tools say so and the other 44 keep working.
 - **Hosting:** Vercel (project `roblox-tools`). The domain `roblox.xsrazy.web.id` points to Vercel through a Cloudflare DNS CNAME.
 - **Stateless frontend.** The pages are static; all live data comes through the `/api/*` endpoints, and the only state kept anywhere is the lookup history (D1) and the tracker list (browser localStorage).
 
@@ -172,22 +174,23 @@ Base URL: `/api/<name>`. These endpoints run as serverless functions on the live
 | `/api/thumbs` | Thumbnail URLs, proxied so pages can use them cross-origin. |
 | `/api/resolve` | Resolve usernames, user IDs and profile or group links. |
 | `/api/social` | Friends, followers, following and mutuals (session-backed). |
+| `/api/appeal` | Writes one unique moderation appeal draft per request through a keyless AI writing service, retrying up to 3 times when the service is busy. There is no template fallback: on failure it returns an error and no draft. Stores nothing, and appeals are never recorded in the lookup history. |
 | `/api/probe` | Liveness probe for the backend. |
 
 ## Changelog
 
-The site launched on 5 November 2026 and is versioned on every deploy. A deploy script logs each release with its date and time (WIB) and rebuilds the public changelog page. Current state: **40 releases, 76 changes, latest v1.6.21**.
+The site launched on 5 November 2026 and is versioned on every deploy. A deploy script logs each release with its date and time (WIB) and rebuilds the public changelog page. Current state: **44 releases, 88 changes, latest v1.6.25**.
 
 Recent releases:
 
 | Version | Date | Summary |
 | --- | --- | --- |
+| v1.6.25 | 6 November 2026, 16:46 WIB | Appeal Generator: template drafts removed, AI only with automatic retries |
+| v1.6.24 | 6 November 2026, 16:16 WIB | Appeal Generator now writes unique drafts with AI |
+| v1.6.23 | 6 November 2026, 15:54 WIB | New tool: Appeal Generator |
 | v1.6.22 | 6 November 2026, 15:34 WIB | Clean page URLs |
 | v1.6.21 | 6 November 2026, 03:53 WIB | OG image aligned to the site, value by value |
 | v1.6.20 | 6 November 2026, 03:48 WIB | OG image speaks the site language now |
-| v1.6.19 | 6 November 2026, 03:47 WIB | OG image refreshed in Inter |
-| v1.6.18 | 6 November 2026, 03:41 WIB | New blue OG image |
-| v1.6.17 | 5 November 2026, 23:33 WIB | Every page header now matches the homepage |
 
 Full history: https://roblox.xsrazy.web.id/changelog
 
@@ -202,7 +205,7 @@ Favorite Games and Last Online are also not offered: the endpoints behind them n
 
 ## Notes
 
-- **Snapshot scope.** This repo holds the production deployment `dpl_EDhvu71F7E4Q45YQdbV3HShueL3U` as source: 121 frontend files plus the 24 API handlers under `src/api/` (the compiled function bundles are not included). In the backend copies, the maintainer's own Roblox username and user ID (used as the test target in the probe endpoint and in two code comments) are replaced with `*****`. Real secrets never appear in the code at all: the signed-in session cookie and the Cloudflare credentials are read from environment variables (`ROBLOSECURITY`, `CF_ACCOUNT_ID`, `CF_D1_ID`, `CF_API_TOKEN`) on the server only.
+- **Snapshot scope.** This repo holds the production deployment `dpl_Cj3sXavHuc8zJ77yuLHwxZ2QCPNn` as source: 123 frontend files plus the 25 API handlers under `src/api/` (the compiled function bundles are not included). In the backend copies, the maintainer's own Roblox username and user ID (used as the test target in the probe endpoint and in two code comments) are replaced with `*****`. Real secrets never appear in the code at all: the signed-in session cookie and the Cloudflare credentials are read from environment variables (`ROBLOSECURITY`, `CF_ACCOUNT_ID`, `CF_D1_ID`, `CF_API_TOKEN`) on the server only.
 - **Deploys do not come from this repo.** The live site is deployed from a separate working copy with a deploy script that logs the changelog on every release. This repo mirrors the result after each meaningful update.
 - **Game servers and 3D models work on the live site.** The same Roblox endpoints reject requests from some datacenter IPs, which is why those tools depend on this backend.
 
@@ -217,6 +220,7 @@ Favorite Games and Last Online are also not offered: the endpoints behind them n
 - **Icons:** inline SVG icons on a 24x24 stroke grid, embedded directly in the pages. No icon font, no external requests.
 - **Exchange rates:** live rates from open.er-api.com (ExchangeRate-API) in the Robux calculators, with a dated fallback snapshot stored in the page when the service is unreachable.
 - **Infrastructure:** Vercel (hosting and serverless functions) and Cloudflare (DNS, plus the D1 database behind the lookup history).
+- **AI writing:** Pollinations (keyless, anonymous lane) writes the Appeal Generator drafts server-side through `/api/appeal`.
 - **Screenshots:** captured from the live site on 6 November 2026.
 
 The Roblox Tools source code in this repo is MIT licensed (see [LICENSE](LICENSE)). Third-party components keep their own licenses, as listed above.
