@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game Servers - Roblox Tools</title>
 <meta name="description" content="Browse the live public servers of any Roblox game: players per server, ping and FPS, straight from the Roblox games API.">
-<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/game-servers.html">
+<link rel="canonical" href="https://roblox.xsrazy.web.id/tools/game-servers">
 <link rel="icon" type="image/png" href="/logo.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Roblox Tools">
 <meta property="og:title" content="Game Servers - Roblox Tools">
 <meta property="og:description" content="Live public servers for any Roblox game, with players, ping and FPS from public Roblox APIs.">
-<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/game-servers.html">
+<meta property="og:url" content="https://roblox.xsrazy.web.id/tools/game-servers">
 <meta property="og:image" content="https://roblox.xsrazy.web.id/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -67,11 +67,11 @@
           <h3>Account Checker</h3>
           <p>Look up any Roblox account: friends, followers, join date, RAP, outfits and more.</p>
         </a>
-        <a class="rel-card" href="/tools/game-info.html">
+        <a class="rel-card" href="/tools/game-info">
           <h3>Game Info</h3>
           <p>Playing counts, visits, favorites, votes and details for any Roblox game.</p>
         </a>
-        <a class="rel-card" href="/tools/group-check.html">
+        <a class="rel-card" href="/tools/group-check">
           <h3>Group Check</h3>
           <p>See the groups a user belongs to, their roles, and details for any group.</p>
         </a>
@@ -93,22 +93,22 @@
     <nav class="foot-col">
       <h4>General</h4>
       <a href="/#tools">Features</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/guides.html">Guides</a>
-      <a href="/blogs.html">Blogs</a>
+      <a href="/faq">FAQ</a>
+      <a href="/guides">Guides</a>
+      <a href="/blogs">Blogs</a>
     </nav>
     <nav class="foot-col">
       <h4>Resources</h4>
-      <a href="/about.html">About Us</a>
-      <a href="/contact.html">Contact Us</a>
-      <a href="/status.html">System Status</a>
-      <a href="/changelog.html">Changelog</a>
-      <a href="/recent.html">Recently Looked Up</a>
+      <a href="/about">About Us</a>
+      <a href="/contact">Contact Us</a>
+      <a href="/status">System Status</a>
+      <a href="/changelog">Changelog</a>
+      <a href="/recent">Recently Looked Up</a>
     </nav>
     <nav class="foot-col">
       <h4>Legal</h4>
-      <a href="/terms.html">Terms of Service</a>
-      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/privacy">Privacy Policy</a>
     </nav>
   </div>
   <div class="wrap foot-bottom">
@@ -164,7 +164,7 @@
       html += "<tr><td>" + RT.esc(String(s.id).slice(0, 8)) + '</td><td class="num">' + players + '</td><td class="num">' + ping + '</td><td class="num">' + fps + "</td></tr>";
     });
     html += "</tbody></table></div>";
-    html += '<div class="actions"><a class="btn" href="/tools/game-info.html?place=' + RT.esc(placeId) + '">Game info for this place</a></div>';
+    html += '<div class="actions"><a class="btn" href="/tools/game-info?place=' + RT.esc(placeId) + '">Game info for this place</a></div>';
     panel.innerHTML = html;
     result.hidden = false;
   }

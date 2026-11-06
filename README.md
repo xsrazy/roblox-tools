@@ -10,9 +10,9 @@ Free tools to look up Roblox accounts, avatars, games, groups and more. Live dat
 
 Roblox Tools is a free lookup toolbox for Roblox at [roblox.xsrazy.web.id](https://roblox.xsrazy.web.id). It packs 49 tools into one site: account and avatar checks, friend and follower lists, inventory and limited item values, game and group info, avatar renders and 3D models, Robux calculators, and a local account tracker. Every result comes from live Roblox data, and everything runs in the browser without an account.
 
-This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo`). It contains the complete frontend as served by the live deployment (120 files, 108 of them HTML pages) plus all 24 server-side API handlers under `src/api/` (144 files in total). Private values in the backend copies are redacted as `*****`; the actual credentials are read from environment variables and were never written in the code. See [Notes](#notes).
+This repository is a snapshot of the live site (Vercel project `roblox-tools`, production deployment `dpl_EDhvu71F7E4Q45YQdbV3HShueL3U`). It contains the complete frontend as served by the live deployment (121 files, 108 of them HTML pages) plus all 24 server-side API handlers under `src/api/` (145 files in total). Private values in the backend copies are redacted as `*****`; the actual credentials are read from environment variables and were never written in the code. See [Notes](#notes).
 
-Site version: **v1.6.21** (6 November 2026). Full version history: [Changelog](https://roblox.xsrazy.web.id/changelog.html).
+Site version: **v1.6.22** (6 November 2026). Full version history: [Changelog](https://roblox.xsrazy.web.id/changelog).
 
 ## Screenshots
 
@@ -32,7 +32,7 @@ The toolbox section, with category filters and tool search:
 - **3D avatar models.** View any avatar in 3D and download the model files for Blender or Roblox Studio.
 - **Live game servers.** Public servers of a game with player counts, ping and FPS.
 - **Calculators with 16 currencies.** Robux conversions use the DevEx rate (USD 3.80 per 1,000 Robux) with live exchange rates and a dated fallback snapshot.
-- **Recently Looked Up.** Every lookup on the site is recorded, and the latest 12 appear on the [Recently Looked Up](https://roblox.xsrazy.web.id/recent.html) page, each one click away from a fresh check.
+- **Recently Looked Up.** Every lookup on the site is recorded, and the latest 12 appear on the [Recently Looked Up](https://roblox.xsrazy.web.id/recent) page, each one click away from a fresh check.
 - **Local tracking.** The tracker keeps its list and snapshots in the browser (localStorage), so tracked accounts never leave the device.
 - **55 guides and blog posts**, one for every tool plus general explainers.
 - **No login, no sign-up, no install, no cost.**
@@ -182,14 +182,14 @@ Recent releases:
 
 | Version | Date | Summary |
 | --- | --- | --- |
+| v1.6.22 | 6 November 2026, 15:34 WIB | Clean page URLs |
 | v1.6.21 | 6 November 2026, 03:53 WIB | OG image aligned to the site, value by value |
 | v1.6.20 | 6 November 2026, 03:48 WIB | OG image speaks the site language now |
 | v1.6.19 | 6 November 2026, 03:47 WIB | OG image refreshed in Inter |
 | v1.6.18 | 6 November 2026, 03:41 WIB | New blue OG image |
 | v1.6.17 | 5 November 2026, 23:33 WIB | Every page header now matches the homepage |
-| v1.6.16 | 5 November 2026, 23:30 WIB | Change count gets a soft chip |
 
-Full history: https://roblox.xsrazy.web.id/changelog.html
+Full history: https://roblox.xsrazy.web.id/changelog
 
 ## Not included, on purpose
 
@@ -202,7 +202,7 @@ Favorite Games and Last Online are also not offered: the endpoints behind them n
 
 ## Notes
 
-- **Snapshot scope.** This repo holds the production deployment `dpl_9uCN2sceYixPBMs7nFBGpYFbT2zo` as source: 120 frontend files plus the 24 API handlers under `src/api/` (the compiled function bundles are not included). In the backend copies, the maintainer's own Roblox username and user ID (used as the test target in the probe endpoint and in two code comments) are replaced with `*****`. Real secrets never appear in the code at all: the signed-in session cookie and the Cloudflare credentials are read from environment variables (`ROBLOSECURITY`, `CF_ACCOUNT_ID`, `CF_D1_ID`, `CF_API_TOKEN`) on the server only.
+- **Snapshot scope.** This repo holds the production deployment `dpl_EDhvu71F7E4Q45YQdbV3HShueL3U` as source: 121 frontend files plus the 24 API handlers under `src/api/` (the compiled function bundles are not included). In the backend copies, the maintainer's own Roblox username and user ID (used as the test target in the probe endpoint and in two code comments) are replaced with `*****`. Real secrets never appear in the code at all: the signed-in session cookie and the Cloudflare credentials are read from environment variables (`ROBLOSECURITY`, `CF_ACCOUNT_ID`, `CF_D1_ID`, `CF_API_TOKEN`) on the server only.
 - **Deploys do not come from this repo.** The live site is deployed from a separate working copy with a deploy script that logs the changelog on every release. This repo mirrors the result after each meaningful update.
 - **Game servers and 3D models work on the live site.** The same Roblox endpoints reject requests from some datacenter IPs, which is why those tools depend on this backend.
 
